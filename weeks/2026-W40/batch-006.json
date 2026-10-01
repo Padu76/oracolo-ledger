@@ -1,0 +1,305 @@
+{
+  "schema": "oracolo-ledger/1",
+  "site": "https://oracolo-sepia.vercel.app",
+  "week_id": "2026-W40",
+  "batch_no": 6,
+  "generated_at": "2026-10-01T09:35:17.762Z",
+  "prev_file_sha256": "56dd63d7cc3ff48859ab48f308631e02569159b9a999bcb0c1bf957dc2e13886",
+  "hash_formula": "sha256_hex( question_id | model_id | answer | confidence | rationale_it | created_at_utc ) con '|' come separatore e created_at nel formato YYYY-MM-DDTHH:MM:SS.ffffffZ",
+  "versions": [
+    {
+      "id": "c2",
+      "kind": "context",
+      "source_sha256": "0626e031bdb1b10ce657e7e109291005f794a2d60ada5c83675229b218703158",
+      "description": "Schema del contesto c2: come c1, piu' domande con SOLO voci 'data' da API strutturate (Open-Meteo, classifica ESPN, CrimeWatch)."
+    },
+    {
+      "id": "f1",
+      "kind": "forecast",
+      "source_sha256": "bd60a59569febfb8c2bdad28126a53ea131b73dbfc30e71c7b15e994334402ab",
+      "description": "Prompt dei previsori: risposta yes/no, fiducia 50-100, motivazione max 400 caratteri, senza accesso al web."
+    },
+    {
+      "id": "t4",
+      "kind": "template",
+      "source_sha256": "a89ea490d84dcddd747ddc90df1c3d7a1ccea304af82773bf97e0bc3992e962a",
+      "description": "Template v2 dei testi delle domande a fonte strutturata: meteo, calcio, CrimeWatch e le famiglie aggiunte (carburanti MIMIT, cambio BCE, terremoti INGV, qualita' dell'aria, pagine piu' viste di Wikipedia), con le regole di scelta di soglie, date e orari di chiusura."
+    }
+  ],
+  "questions": [
+    {
+      "id": "4537ff10-6ded-4977-9ea9-27ee4b35457c",
+      "week_id": "2026-W40",
+      "text_it": "Il tasso di cambio di riferimento della BCE euro/dollaro del 5 ottobre 2026 sarà di almeno 1,135?",
+      "text_en": "Will the ECB euro/US dollar reference exchange rate of October 5, 2026 be at least 1,135?",
+      "category": "economia",
+      "scope": "italia",
+      "deadline": "2026-10-05T21:59:00+00:00",
+      "event_date": "2026-10-05",
+      "resolve_after": "2026-10-05T22:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se il tasso di cambio di riferimento euro/dollaro statunitense pubblicato dalla Banca centrale europea per il giorno 5 ottobre 2026 (dati SDW, serie EXR D.USD.EUR.SP00.A, dollari per un euro) è pari o superiore a 1,135. L'esito è NO se è inferiore.",
+      "expected_source": "Banca centrale europea (data.ecb.europa.eu): tassi di cambio di riferimento giornalieri",
+      "void_policy": "Se la BCE non pubblica un tasso per quel giorno (festività TARGET) entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "date": "2026-10-05",
+        "type": "ecb_fx",
+        "threshold": 1.135,
+        "period_terms": [
+          "5 ottobre",
+          "5 ottobre 2026"
+        ],
+        "indicator_terms": [
+          "euro dollaro",
+          "EUR/USD",
+          "cambio euro"
+        ]
+      },
+      "status": "open",
+      "created_at": "2026-10-01T09:28:24.905226+00:00",
+      "referee_version": "t4"
+    },
+    {
+      "id": "7547de12-f602-40d9-b6b4-9f9bef6fa162",
+      "week_id": "2026-W40",
+      "text_it": "Nell'estrazione del MIMIT del 5 ottobre 2026, il prezzo medio nazionale di benzina in modalità self sarà di almeno 2,110 €/litro?",
+      "text_en": "In the MIMIT extraction of October 5, 2026, will the national average self-service price of petrol be at least 2,110 €/litre?",
+      "category": "economia",
+      "scope": "italia",
+      "deadline": "2026-10-05T21:59:00+00:00",
+      "event_date": "2026-10-05",
+      "resolve_after": "2026-10-06T22:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se, nel file «prezzo alle 8» dei prezzi dei carburanti pubblicato dal Ministero delle Imprese e del Made in Italy (MIMIT) con l'etichetta «Estrazione del 5 ottobre 2026», la media aritmetica dei prezzi di benzina in modalità self (campo isSelf = 1), su tutti gli impianti, escludendo i prezzi fuori dall'intervallo 0,5-4 €/litro, è pari o superiore a 2,110 €/litro. L'esito è NO se è inferiore. Il file con quell'etichetta si legge nei giorni successivi alla data.",
+      "expected_source": "MIMIT (mimit.gov.it): open data dei prezzi praticati dagli impianti di distribuzione, file prezzo_alle_8.csv",
+      "void_policy": "Se il file con l'etichetta indicata non è disponibile alla lettura (il MIMIT pubblica un solo file alla volta) entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "date": "2026-10-05",
+        "fuel": "benzina",
+        "type": "mimit_fuel_mean",
+        "threshold": 2.11,
+        "period_terms": [
+          "5 ottobre",
+          "5 ottobre 2026"
+        ],
+        "indicator_terms": [
+          "benzina",
+          "self"
+        ]
+      },
+      "status": "open",
+      "created_at": "2026-10-01T09:28:24.905226+00:00",
+      "referee_version": "t4"
+    }
+  ],
+  "contexts": [
+    {
+      "question_id": "7547de12-f602-40d9-b6b4-9f9bef6fa162",
+      "query_used": "mimit:fuel:benzina",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Prezzo medio nazionale di benzina self (MIMIT)",
+          "source": "MIMIT (open data prezzi carburanti)",
+          "snippet": "Dati ottenuti il 01/10/26, 11:28. Ultimo file disponibile, con etichetta «Estrazione del 30 settembre 2026»: media self di benzina 2,111 €/litro su 20284 impianti (prezzi fuori da 0,5-4 €/litro esclusi). La domanda riguarda il file con etichetta 5 ottobre 2026."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-10-01T09:28:25.055+00:00",
+      "hash": "3dc06b8344039b221c95fbd79850ca8a14ff51baac4a730d266b90d319d1a57e",
+      "error": null,
+      "schema_version": "c2"
+    },
+    {
+      "question_id": "4537ff10-6ded-4977-9ea9-27ee4b35457c",
+      "query_used": "ecb:EXR:USD",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Tasso di cambio di riferimento BCE euro/dollaro, ultimi giorni",
+          "source": "Banca centrale europea (data.ecb.europa.eu)",
+          "snippet": "Dati ottenuti il 01/10/26, 11:28. Ultimi 10 giorni di pubblicazione (dollari per un euro): 17 settembre: 1,1481 · 18 settembre: 1,1460 · 21 settembre: 1,1490 · 22 settembre: 1,1463 · 23 settembre: 1,1411 · 24 settembre: 1,1367 · 25 settembre: 1,1403 · 28 settembre: 1,1378 · 29 settembre: 1,1355 · 30 settembre: 1,1355. Minimo e massimo degli ultimi 30 giorni: 1,1355 e 1,1699."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-10-01T09:28:25.524+00:00",
+      "hash": "f5e393ee424cdb34104d6e58cb65f7e9d44eba80623b55af8926cc85c33ed645",
+      "error": null,
+      "schema_version": "c2"
+    }
+  ],
+  "predictions": [
+    {
+      "id": "2322343e-1efc-4705-b91f-658008ddc533",
+      "question_id": "7547de12-f602-40d9-b6b4-9f9bef6fa162",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Il prezzo medio nazionale della benzina self nell'ultima estrazione disponibile (30 settembre 2026) è di 2,111 €/litro, già superiore alla soglia di 2,110 €/litro. Nonostante le fluttuazioni siano possibili, è probabile che il prezzo si mantenga su livelli simili o leggermente superiori nei prossimi giorni, rendendo l'esito 'sì' più probabile.",
+      "created_at": "2026-10-01T09:35:11.854643+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:11.854643Z",
+      "hash": "23bfb7e19872bd459e9c1d1237a4ae21ac90f413f0bf54fa0760272775146783"
+    },
+    {
+      "id": "9f928f26-8222-47bd-9041-3630a4dcd6f0",
+      "question_id": "7547de12-f602-40d9-b6b4-9f9bef6fa162",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "OpenAI",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 85,
+      "rationale_it": "Il prezzo medio nazionale della benzina in modalità self è attualmente di 2,111 €/litro secondo l'ultima estrazione del 30 settembre 2026. Considerando che il prezzo è già sopra la soglia di 2,110 €/litro e non ci sono indicazioni di un calo significativo nei prossimi giorni, è probabile che il prezzo rimanga almeno a questo livello per l'estrazione del 5 ottobre 2026.",
+      "created_at": "2026-10-01T09:35:11.86424+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:11.864240Z",
+      "hash": "21d634e117820d5b626a114bd431d9936c411aeadcba619ebe4269360004f3ef"
+    },
+    {
+      "id": "e13d9026-96c1-44a5-9a5d-294d04377ebd",
+      "question_id": "4537ff10-6ded-4977-9ea9-27ee4b35457c",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "Azure",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Il tasso di cambio euro/dollaro è stato stabile intorno a 1,1355 negli ultimi giorni, e ha mostrato una tendenza a rimanere sopra 1,135. Considerando che il minimo degli ultimi 30 giorni è 1,1355 e il massimo è 1,1699, è probabile che il tasso rimanga almeno a 1,135 il 5 ottobre 2026.",
+      "created_at": "2026-10-01T09:35:12.606156+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:12.606156Z",
+      "hash": "e8f8173ef96cc01fb9fe98099d51b78b727c5f122cc5e828607cdf47cf54ee09"
+    },
+    {
+      "id": "650fd90e-6ccb-4d4c-8d4d-c50c7a067cc4",
+      "question_id": "4537ff10-6ded-4977-9ea9-27ee4b35457c",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Il tasso di cambio euro/dollaro ha mostrato una tendenza al ribasso negli ultimi giorni, ma si è stabilizzato a 1,1355 negli ultimi due giorni. Il valore soglia di 1,135 è molto vicino al valore attuale, rendendo probabile che il tasso rimanga al di sopra o uguale a tale soglia.",
+      "created_at": "2026-10-01T09:35:12.686613+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:12.686613Z",
+      "hash": "b9ba57b00a1cb650b2579c59f302ef2fea21ad002474794094d9391050e3faee"
+    },
+    {
+      "id": "d4ed687c-3e39-40d4-a2de-fc13357fd41d",
+      "question_id": "4537ff10-6ded-4977-9ea9-27ee4b35457c",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "StreamLake",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 65,
+      "rationale_it": "Il tasso di cambio è stato stabile intorno a 1,1355 negli ultimi giorni, con una leggera tendenza al rialzo. Considerando la volatilità dei mercati, c'è una moderata fiducia che possa rimanere sopra o raggiungere 1,135 il 5 ottobre.",
+      "created_at": "2026-10-01T09:35:13.979722+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:13.979722Z",
+      "hash": "01336a7483edc534e8b479da3038b446ddadf41c27abd50b985eaacfde2f67f1"
+    },
+    {
+      "id": "aa17c51d-dda3-4edf-ab34-274562aca41f",
+      "question_id": "7547de12-f602-40d9-b6b4-9f9bef6fa162",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 72,
+      "rationale_it": "Il prezzo medio self di benzina al 30 settembre 2026 è 2,111 €/litro, appena sopra la soglia di 2,110 €/litro. Considerando la stabilità tipica dei prezzi dei carburanti nel breve periodo (5 giorni) e l'assenza di notizie su shock di mercato imminenti, la previsione è che il prezzo si mantenga sopra o vicino al livello attuale. Fiducia moderata per possibili oscillazioni minime.",
+      "created_at": "2026-10-01T09:35:14.863762+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:14.863762Z",
+      "hash": "675406580597dfc6d905024c436424e4e219ca47173c46f7ab7f8d46f3e804d8"
+    },
+    {
+      "id": "d90e8419-0505-4642-bb57-3557d13738b5",
+      "question_id": "7547de12-f602-40d9-b6b4-9f9bef6fa162",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "StreamLake",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Il prezzo medio attuale è di 2,111 €/litro, molto vicino alla soglia richiesta. Considerando la stabilità recente dei prezzi, prevedo che rimarrà sopra i 2,110 €/litro anche il 5 ottobre.",
+      "created_at": "2026-10-01T09:35:15.044692+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:15.044692Z",
+      "hash": "5acbb2bb80ecfc792965adee664bb9131f503be68d94b45cc1d6881368c0f5b9"
+    },
+    {
+      "id": "1a6df36e-3d12-459e-92fb-adcc31abc8af",
+      "question_id": "7547de12-f602-40d9-b6b4-9f9bef6fa162",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 95,
+      "rationale_it": "Il prezzo medio nazionale di benzina in modalità self al 30 settembre 2026 era di 2,111 €/litro. Considerando la stabilità dei prezzi nel breve periodo, è molto probabile che il prezzo medio al 5 ottobre 2026 sia ancora di almeno 2,110 €/litro.",
+      "created_at": "2026-10-01T09:35:15.160456+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:15.160456Z",
+      "hash": "bd06546f9785d98d93b066fefee7aa78fa7b56cefa43aa19b1c9fcf3f75b384c"
+    },
+    {
+      "id": "cb68cf45-3834-4b7f-9980-527e7462df64",
+      "question_id": "4537ff10-6ded-4977-9ea9-27ee4b35457c",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 72,
+      "rationale_it": "I dati mostrano un trend discendente: dal 17/09 (1,1481) al 30/09 (1,1355) il cambio è calato di circa 126 punti base. Il valore attuale (1,1355) è significativamente sotto la soglia 1,135. Servirebbero 195 punti base di rialzo in 5 giorni, improbabile senza eventi straordinari. La tendenza recente suggerisce stabilità o ulteriore debolezza dell'euro.",
+      "created_at": "2026-10-01T09:35:15.500934+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:15.500934Z",
+      "hash": "e3a941bbb836ddb71c66fb0324153e581dc0512f50f6210234c598e09a5f3351"
+    },
+    {
+      "id": "2c0a49bf-5103-4a62-b01d-e7bd77c319a5",
+      "question_id": "4537ff10-6ded-4977-9ea9-27ee4b35457c",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Il tasso di cambio è rimasto sopra 1,135 negli ultimi 10 giorni, con un minimo di 1,1355. La tendenza recente suggerisce che è probabile che il tasso resti al di sopra di 1,135 il 5 ottobre, ma ci sono variabili economiche che potrebbero influenzare il tasso di cambio nei prossimi giorni.",
+      "created_at": "2026-10-01T09:35:16.698856+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:16.698856Z",
+      "hash": "4ee80b5c35cd3680dc0de591db1c494dca52d9a7afd94ea23af64f8a3aca18b8"
+    }
+  ]
+}
