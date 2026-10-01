@@ -1,0 +1,166 @@
+{
+  "schema": "oracolo-ledger/1",
+  "site": "https://oracolo-sepia.vercel.app",
+  "week_id": "2026-W40",
+  "batch_no": 5,
+  "generated_at": "2026-10-01T07:51:10.466Z",
+  "prev_file_sha256": "c6d056c6437ea80222acebdc4b5718cc7948588a0f1923bae4fc4d65d7b3a132",
+  "hash_formula": "sha256_hex( question_id | model_id | answer | confidence | rationale_it | created_at_utc ) con '|' come separatore e created_at nel formato YYYY-MM-DDTHH:MM:SS.ffffffZ",
+  "versions": [
+    {
+      "id": "c2",
+      "kind": "context",
+      "source_sha256": "0626e031bdb1b10ce657e7e109291005f794a2d60ada5c83675229b218703158",
+      "description": "Schema del contesto c2: come c1, piu' domande con SOLO voci 'data' da API strutturate (Open-Meteo, classifica ESPN, CrimeWatch)."
+    },
+    {
+      "id": "f1",
+      "kind": "forecast",
+      "source_sha256": "bd60a59569febfb8c2bdad28126a53ea131b73dbfc30e71c7b15e994334402ab",
+      "description": "Prompt dei previsori: risposta yes/no, fiducia 50-100, motivazione max 400 caratteri, senza accesso al web."
+    },
+    {
+      "id": "t2",
+      "kind": "template",
+      "source_sha256": "961a72db1885f092e2e5677900b919194703136fa4be6b22059671a5ae02f0dd",
+      "description": "Template dei testi delle domande a fonte strutturata (meteo, calcio, CrimeWatch) e regole di scelta di soglie e date."
+    }
+  ],
+  "questions": [
+    {
+      "id": "7e528e41-dd83-4b29-a829-d4a4b624d5cd",
+      "week_id": "2026-W40",
+      "text_it": "Pioverà almeno 1 mm a Milano il 7 ottobre?",
+      "text_en": "Will it rain at least 1 mm in Milano on October 7?",
+      "category": "meteo",
+      "scope": "italia",
+      "deadline": "2026-10-07T21:59:00+00:00",
+      "event_date": "2026-10-07",
+      "resolve_after": "2026-10-07T22:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se la precipitazione totale giornaliera a Milano del 7 ottobre 2026 (ora italiana), secondo i dati giornalieri di Open-Meteo per le coordinate 45.4642, 9.19, è pari o superiore a 1,0 mm. L'esito è NO se è inferiore. Il dato si legge il giorno dopo.",
+      "expected_source": "Open-Meteo (open-meteo.com): dati meteorologici giornalieri per Milano",
+      "void_policy": "Se Open-Meteo non fornisce il valore entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "op": "gte",
+        "lat": 45.4642,
+        "lon": 9.19,
+        "city": "Milano",
+        "date": "2026-10-07",
+        "type": "openmeteo_daily",
+        "variable": "precipitation_sum",
+        "threshold": 1
+      },
+      "status": "open",
+      "created_at": "2026-10-01T07:27:22.399822+00:00",
+      "referee_version": "t2"
+    }
+  ],
+  "contexts": [
+    {
+      "question_id": "7e528e41-dd83-4b29-a829-d4a4b624d5cd",
+      "query_used": "open-meteo:forecast:Milano",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Previsioni Open-Meteo per Milano (giornaliere)",
+          "source": "Open-Meteo (previsione)",
+          "snippet": "Previsione ottenuta il 01/10/26, 09:27. 1 ottobre: max 23,6 °C, pioggia 0,0 mm (probabilità 0%) · 2 ottobre: max 25,0 °C, pioggia 0,0 mm (probabilità 3%) · 3 ottobre: max 24,6 °C, pioggia 0,0 mm (probabilità 0%) · 4 ottobre: max 23,1 °C, pioggia 0,0 mm (probabilità 0%) · 5 ottobre: max 24,3 °C, pioggia 0,0 mm (probabilità 0%) · 6 ottobre: max 24,7 °C, pioggia 0,0 mm (probabilità 3%) · 7 ottobre: max 22,6 °C, pioggia 0,0 mm (probabilità 31%) · 8 ottobre: max 18,5 °C, pioggia 12,2 mm (probabilità 50%)"
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-10-01T07:27:24.345+00:00",
+      "hash": "74836ff9d4f0767cdfe92d4499c5f0dd330bb3e7b4f31b13a3c708266ebda9d1",
+      "error": null,
+      "schema_version": "c2"
+    }
+  ],
+  "predictions": [
+    {
+      "id": "16d74e3e-6628-45f4-af0e-73f798edd8a5",
+      "question_id": "7e528e41-dd83-4b29-a829-d4a4b624d5cd",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 75,
+      "rationale_it": "Le previsioni di Open-Meteo per il 7 ottobre indicano 0,0 mm di pioggia, con una probabilità del 31%. Sebbene ci sia una probabilità di pioggia, la quantità prevista è nulla, rendendo l'esito 'no' più probabile. La fiducia è moderata perché le previsioni a 6 giorni possono cambiare.",
+      "created_at": "2026-10-01T07:51:03.626374+00:00",
+      "created_at_for_hash": "2026-10-01T07:51:03.626374Z",
+      "hash": "7fe19e64cee86883c2a0853d7a2c8d2b2fdefff1ef6558ea437f1b5a949b6e01"
+    },
+    {
+      "id": "fb23a050-7234-40c9-a832-956c5ea674c4",
+      "question_id": "7e528e41-dd83-4b29-a829-d4a4b624d5cd",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "OpenAI",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 70,
+      "rationale_it": "Le previsioni attuali indicano una probabilità del 31% di pioggia per il 7 ottobre, con una previsione di 0,0 mm di precipitazioni. Sebbene la probabilità di pioggia non sia trascurabile, la previsione specifica di 0,0 mm suggerisce che è improbabile che piova almeno 1 mm. Tuttavia, la fiducia non è altissima a causa della variabilità meteorologica.",
+      "created_at": "2026-10-01T07:51:04.906992+00:00",
+      "created_at_for_hash": "2026-10-01T07:51:04.906992Z",
+      "hash": "6c922b7b1257a3ef384ae9b6e163ede39daf4f7e566cd37741894ed4b6d2e420"
+    },
+    {
+      "id": "4c00f821-e4ae-454c-b307-03ad7dece295",
+      "question_id": "7e528e41-dd83-4b29-a829-d4a4b624d5cd",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 62,
+      "rationale_it": "Le previsioni Open-Meteo per il 7 ottobre mostrano 0,0 mm di pioggia attesa, con probabilità del 31%. Sebbene la probabilità non sia trascurabile e l'8 ottobre sia prevista pioggia significativa, la previsione specifica per il 7 indica assenza di precipitazioni sopra 1 mm. Fiducia moderata per l'orizzonte temporale di 6 giorni.",
+      "created_at": "2026-10-01T07:51:06.117755+00:00",
+      "created_at_for_hash": "2026-10-01T07:51:06.117755Z",
+      "hash": "d0ed91e287cf308438f053713bfded84808b0d3796e10e06ba1520e70ecf2546"
+    },
+    {
+      "id": "130e7799-ae4a-40e7-a131-75d9d59495ae",
+      "question_id": "7e528e41-dd83-4b29-a829-d4a4b624d5cd",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 69,
+      "rationale_it": "Secondo le previsioni Open-Meteo del 01/10/26, il 7 ottobre a Milano è prevista una pioggia di 0,0 mm con una probabilità del 31%. La fiducia nella previsione è moderata, considerando la bassa probabilità di pioggia.",
+      "created_at": "2026-10-01T07:51:08.492898+00:00",
+      "created_at_for_hash": "2026-10-01T07:51:08.492898Z",
+      "hash": "b3dd4570349c900ceb73a84b64dee994a55f167969700c89bfc8e191e574074b"
+    },
+    {
+      "id": "65c07927-f742-4e21-ac4d-2621e2d2055d",
+      "question_id": "7e528e41-dd83-4b29-a829-d4a4b624d5cd",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "Novita",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 70,
+      "rationale_it": "La previsione meteorologica per il 7 ottobre indica una probabilità di pioggia del 31% con una quantità di precipitazioni prevista di 0,0 mm. La bassa probabilità e l'assenza di precipitazioni nella previsione attuale suggeriscono un esito negativo, anche se c'è una certa incertezza data la variabilità delle condizioni meteorologiche.",
+      "created_at": "2026-10-01T07:51:09.330674+00:00",
+      "created_at_for_hash": "2026-10-01T07:51:09.330674Z",
+      "hash": "45cff00b1fe9b3a94d31ef7e8b9a6510af3e5aa36f04c100446df0fd776b8d1d"
+    }
+  ]
+}
