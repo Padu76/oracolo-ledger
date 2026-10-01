@@ -1,0 +1,149 @@
+{
+  "schema": "oracolo-ledger/1",
+  "site": "https://oracolo-sepia.vercel.app",
+  "week_id": "2026-W40",
+  "batch_no": 4,
+  "generated_at": "2026-10-01T07:51:04.195Z",
+  "prev_file_sha256": "fabc0000c1ff87a53006603e8c2e9713ef6e16be9cedcb348eea8875a563fa2f",
+  "hash_formula": "sha256_hex( question_id | model_id | answer | confidence | rationale_it | created_at_utc ) con '|' come separatore e created_at nel formato YYYY-MM-DDTHH:MM:SS.ffffffZ",
+  "versions": [
+    {
+      "id": "c2",
+      "kind": "context",
+      "source_sha256": "0626e031bdb1b10ce657e7e109291005f794a2d60ada5c83675229b218703158",
+      "description": "Schema del contesto c2: come c1, piu' domande con SOLO voci 'data' da API strutturate (Open-Meteo, classifica ESPN, CrimeWatch)."
+    },
+    {
+      "id": "f1",
+      "kind": "forecast",
+      "source_sha256": "bd60a59569febfb8c2bdad28126a53ea131b73dbfc30e71c7b15e994334402ab",
+      "description": "Prompt dei previsori: risposta yes/no, fiducia 50-100, motivazione max 400 caratteri, senza accesso al web."
+    },
+    {
+      "id": "t2",
+      "kind": "template",
+      "source_sha256": "961a72db1885f092e2e5677900b919194703136fa4be6b22059671a5ae02f0dd",
+      "description": "Template dei testi delle domande a fonte strutturata (meteo, calcio, CrimeWatch) e regole di scelta di soglie e date."
+    }
+  ],
+  "questions": [
+    {
+      "id": "2fa37d9e-53dc-4666-9e31-fa67ddb0b39f",
+      "week_id": "2026-W40",
+      "text_it": "La temperatura massima a Roma sarà di almeno 27 °C il 6 ottobre?",
+      "text_en": "Will the maximum temperature in Roma be at least 27 °C on October 6?",
+      "category": "meteo",
+      "scope": "italia",
+      "deadline": "2026-10-06T21:59:00+00:00",
+      "event_date": "2026-10-06",
+      "resolve_after": "2026-10-06T22:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se la temperatura massima giornaliera a Roma del 6 ottobre 2026 (ora italiana), secondo i dati giornalieri di Open-Meteo per le coordinate 41.9028, 12.4964, è pari o superiore a 27 °C. L'esito è NO se è inferiore. Il dato si legge il giorno dopo.",
+      "expected_source": "Open-Meteo (open-meteo.com): dati meteorologici giornalieri per Roma",
+      "void_policy": "Se Open-Meteo non fornisce il valore entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "op": "gte",
+        "lat": 41.9028,
+        "lon": 12.4964,
+        "city": "Roma",
+        "date": "2026-10-06",
+        "type": "openmeteo_daily",
+        "variable": "temperature_2m_max",
+        "threshold": 27
+      },
+      "status": "open",
+      "created_at": "2026-10-01T07:27:22.399822+00:00",
+      "referee_version": "t2"
+    }
+  ],
+  "contexts": [
+    {
+      "question_id": "2fa37d9e-53dc-4666-9e31-fa67ddb0b39f",
+      "query_used": "open-meteo:forecast:Roma",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Previsioni Open-Meteo per Roma (giornaliere)",
+          "source": "Open-Meteo (previsione)",
+          "snippet": "Previsione ottenuta il 01/10/26, 09:27. 1 ottobre: max 27,9 °C, pioggia 0,0 mm (probabilità 0%) · 2 ottobre: max 27,4 °C, pioggia 0,0 mm (probabilità 0%) · 3 ottobre: max 26,7 °C, pioggia 0,0 mm (probabilità 0%) · 4 ottobre: max 26,8 °C, pioggia 0,0 mm (probabilità 0%) · 5 ottobre: max 26,8 °C, pioggia 0,0 mm (probabilità 4%) · 6 ottobre: max 27,4 °C, pioggia 0,0 mm (probabilità 11%) · 7 ottobre: max 24,2 °C, pioggia 0,0 mm (probabilità 19%) · 8 ottobre: max 25,9 °C, pioggia 4,8 mm (probabilità 51%)"
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-10-01T07:27:23.448+00:00",
+      "hash": "6b8db7ea2c51818c331dcee7a4d2fea41f551fcd235a697b59b2cffad5251032",
+      "error": null,
+      "schema_version": "c2"
+    }
+  ],
+  "predictions": [
+    {
+      "id": "0d9feea8-3c86-4fdf-be26-7318a4e208a9",
+      "question_id": "2fa37d9e-53dc-4666-9e31-fa67ddb0b39f",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "OpenAI",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 90,
+      "rationale_it": "Secondo le previsioni di Open-Meteo per il 6 ottobre 2026, la temperatura massima a Roma è prevista essere di 27,4 °C, che è superiore a 27 °C. La probabilità di pioggia è bassa, quindi è probabile che la temperatura prevista si realizzi. Pertanto, l'esito è SÌ con alta fiducia.",
+      "created_at": "2026-10-01T07:51:00.388633+00:00",
+      "created_at_for_hash": "2026-10-01T07:51:00.388633Z",
+      "hash": "fac4bd6fc7f3cd8a91874616f4b4be48c4d648bd64a4cd2813b8f1de09d90438"
+    },
+    {
+      "id": "7de7d25f-e815-4113-b053-dd1f15e47462",
+      "question_id": "2fa37d9e-53dc-4666-9e31-fa67ddb0b39f",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "Novita",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 85,
+      "rationale_it": "La previsione di Open-Meteo indica una temperatura massima di 27,4 °C per il 6 ottobre, superiore al limite di 27 °C. La fiducia è alta, ma non totale, poiché le previsioni meteorologiche a lungo termine possono subire variazioni.",
+      "created_at": "2026-10-01T07:51:01.491236+00:00",
+      "created_at_for_hash": "2026-10-01T07:51:01.491236Z",
+      "hash": "fadba44a0be0888e0f51aed6a3d6a2f2e96259e1eb4d9140dc2bd2e7b3d49361"
+    },
+    {
+      "id": "e8e01042-8ffa-49bf-9db1-28661c6e4acb",
+      "question_id": "2fa37d9e-53dc-4666-9e31-fa67ddb0b39f",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 72,
+      "rationale_it": "Le previsioni Open-Meteo del 1 ottobre indicano una temperatura massima di 27,4°C per il 6 ottobre a Roma, superiore alla soglia di 27°C. Tuttavia, mancano 5 giorni all'evento e le previsioni meteorologiche a medio termine possono variare. La fiducia è moderatamente alta ma non massima per l'incertezza tipica delle previsioni.",
+      "created_at": "2026-10-01T07:51:02.300433+00:00",
+      "created_at_for_hash": "2026-10-01T07:51:02.300433Z",
+      "hash": "4c503b6280e23bb3ebabae2332e8d728d93bd6085309d94cb4f2d08a751119c0"
+    },
+    {
+      "id": "a5466152-6ac7-4acb-bce8-5b3fdcfc49f0",
+      "question_id": "2fa37d9e-53dc-4666-9e31-fa67ddb0b39f",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 85,
+      "rationale_it": "Secondo le previsioni di Open-Meteo, la temperatura massima a Roma il 6 ottobre 2026 sarà di 27,4 °C, superiore alla soglia di 27 °C. La fiducia è alta poiché le previsioni meteorologiche sono generalmente affidabili per un periodo così breve.",
+      "created_at": "2026-10-01T07:51:02.811263+00:00",
+      "created_at_for_hash": "2026-10-01T07:51:02.811263Z",
+      "hash": "741e1e46442d048d99debe2895139fffe3ad064426c96bc50de40e409fad7648"
+    }
+  ]
+}
