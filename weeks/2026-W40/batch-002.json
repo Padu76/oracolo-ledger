@@ -1,0 +1,166 @@
+{
+  "schema": "oracolo-ledger/1",
+  "site": "https://oracolo-sepia.vercel.app",
+  "week_id": "2026-W40",
+  "batch_no": 2,
+  "generated_at": "2026-10-01T07:50:51.699Z",
+  "prev_file_sha256": "00e708e1d9239dc2e3149c5e820a6842ad556f5906f5c677f5d944197a0d1280",
+  "hash_formula": "sha256_hex( question_id | model_id | answer | confidence | rationale_it | created_at_utc ) con '|' come separatore e created_at nel formato YYYY-MM-DDTHH:MM:SS.ffffffZ",
+  "versions": [
+    {
+      "id": "c2",
+      "kind": "context",
+      "source_sha256": "0626e031bdb1b10ce657e7e109291005f794a2d60ada5c83675229b218703158",
+      "description": "Schema del contesto c2: come c1, piu' domande con SOLO voci 'data' da API strutturate (Open-Meteo, classifica ESPN, CrimeWatch)."
+    },
+    {
+      "id": "f1",
+      "kind": "forecast",
+      "source_sha256": "bd60a59569febfb8c2bdad28126a53ea131b73dbfc30e71c7b15e994334402ab",
+      "description": "Prompt dei previsori: risposta yes/no, fiducia 50-100, motivazione max 400 caratteri, senza accesso al web."
+    },
+    {
+      "id": "t2",
+      "kind": "template",
+      "source_sha256": "961a72db1885f092e2e5677900b919194703136fa4be6b22059671a5ae02f0dd",
+      "description": "Template dei testi delle domande a fonte strutturata (meteo, calcio, CrimeWatch) e regole di scelta di soglie e date."
+    }
+  ],
+  "questions": [
+    {
+      "id": "3081f36e-600b-41bf-b8a6-05923642a7cb",
+      "week_id": "2026-W40",
+      "text_it": "La temperatura massima a Verona sarà di almeno 25 °C il 4 ottobre?",
+      "text_en": "Will the maximum temperature in Verona be at least 25 °C on October 4?",
+      "category": "meteo",
+      "scope": "italia",
+      "deadline": "2026-10-04T21:59:00+00:00",
+      "event_date": "2026-10-04",
+      "resolve_after": "2026-10-04T22:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se la temperatura massima giornaliera a Verona del 4 ottobre 2026 (ora italiana), secondo i dati giornalieri di Open-Meteo per le coordinate 45.4384, 10.9916, è pari o superiore a 25 °C. L'esito è NO se è inferiore. Il dato si legge il giorno dopo.",
+      "expected_source": "Open-Meteo (open-meteo.com): dati meteorologici giornalieri per Verona",
+      "void_policy": "Se Open-Meteo non fornisce il valore entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "op": "gte",
+        "lat": 45.4384,
+        "lon": 10.9916,
+        "city": "Verona",
+        "date": "2026-10-04",
+        "type": "openmeteo_daily",
+        "variable": "temperature_2m_max",
+        "threshold": 25
+      },
+      "status": "open",
+      "created_at": "2026-10-01T07:27:22.399822+00:00",
+      "referee_version": "t2"
+    }
+  ],
+  "contexts": [
+    {
+      "question_id": "3081f36e-600b-41bf-b8a6-05923642a7cb",
+      "query_used": "open-meteo:forecast:Verona",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Previsioni Open-Meteo per Verona (giornaliere)",
+          "source": "Open-Meteo (previsione)",
+          "snippet": "Previsione ottenuta il 01/10/26, 09:27. 1 ottobre: max 25,6 °C, pioggia 0,0 mm (probabilità 0%) · 2 ottobre: max 26,1 °C, pioggia 0,0 mm (probabilità 0%) · 3 ottobre: max 25,4 °C, pioggia 0,0 mm (probabilità 0%) · 4 ottobre: max 24,6 °C, pioggia 0,0 mm (probabilità 0%) · 5 ottobre: max 24,5 °C, pioggia 0,0 mm (probabilità 0%) · 6 ottobre: max 25,6 °C, pioggia 0,0 mm (probabilità 4%) · 7 ottobre: max 22,9 °C, pioggia 0,0 mm (probabilità 22%) · 8 ottobre: max 20,0 °C, pioggia 8,6 mm (probabilità 56%)"
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-10-01T07:27:22.585+00:00",
+      "hash": "0e3e622b55f4badab2dc9ec06fb5d73688f612633ea569da85464de0c2f70e5f",
+      "error": null,
+      "schema_version": "c2"
+    }
+  ],
+  "predictions": [
+    {
+      "id": "8eaefd39-0edd-4ebb-b330-6f554fd96d5f",
+      "question_id": "3081f36e-600b-41bf-b8a6-05923642a7cb",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 85,
+      "rationale_it": "La previsione di Open-Meteo per il 4 ottobre 2026 indica una temperatura massima di 24,6 °C a Verona, che è inferiore alla soglia di 25 °C richiesta per un esito 'sì'. La fiducia è alta data la fonte diretta e la vicinanza temporale della previsione.",
+      "created_at": "2026-10-01T07:50:46.873183+00:00",
+      "created_at_for_hash": "2026-10-01T07:50:46.873183Z",
+      "hash": "16f2c2b50d036de770a97e21aabbaee9c9a2684185f81c27d4e31d7728ce6497"
+    },
+    {
+      "id": "9dfba5a2-6034-4452-8987-965990defd6c",
+      "question_id": "3081f36e-600b-41bf-b8a6-05923642a7cb",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "OpenAI",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 90,
+      "rationale_it": "Secondo le previsioni di Open-Meteo per Verona, la temperatura massima prevista per il 4 ottobre 2026 è di 24,6 °C, che è inferiore a 25 °C. Pertanto, è improbabile che la temperatura raggiunga o superi i 25 °C. La fiducia nella previsione è alta, data la precisione delle previsioni a breve termine.",
+      "created_at": "2026-10-01T07:50:47.597652+00:00",
+      "created_at_for_hash": "2026-10-01T07:50:47.597652Z",
+      "hash": "2d35d8506b02b104f35d5002ac75e6fb3adfce433ab50e60761fbf49bfaa46a7"
+    },
+    {
+      "id": "7de5068e-7deb-45b1-bac9-5761fa40f4d8",
+      "question_id": "3081f36e-600b-41bf-b8a6-05923642a7cb",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 65,
+      "rationale_it": "La previsione Open-Meteo del 1 ottobre indica per il 4 ottobre una temperatura massima di 24,6°C a Verona, quindi sotto la soglia di 25°C. Mancano 3 giorni all'evento e le previsioni a breve termine sono generalmente affidabili, ma possono ancora variare di 1-2 gradi. La fiducia è moderata.",
+      "created_at": "2026-10-01T07:50:49.631032+00:00",
+      "created_at_for_hash": "2026-10-01T07:50:49.631032Z",
+      "hash": "7c179d86823b8941dbcbb1e29a1a14d9d2dfd362f784ac3e57a4df15e23d2fa7"
+    },
+    {
+      "id": "46339c77-335a-4370-b4f8-ae21b1fa2370",
+      "question_id": "3081f36e-600b-41bf-b8a6-05923642a7cb",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 85,
+      "rationale_it": "Secondo le previsioni Open-Meteo del 01/10/26, la temperatura massima a Verona il 4 ottobre sarà di 24,6 °C, inferiore ai 25 °C richiesti. La fiducia è alta poiché le previsioni sono recenti e coerenti con il contesto climatico.",
+      "created_at": "2026-10-01T07:50:50.52971+00:00",
+      "created_at_for_hash": "2026-10-01T07:50:50.529710Z",
+      "hash": "423a9eba66802bbf96e1972bb2f78fc8c76efabdd45eb2484e04ebf6d5bae315"
+    },
+    {
+      "id": "9b9ae577-0906-4870-802f-81982e77620f",
+      "question_id": "3081f36e-600b-41bf-b8a6-05923642a7cb",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 70,
+      "rationale_it": "La previsione di Open-Meteo per il 4 ottobre indica una temperatura massima di 24,6 °C, leggermente sotto i 25 °C. La fiducia è moderata considerando che le previsioni meteorologiche possono variare, ma la differenza è minima e la tendenza suggerisce una temperatura sotto i 25 °C.",
+      "created_at": "2026-10-01T07:50:50.61898+00:00",
+      "created_at_for_hash": "2026-10-01T07:50:50.618980Z",
+      "hash": "4eda4316491a6e6b2911ba321c6f95b65e03d8141b2ebb675a1cea9cabc817f3"
+    }
+  ]
+}
