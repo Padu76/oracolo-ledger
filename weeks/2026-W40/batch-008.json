@@ -1,0 +1,135 @@
+{
+  "schema": "oracolo-ledger/1",
+  "site": "https://oracolo-sepia.vercel.app",
+  "week_id": "2026-W40",
+  "batch_no": 8,
+  "generated_at": "2026-10-01T09:35:25.584Z",
+  "prev_file_sha256": "c6a3ca54535c9407ae45f19517e679c3f50357d0ae4c6d02817471eabd17f15d",
+  "hash_formula": "sha256_hex( question_id | model_id | answer | confidence | rationale_it | created_at_utc ) con '|' come separatore e created_at nel formato YYYY-MM-DDTHH:MM:SS.ffffffZ",
+  "versions": [
+    {
+      "id": "c2",
+      "kind": "context",
+      "source_sha256": "0626e031bdb1b10ce657e7e109291005f794a2d60ada5c83675229b218703158",
+      "description": "Schema del contesto c2: come c1, piu' domande con SOLO voci 'data' da API strutturate (Open-Meteo, classifica ESPN, CrimeWatch)."
+    },
+    {
+      "id": "f1",
+      "kind": "forecast",
+      "source_sha256": "bd60a59569febfb8c2bdad28126a53ea131b73dbfc30e71c7b15e994334402ab",
+      "description": "Prompt dei previsori: risposta yes/no, fiducia 50-100, motivazione max 400 caratteri, senza accesso al web."
+    },
+    {
+      "id": "t5",
+      "kind": "template",
+      "source_sha256": "43bd9997f75ab958bdd1caa603a33ad0b1b8f475bfcf308fecd421efdc48d0ad",
+      "description": "Template v2 dei testi delle domande a fonte strutturata: meteo, calcio, CrimeWatch e le famiglie aggiunte (carburanti MIMIT, cambio BCE, terremoti INGV, qualita' dell'aria, pagine piu' viste di Wikipedia), con le regole di scelta di soglie, date e orari di chiusura."
+    }
+  ],
+  "questions": [
+    {
+      "id": "d1ee3495-ae0f-484b-9d18-c05803aa13ee",
+      "week_id": "2026-W40",
+      "text_it": "Il prezzo di Bitcoin alle 00:00 UTC del 5 ottobre 2026 sarà di almeno 74.000 euro secondo CoinGecko?",
+      "text_en": "Will the price of Bitcoin at 00:00 UTC on October 5, 2026 be at least 74.000 euro according to CoinGecko?",
+      "category": "economia",
+      "scope": "italia",
+      "deadline": "2026-10-05T21:59:00+00:00",
+      "event_date": "2026-10-05",
+      "resolve_after": "2026-10-05T22:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se il prezzo di Bitcoin in euro alle 00:00 UTC del 5 ottobre 2026, come riportato dai dati storici giornalieri di CoinGecko (endpoint coins/bitcoin/history, campo market_data.current_price.eur), è pari o superiore a 74.000 euro. L'esito è NO se è inferiore.",
+      "expected_source": "CoinGecko (coingecko.com): prezzo storico giornaliero di Bitcoin in euro",
+      "void_policy": "Se CoinGecko non fornisce il prezzo di quel giorno entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "date": "2026-10-05",
+        "type": "coingecko_btc",
+        "threshold": 74000,
+        "period_terms": [
+          "5 ottobre",
+          "5 ottobre 2026"
+        ],
+        "indicator_terms": [
+          "Bitcoin",
+          "BTC"
+        ]
+      },
+      "status": "open",
+      "created_at": "2026-10-01T09:33:17.05674+00:00",
+      "referee_version": "t5"
+    }
+  ],
+  "contexts": [
+    {
+      "question_id": "d1ee3495-ae0f-484b-9d18-c05803aa13ee",
+      "query_used": "coingecko:bitcoin:eur",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Prezzo di Bitcoin in euro, ultimi giorni (CoinGecko)",
+          "source": "CoinGecko",
+          "snippet": "Dati ottenuti il 01/10/26, 11:33. Prezzo giornaliero alle 00:00 UTC, ultimi 10 giorni (euro): 21 settembre: 70.711 · 22 settembre: 75.540 · 23 settembre: 75.283 · 24 settembre: 74.138 · 25 settembre: 74.188 · 26 settembre: 73.805 · 27 settembre: 74.108 · 28 settembre: 74.221 · 29 settembre: 73.415 · 30 settembre: 73.753. Minimo e massimo del periodo: 66.396 e 75.540."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-10-01T09:33:17.2+00:00",
+      "hash": "e470f5a4b3d55d056030b22d46e972e492d94d518b9be0be1fd0bbfc14a0349d",
+      "error": null,
+      "schema_version": "c2"
+    }
+  ],
+  "predictions": [
+    {
+      "id": "a052ec95-c172-4eb3-b5e5-227810914879",
+      "question_id": "d1ee3495-ae0f-484b-9d18-c05803aa13ee",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "StreamLake",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Il prezzo di Bitcoin negli ultimi giorni ha mostrato una certa stabilità intorno ai 74.000 euro, con picchi superiori. Considerando la volatilità del mercato, c'è una buona probabilità che il prezzo rimanga sopra questa soglia il 5 ottobre.",
+      "created_at": "2026-10-01T09:35:20.398665+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:20.398665Z",
+      "hash": "fc0bbf2f1743b717e1b1dbd7d6481b904ff9f996ead101511ba5500112eac7f1"
+    },
+    {
+      "id": "d55cc4d2-a6b7-4eff-a6d0-7de7d0bebfee",
+      "question_id": "d1ee3495-ae0f-484b-9d18-c05803aa13ee",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c2",
+      "answer": "no",
+      "confidence": 55,
+      "rationale_it": "I dati mostrano Bitcoin oscillare tra 70.711 e 75.540 euro negli ultimi 10 giorni, con trend recente in lieve calo (da 74.221 il 28/9 a 73.753 il 30/9). Servono 4 giorni per raggiungere 74.000€. La volatilità è elevata ma il momentum attuale è neutro-negativo. Previsione incerta, leggera propensione verso esito negativo.",
+      "created_at": "2026-10-01T09:35:23.189099+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:23.189099Z",
+      "hash": "8219292488ddd8d40787575e1957f0f8bd70c9fd07b25ee4bf3c68084191cf1a"
+    },
+    {
+      "id": "022c4022-e30d-455a-9cca-9ca5529984bf",
+      "question_id": "d1ee3495-ae0f-484b-9d18-c05803aa13ee",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c2",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Il prezzo di Bitcoin negli ultimi 10 giorni è rimasto intorno ai 74.000 euro, oscillando tra 73.415 e 75.540 euro. La tendenza recente suggerisce una probabilità elevata che il prezzo resti al di sopra di 74.000 euro anche il 5 ottobre 2026.",
+      "created_at": "2026-10-01T09:35:24.417642+00:00",
+      "created_at_for_hash": "2026-10-01T09:35:24.417642Z",
+      "hash": "97001961df8b0dfb687f35d132f5ae234d5ef8b5a12d32e80c8bd00a3a18a1fc"
+    }
+  ]
+}
