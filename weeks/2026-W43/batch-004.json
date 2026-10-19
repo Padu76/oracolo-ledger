@@ -1,0 +1,1663 @@
+{
+  "schema": "oracolo-ledger/2",
+  "site": "https://oracolo-sepia.vercel.app",
+  "week_id": "2026-W43",
+  "batch_no": 4,
+  "generated_at": "2026-10-19T06:40:41.562Z",
+  "prev_file_sha256": "32e3f12ba8c95f5d688a37887926c5f0875a2889d91abfe0bddbd40c71977978",
+  "hash_formula": "sha256_hex( question_id | model_id | answer | confidence | rationale_it | created_at_utc ) con '|' come separatore e created_at nel formato YYYY-MM-DDTHH:MM:SS.ffffffZ",
+  "versions": [
+    {
+      "id": "c3",
+      "kind": "context",
+      "source_sha256": "f2718089549b450a7788a8c62e48c293e5a1a2510ea1c56e80ee80cd4644f3ac",
+      "description": "Schema del contesto c3 (condizione B, v2): come c2, ma per le domande meteo solo osservazioni recenti e climatologia, niente previsioni."
+    },
+    {
+      "id": "f2c",
+      "kind": "forecast",
+      "source_sha256": "c2990ecbd27b42c4e7cdd0fb98d1797b08fe256c80d4cad97dba894cc48ad2dd",
+      "description": "Condizione C (v2): accesso al web con strumenti nostri (web_search, open_page), stessi limiti per i cinque modelli."
+    },
+    {
+      "id": "r3",
+      "kind": "referee",
+      "source_sha256": "a268135feee08a7e2635755dcc418c63cf995e37e72bab6a558ee807cecb7148",
+      "description": "Prompt dell'arbitro v2: come r2 piu' period_start, indicator_terms e period_terms per domande su periodi e indicatori; le domande Verona non le scrive piu' l'arbitro."
+    },
+    {
+      "id": "w1",
+      "kind": "tools",
+      "source_sha256": "2df53776b06c487cfd695b1546d6015c69241f3dd5ab35b2abf490cb9795399e",
+      "description": "Strumenti web della condizione C: definizione, limiti e pipeline di filtro delle fonti."
+    }
+  ],
+  "questions": [
+    {
+      "id": "f7da5e6f-3bb0-43bf-8cc3-b389c6eba9df",
+      "week_id": "2026-W43",
+      "text_it": "La nazionale italiana di calcio a 5 vincerà la partita di qualificazione al Mondiale contro la Georgia il 20 ottobre 2026?",
+      "text_en": "Will the Italian futsal national team win the World Cup qualifier match against Georgia on October 20, 2026?",
+      "category": "sport",
+      "scope": "italia",
+      "deadline": "2026-10-21T21:59:00+00:00",
+      "event_date": "2026-10-20",
+      "resolve_after": null,
+      "resolution_criteria": "L'esito è SÌ se la Divisione Calcio a 5 o una fonte ufficiale (es. FIGC) annuncia che l'Italia ha vinto la partita contro la Georgia. L'esito è NO se l'Italia perde, pareggia o se la partita non si svolge entro la scadenza.",
+      "expected_source": "Sito ufficiale Divisione Calcio a 5 (divisionecalcioa5.it) o FIGC (www.figc.it).",
+      "void_policy": "La domanda è annullata solo se la partita viene cancellata senza recupero.",
+      "resolution_spec": null,
+      "status": "open",
+      "created_at": "2026-10-19T06:03:27.32254+00:00",
+      "referee_version": "r3",
+      "design": "v2",
+      "closes_at": "2026-10-19T22:00:00+00:00"
+    }
+  ],
+  "contexts": [
+    {
+      "question_id": "f7da5e6f-3bb0-43bf-8cc3-b389c6eba9df",
+      "query_used": "Italia Georgia calcio a 5 qualificazioni 20 ottobre 2026",
+      "items": [
+        {
+          "url": "https://www.figc.it/it/nazionali/news/qualificazione-al-mondiale-il-20-ottobre-ce-italia-georgia-a-rende-online-la-biglietteria-a2z7hite",
+          "date": "5 giorni fa",
+          "kind": "news",
+          "title": "Qualificazione al Mondiale, il 20 ottobre c’è Italia-Georgia a Rende: online la biglietteria",
+          "source": "FIGC",
+          "snippet": "Tagliandi gratuiti (fino a esaurimento posti disponibili) su Vivaticket. Aperte anche le procedure di accreditamento media. 14/10/2026, 05:00. category:."
+        },
+        {
+          "url": "https://divisionecalcioa5.it/news/news-istituzionali/il-programma-coach-porta-ottimi-risultati-clinic-per-allenatori-grande-successo-al-palapirossigeno-martedi-arriva-la-georgia/",
+          "date": "14 ore fa",
+          "kind": "news",
+          "title": "Il programma COACH porta ottimi risultati: clinic per allenatori, successone a Rende. Arriva la Georgia: caccia al biglietto gratuito",
+          "source": "Divisione Calcio a 5",
+          "snippet": "La lunga mano del progetto COACH della Divisione Calcio a 5, iniziata in occasione della scorsa Final Four di UEFA Futsal Champions League, che per tutta la..."
+        },
+        {
+          "url": "https://it.uefa.com/under21/news/0296-1cfde876c7ae-4171a15c60b6-1000--gironi-di-qualificazione-a-euro-under-21-2025-27-belgio-/",
+          "date": "2 settimane fa",
+          "kind": "news",
+          "title": "Gironi di qualificazione a EURO Under 21 2025-27: Belgio, Croazia, Inghilterra, Francia, Germania, Italia, Norvegia, Polonia, Portogallo, Spagna alla fase finale",
+          "source": "UEFA.com",
+          "snippet": "Belgio, Croazia, Inghilterra, Francia, Germania, Italia, Norvegia, Polonia, Portogallo e Spagna raggiungono Albania e Serbia alla fase finale, mentre altre..."
+        },
+        {
+          "url": "https://www.oasport.it/2026/10/calcio-a-5-i-convocati-dellitalia-per-lesordio-nel-main-round-verso-i-mondiali-2028/",
+          "date": "2 settimane fa",
+          "kind": "news",
+          "title": "Calcio a 5, i convocati dell’Italia per l’esordio nel Main Round verso i Mondiali 2028",
+          "source": "OA Sport",
+          "snippet": "Entra nel vivo il conto alla rovescia verso il primo impegno dell'Italia nel Main Round di qualificazione alla prossima fase finale dei Campionati."
+        },
+        {
+          "url": "https://sport.sky.it/calcio/nations-league/nations-league-2026-2027-gironi-calendario-partite",
+          "date": "4 settimane fa",
+          "kind": "news",
+          "title": "Nations League 2026/27, gironi e calendario delle partite",
+          "source": "Sky Sport",
+          "snippet": "La nuova edizione della Nations League è pronta a prendere il via, da seguire in diretta su Sky e in streaming su NOW. Sei giornate che ci accompagneranno..."
+        }
+      ],
+      "n_items": 5,
+      "collected_at": "2026-10-19T06:03:38.5+00:00",
+      "hash": "474a103ce34b8ce484d327f6b4322d45e6e012f463de99301c485154d1e3962c",
+      "error": null,
+      "schema_version": "c3"
+    }
+  ],
+  "failures": [],
+  "traces": [
+    {
+      "prediction_id": "53af2821-3511-452f-99f4-5e8904768edc",
+      "steps": [
+        {
+          "i": 1,
+          "at": "2026-10-19T06:40:26.657Z",
+          "args": {
+            "query": "nazionale italiana calcio a 5 qualificazioni mondiali 2026"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.olympics.com/it/notizie/italia-qualificazioni-mondiali-calcio-2026-programma-calendario-avversarie-dove-vedere",
+              "date": null,
+              "title": "Italia alle Qualificazioni Mondiali di Calcio 2026 - Olympics.com",
+              "source": "olympics.com",
+              "snippet": "Dal 6 giugno al 5 settembre, l'Italia si gioca un posto ai Mondiali di calcio 2026 nel girone di qualificazione con Norvegia, Israele, Estonia e Moldavia: ..."
+            },
+            {
+              "url": "https://it.wikipedia.org/wiki/Qualificazioni_al_campionato_mondiale_di_calcio_2026",
+              "date": null,
+              "title": "Qualificazioni al campionato mondiale di calcio 2026",
+              "source": "it.wikipedia.org",
+              "snippet": "Squadre qualificate ; 5, Nuova Zelanda (bandiera) Nuova Zelanda, Vincitrice del terzo turno di qualificazione OFC ; 6, Iran (bandiera) Iran, 1ª classificata del ..."
+            },
+            {
+              "url": "https://www.rai.it/dl/raiSport/speciali/statistiche/mondiali_2026_qualificazioni_girone_i/2026/classificaTeam.html",
+              "date": null,
+              "title": "Classifica Mondiali 2026 Qualificazioni",
+              "source": "rai.it",
+              "snippet": "Classifica Mondiali 2026 Qualificazioni ; 1, Norvegia ; 2, Italia ; 3, Israele ; 4, Estonia ..."
+            },
+            {
+              "url": "https://www.iconmagazine.it/eventi/mondiali-calcio-2026-nazionali-tifare-italia/",
+              "date": "10 giu 2026",
+              "title": "Mondiali di calcio 2026: 5 Nazionali da tifare al posto dell' ...",
+              "source": "iconmagazine.it",
+              "snippet": "Mondiali di calcio 2026: 5 Nazionali da tifare al posto dell'Italia e perché · 1) La Turchia di Montella · 2) Curaçao, il Paese che a sorpresa c'è."
+            },
+            {
+              "url": "https://www.facebook.com/calcio.totale14/videos/quanti-saranno-gli-italiani-al-mondiale-tantinon-ci-sar%C3%A0-la-nostra-nazionale-ma-/1018579174459527/",
+              "date": "4 mesi fa",
+              "title": "Quanti saranno gli italiani al #Mondiale? Tanti. Non ci sarà la ...",
+              "source": "facebook.com",
+              "snippet": "Oct 5, 2026 · 5.7K views. CAOS NAZIONALE: COSA STA ... Creo la top 11 per far tornare la nazionale italiana di Mancini ai Mondiali di calcio."
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "at": "2026-10-19T06:40:29.463Z",
+          "args": {
+            "query": "nazionale italiana calcio a 5 qualificazioni mondiali 2026 Georgia"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://divisionecalcioa5.it/news/nazionale-maschile/qualificazioni-mondiali-italia-georgia-il-20-ottobre-corsa-al-biglietto-tutto-quello-che-ce-da-sapere-per-il-match-di-rende/",
+              "date": "5 giorni fa",
+              "title": "Qualificazioni Mondiali, Italia-Georgia il 20 ottobre: corsa al ...",
+              "source": "divisionecalcioa5.it",
+              "snippet": "L'Italia, che si è radunata lunedì 12 ottobre a Rende, affronterà per la quarta volta nella sua storia la Georgia, contro cui vanta uno score di ..."
+            },
+            {
+              "url": "https://it.wikipedia.org/wiki/Qualificazioni_al_campionato_mondiale_di_calcio_2026_-_UEFA",
+              "date": null,
+              "title": "Qualificazioni al campionato mondiale di calcio 2026 - UEFA",
+              "source": "it.wikipedia.org",
+              "snippet": "Le qualificazioni al campionato mondiale di calcio 2026 organizzate dalla UEFA hanno dato diritto a 16 squadre nazionali affiliate all'UEFA di accedere alla ..."
+            },
+            {
+              "url": "https://www.fifa.com/it/tournaments/mens/worldcup/canadamexicousa2026/articles/coppa-del-mondo-fifa-2026-chi-si-qualificato",
+              "date": "31 mar 2026",
+              "title": "Coppa del Mondo FIFA 2026: chi si è qualificato?",
+              "source": "fifa.com",
+              "snippet": "Ecco i dettagli delle squadre che hanno staccato il pass per la Coppa del Mondo FIFA 2026 in Canada, Messico e Stati Uniti."
+            },
+            {
+              "url": "https://www.figc.it/it/nazionali/news/qualificazioni-mondiali-il-cammino-dellitalfutsal-parte-dal-main-round-con-georgia-e-kosovo-ivjd6uom",
+              "date": "19 giu 2026",
+              "title": "Qualificazioni mondiali, il cammino dell'Italfutsal parte dal ...",
+              "source": "figc.it",
+              "snippet": "Qualificazioni mondiali, il cammino dell'Italfutsal parte dal Main Round con Georgia e Kosovo ; Fase a gironi Main Round: 12-21 ottobre 2026, 2- ..."
+            },
+            {
+              "url": "https://sport.sky.it/calcio/mondiali/mondiali-2026-squadre-qualificate",
+              "date": "1 apr 2026",
+              "title": "Mondiali 2026, squadre qualificate ai gironi",
+              "source": "sport.sky.it",
+              "snippet": "Con il Mondiale 2026 a 48 squadre, ogni confederazione aveva a disposizione un numero massimo di slot per la competizione per un totale di 43."
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "at": "2026-10-19T06:40:32.787Z",
+          "args": {
+            "url": "https://divisionecalcioa5.it/news/nazionale-maschile/qualificazioni-mondiali-italia-georgia-il-20-ottobre-corsa-al-biglietto-tutto-quello-che-ce-da-sapere-per-il-match-di-rende/"
+          },
+          "page": {
+            "url": "https://divisionecalcioa5.it/news/nazionale-maschile/qualificazioni-mondiali-italia-georgia-il-20-ottobre-corsa-al-biglietto-tutto-quello-che-ce-da-sapere-per-il-match-di-rende/",
+            "chars": 6000,
+            "sha256": "566939a6c5582f1a02d9ca100f8040d12c8d739fb7bf543ac0c406856abe6ef1",
+            "excerpt": "Qualificazioni Mondiali, Italia-Georgia il 20 ottobre: corsa al biglietto. Tutto quello che c&#039;è da sapere per il match di Rende - Divisione Calcio a 5 Skip to main content In Primo Piano Competizioni Comunicati ufficiali Nazionali Istituzionali Foto Gallery Tesseramento Organigramma Albo d’Oro Risorse Hall of Fame Partnership Contatti Light Dark --> Home » Qualificazioni Mondiali, Italia-Georgia il 20 ottobre: corsa al biglietto. Tutto quello che c&#8217;è da sapere per il match di Rende Qu"
+          },
+          "tool": "open_page"
+        },
+        {
+          "i": 4,
+          "at": "2026-10-19T06:40:35.534Z",
+          "note": "tentativo 1",
+          "tool": "answer"
+        }
+      ],
+      "n_searches": 2,
+      "n_pages": 1,
+      "n_blocked": 0,
+      "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google",
+      "tokens": 7339,
+      "cost_usd": 0.00271
+    },
+    {
+      "prediction_id": "9dfdd3fd-52e4-4cc1-8287-d9bb07d009d8",
+      "steps": [
+        {
+          "i": 1,
+          "at": "2026-10-19T06:40:30.045Z",
+          "args": {
+            "query": "Italia Georgia qualificazione Mondiale calcio a 5 20 ottobre 2026"
+          },
+          "tool": "web_search",
+          "blocked": [
+            {
+              "url": "https://www.oddschecker.com/it/news/calcio/quando-gioca-italia-prossima-partita-calendario",
+              "class": "B2",
+              "stage": "search_result",
+              "rule_id": 24
+            }
+          ],
+          "results": [
+            {
+              "url": "https://divisionecalcioa5.it/news/nazionale-maschile/italfutsal-i-16-convocati-di-samperi-per-main-round-di-qualificazione-al-mondiale-2028/",
+              "date": "2 settimane fa",
+              "title": "Road to Mondiale 2028, Italfutsal: i 16 convocati di Salvo Samperi per la sfida con la Georgia",
+              "source": "Divisione Calcio a 5",
+              "snippet": "Il cerchio si stringe e si torna a fare sul serio. La Nazionale di futsal la prossima settimana (lunedì 12 ottobre) si ritroverà a Rende per il raduno di..."
+            },
+            {
+              "url": "https://www.figc.it/it/nazionali/news/qualificazione-al-mondiale-il-20-ottobre-ce-italia-georgia-a-rende-online-la-biglietteria-a2z7hite",
+              "date": "5 giorni fa",
+              "title": "Qualificazione al Mondiale, il 20 ottobre c’è Italia-Georgia a Rende: online la biglietteria",
+              "source": "FIGC",
+              "snippet": "Tagliandi gratuiti (fino a esaurimento posti disponibili) su Vivaticket. Aperte anche le procedure di accreditamento media. 14/10/2026, 05:00. category:."
+            },
+            {
+              "url": "https://www.oasport.it/2026/10/live-italia-bielorussia-qualificazioni-mondiali-calcio-femminile-2027-in-diretta-le-azzurre-difendono-il-2-0-dellandata/",
+              "date": "5 giorni fa",
+              "title": "LIVE Italia-Bielorussia 1-1, Qualificazioni Mondiali calcio femminile 2027 in DIRETTA: finisce in pareggio, finale contro la Finlandia!",
+              "source": "OA Sport",
+              "snippet": "CLICCA QUI PER AGGIORNARE LA DIRETTA LIVE 20.10 Grazie per averci seguito e appuntamento al prossimo live! 20.09 Italia che pareggia per mancanza ancora."
+            },
+            {
+              "url": "https://www.ilsussidiario.net/news/diretta-bielorussia-italia-donne-streaming-video-rai-2-in-georgia-qualificazioni-mondiali-9-ottobre-2026/3005610/",
+              "date": "1 settimana fa",
+              "title": "DIRETTA BIELORUSSIA ITALIA DONNE | Risultato finale 0-2: Piemonte e Polli! (Qualificazioni Mondiali)",
+              "source": "IlSussidiario.net",
+              "snippet": "Diretta Bielorussia Italia donne streaming video Rai 2: le azzurre sono in Georgia, campo neutro per l'andata del primo turno playoff verso i Mondiali."
+            },
+            {
+              "url": "https://divisionecalcioa5.it/news/nazionale-maschile/qualificazioni-mondiali-italia-georgia-il-20-ottobre-corsa-al-biglietto-tutto-quello-che-ce-da-sapere-per-il-match-di-rende/",
+              "date": "5 giorni fa",
+              "title": "Qualificazioni Mondiali, Italia-Georgia il 20 ottobre: corsa al ...",
+              "source": "divisionecalcioa5.it",
+              "snippet": "Sono disponibili dalle ore 15 di quest'oggi i biglietti per Italia-Georgia, prima partita del Gruppo 10 del Main Round delle qualificazioni ..."
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "at": "2026-10-19T06:40:36.146Z",
+          "note": "tentativo 1",
+          "tool": "answer"
+        }
+      ],
+      "n_searches": 1,
+      "n_pages": 0,
+      "n_blocked": 1,
+      "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "DeepInfra",
+      "tokens": 2751,
+      "cost_usd": 0.00094
+    },
+    {
+      "prediction_id": "76c1d794-35d9-46d0-b0c0-d782459ad500",
+      "steps": [
+        {
+          "i": 1,
+          "at": "2026-10-19T06:40:27.432Z",
+          "args": {
+            "query": "nazionale italiana calcio a 5 partita qualificazione Georgia 20 ottobre 2026"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://divisionecalcioa5.it/news/nazionale-maschile/qualificazioni-mondiali-italia-georgia-il-20-ottobre-corsa-al-biglietto-tutto-quello-che-ce-da-sapere-per-il-match-di-rende/",
+              "date": "5 giorni fa",
+              "title": "Qualificazioni Mondiali, Italia-Georgia il 20 ottobre: corsa al ...",
+              "source": "divisionecalcioa5.it",
+              "snippet": "Sono disponibili dalle ore 15 di quest'oggi i biglietti per Italia-Georgia, prima partita del Gruppo 10 del Main Round delle qualificazioni ..."
+            },
+            {
+              "url": "https://www.figc.it/it/nazionali/news/qualificazione-al-mondiale-il-20-ottobre-ce-italia-georgia-a-rende-online-la-biglietteria-a2z7hite",
+              "date": "5 giorni fa",
+              "title": "Qualificazione al Mondiale, il 20 ottobre c'è Italia-Georgia a ...",
+              "source": "figc.it",
+              "snippet": "Qualificazione al Mondiale, il 20 ottobre c'è Italia-Georgia a Rende: online la biglietteria. Tagliandi gratuiti (fino a esaurimento posti ..."
+            },
+            {
+              "url": "https://www.facebook.com/C5Live/posts/qualificazioni-mondiali-italia-georgia-il-20-ottobre-corsa-al-biglietto-tutto-qu/1712812494188405/",
+              "date": null,
+              "title": "Qualificazioni Mondiali, Italia-Georgia il 20 ottobre: corsa al ...",
+              "source": "facebook.com",
+              "snippet": "Calcio a 5 Live 2h Qualificazioni Mondiali, Italia-Georgia il 20 ottobre: corsa al biglietto. Tutto quello che c'è da sapere Qualificazioni ..."
+            },
+            {
+              "url": "https://it.uefa.com/futsalworldcup/match/2046959--italy-vs-georgia/",
+              "date": null,
+              "title": "Italia-Georgia | Coppa del Mondo Futsal 2028",
+              "source": "it.uefa.com",
+              "snippet": "Referee observer. Tarik Keco BIH. Delegata UEFA. Sean Dipple ENG. Turno principale - fase a gironi. martedì, 20 ott 2026 • 11:30. Forma. Italia · Georgia."
+            },
+            {
+              "url": "https://www.vivaticket.com/it/ticket/nazionale-futsal-italia-georgia/321535",
+              "date": null,
+              "title": "NAZIONALE FUTSAL ITALIA-GEORGIA",
+              "source": "vivaticket.com",
+              "snippet": "NAZIONALE FUTSAL ITALIA-GEORGIA. PalaPirossigeno - RENDE (CS). Martedì 20 ottobre 2026 alle ore 20:30. martedì 20 ottobre 2026 20:30."
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "at": "2026-10-19T06:40:34.769Z",
+          "args": {
+            "url": "https://divisionecalcioa5.it/news/nazionale-maschile/qualificazioni-mondiali-italia-georgia-il-20-ottobre-corsa-al-biglietto-tutto-quello-che-ce-da-sapere-per-il-match-di-rende/"
+          },
+          "page": {
+            "url": "https://divisionecalcioa5.it/news/nazionale-maschile/qualificazioni-mondiali-italia-georgia-il-20-ottobre-corsa-al-biglietto-tutto-quello-che-ce-da-sapere-per-il-match-di-rende/",
+            "chars": 6000,
+            "sha256": "566939a6c5582f1a02d9ca100f8040d12c8d739fb7bf543ac0c406856abe6ef1",
+            "excerpt": "Qualificazioni Mondiali, Italia-Georgia il 20 ottobre: corsa al biglietto. Tutto quello che c&#039;è da sapere per il match di Rende - Divisione Calcio a 5 Skip to main content In Primo Piano Competizioni Comunicati ufficiali Nazionali Istituzionali Foto Gallery Tesseramento Organigramma Albo d’Oro Risorse Hall of Fame Partnership Contatti Light Dark --> Home » Qualificazioni Mondiali, Italia-Georgia il 20 ottobre: corsa al biglietto. Tutto quello che c&#8217;è da sapere per il match di Rende Qu"
+          },
+          "tool": "open_page"
+        },
+        {
+          "i": 3,
+          "at": "2026-10-19T06:40:35.526Z",
+          "args": {
+            "url": "https://www.figc.it/it/nazionali/news/qualificazione-al-mondiale-il-20-ottobre-ce-italia-georgia-a-rende-online-la-biglietteria-a2z7hite"
+          },
+          "page": {
+            "url": "https://www.figc.it/it/nazionali/news/qualificazione-al-mondiale-il-20-ottobre-ce-italia-georgia-a-rende-online-la-biglietteria-a2z7hite",
+            "chars": 5139,
+            "sha256": "a43e01aab120b1d2b22bf9eeecd9b0563d34f48c92f1c09cd117a516407d42d0",
+            "excerpt": "Qualificazione al Mondiale, il 20 ottobre c’è Italia-Georgia a Rende: online la biglietteria 1934 1938 1982 2006 Footer 1 Federazione Nazionali Partner Tecnici SGS Paralimpico Serie A Women Serie B Femminile Museo del Calcio Shop I partner delle nazionali Assicurazione Cerca Whistleblowing Area Media Contatti Assicurazione Social media Whistleblowing Area Media Contatti Assicurazione Whistleblowing Area Media Contatti Assicurazione ENGLISH ITALIAN LOGIN REGISTRATI Home figc.it 1934 1938 1982 200"
+          },
+          "tool": "open_page"
+        },
+        {
+          "i": 4,
+          "at": "2026-10-19T06:40:39.724Z",
+          "note": "tentativo 1",
+          "tool": "answer"
+        }
+      ],
+      "n_searches": 1,
+      "n_pages": 2,
+      "n_blocked": 0,
+      "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "tokens": 8843,
+      "cost_usd": 0.0032
+    }
+  ],
+  "reference_forecasts": [],
+  "source_rules": [
+    {
+      "id": 1,
+      "kind": "domain",
+      "pattern": "bet365.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 2,
+      "kind": "domain",
+      "pattern": "sisal.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 3,
+      "kind": "domain",
+      "pattern": "snai.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 4,
+      "kind": "domain",
+      "pattern": "eurobet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 5,
+      "kind": "domain",
+      "pattern": "williamhill.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 6,
+      "kind": "domain",
+      "pattern": "williamhill.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 7,
+      "kind": "domain",
+      "pattern": "betfair.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 8,
+      "kind": "domain",
+      "pattern": "betfair.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 9,
+      "kind": "domain",
+      "pattern": "pinnacle.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 10,
+      "kind": "domain",
+      "pattern": "goldbet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 11,
+      "kind": "domain",
+      "pattern": "planetwin365.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 12,
+      "kind": "domain",
+      "pattern": "lottomatica.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 13,
+      "kind": "domain",
+      "pattern": "bwin.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 14,
+      "kind": "domain",
+      "pattern": "unibet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 15,
+      "kind": "domain",
+      "pattern": "888sport.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 16,
+      "kind": "domain",
+      "pattern": "betway.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 17,
+      "kind": "domain",
+      "pattern": "stanleybet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 18,
+      "kind": "domain",
+      "pattern": "betflag.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 19,
+      "kind": "domain",
+      "pattern": "leovegas.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 20,
+      "kind": "domain",
+      "pattern": "netbet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 21,
+      "kind": "domain",
+      "pattern": "starcasino.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 22,
+      "kind": "domain",
+      "pattern": "1xbet.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 23,
+      "kind": "domain",
+      "pattern": "bet-at-home.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 24,
+      "kind": "domain",
+      "pattern": "oddschecker.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 25,
+      "kind": "domain",
+      "pattern": "oddsportal.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 26,
+      "kind": "domain",
+      "pattern": "betexplorer.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 27,
+      "kind": "domain",
+      "pattern": "oddspedia.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 28,
+      "kind": "domain",
+      "pattern": "betbrain.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 29,
+      "kind": "domain",
+      "pattern": "sportsbettingdime.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 30,
+      "kind": "domain",
+      "pattern": "betiball.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 31,
+      "kind": "domain",
+      "pattern": "extratips.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 32,
+      "kind": "domain",
+      "pattern": "forebet.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 33,
+      "kind": "domain",
+      "pattern": "predictz.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 34,
+      "kind": "domain",
+      "pattern": "sportytrader.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 35,
+      "kind": "domain",
+      "pattern": "sportytrader.it",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 36,
+      "kind": "domain",
+      "pattern": "statarea.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 37,
+      "kind": "domain",
+      "pattern": "vitibet.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 38,
+      "kind": "domain",
+      "pattern": "foresportia.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 39,
+      "kind": "domain",
+      "pattern": "betimate.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 40,
+      "kind": "domain",
+      "pattern": "windrawwin.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 41,
+      "kind": "domain",
+      "pattern": "betensured.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 42,
+      "kind": "domain",
+      "pattern": "pronosoft.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 43,
+      "kind": "domain",
+      "pattern": "scores24.live",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 44,
+      "kind": "domain",
+      "pattern": "dimers.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 45,
+      "kind": "url_pattern",
+      "pattern": "^https?://[^/]*(pronostic|scommess|betting|tipster)[^/]*/",
+      "class": "B3",
+      "reason": "nome del sito riferito a pronostici/scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 46,
+      "kind": "url_pattern",
+      "pattern": "/(pronostic[oi]|scommesse|betting-tips|football-predictions|soccer-predictions|predictions?/|odds/|quote-)",
+      "class": "B3",
+      "reason": "sezione di pronostici/quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 47,
+      "kind": "title_pattern",
+      "pattern": "(pronostic[oi]|betting tips?|\\bquote\\b.{0,30}(scommess|1x2|partita)|\\bodds\\b|predictions? (and|&) (odds|tips)|probabili formazioni e pronostico)",
+      "class": "B3",
+      "reason": "titolo di pronostico/quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 48,
+      "kind": "domain",
+      "pattern": "polymarket.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 49,
+      "kind": "domain",
+      "pattern": "kalshi.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 50,
+      "kind": "domain",
+      "pattern": "metaculus.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 51,
+      "kind": "domain",
+      "pattern": "manifold.markets",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 52,
+      "kind": "domain",
+      "pattern": "predictit.org",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 53,
+      "kind": "domain",
+      "pattern": "gjopen.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 54,
+      "kind": "domain",
+      "pattern": "insightprediction.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 55,
+      "kind": "domain",
+      "pattern": "augur.net",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 56,
+      "kind": "content_pattern",
+      "pattern": "probabilit[àa]\\s+di\\s+(vittoria|successo)",
+      "class": "B5",
+      "reason": "probabilita' di vittoria gia' calcolata",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 57,
+      "kind": "content_pattern",
+      "pattern": "(win|winning)\\s+probability|probability\\s+of\\s+winning|implied\\s+probability",
+      "class": "B5",
+      "reason": "probabilita' di vittoria gia' calcolata",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 58,
+      "kind": "content_pattern",
+      "pattern": "\\b1\\s*[x×]\\s*2\\b",
+      "class": "B5",
+      "reason": "quote 1X2",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 59,
+      "kind": "content_pattern",
+      "pattern": "\\bodds\\b",
+      "class": "B5",
+      "reason": "quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 60,
+      "kind": "content_pattern",
+      "pattern": "\\bquot[ae]\\b[^.\\n]{0,40}\\d[.,]\\d{2}",
+      "class": "B5",
+      "reason": "quote decimali",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 61,
+      "kind": "content_pattern",
+      "pattern": "\\bpronostic\\w*",
+      "class": "B5",
+      "reason": "pronostico",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 62,
+      "kind": "domain",
+      "pattern": "tradingeconomics.com",
+      "class": "B6",
+      "reason": "previsioni/consensus su indicatori",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 63,
+      "kind": "url_pattern",
+      "pattern": "investing\\.com/economic-calendar",
+      "class": "B6",
+      "reason": "calendario economico con consensus",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 64,
+      "kind": "url_pattern",
+      "pattern": "/(forecast|consensus|previsioni-)",
+      "class": "B6",
+      "reason": "pagina di previsioni/consensus",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 65,
+      "kind": "forecast_same_indicator",
+      "pattern": "(forecast|previsione|previsioni|consensus|attes[oi]|expected|projection|proiezion\\w+|stim\\w+)",
+      "class": "B6",
+      "reason": "previsione/proiezione sullo stesso indicatore e periodo della domanda",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 66,
+      "kind": "domain",
+      "pattern": "ilmeteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 67,
+      "kind": "domain",
+      "pattern": "3bmeteo.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 68,
+      "kind": "domain",
+      "pattern": "meteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 69,
+      "kind": "domain",
+      "pattern": "meteoam.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 70,
+      "kind": "domain",
+      "pattern": "windy.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 71,
+      "kind": "domain",
+      "pattern": "yr.no",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 72,
+      "kind": "domain",
+      "pattern": "accuweather.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 73,
+      "kind": "domain",
+      "pattern": "weather.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 74,
+      "kind": "domain",
+      "pattern": "meteoblue.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 75,
+      "kind": "domain",
+      "pattern": "wetter.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 76,
+      "kind": "domain",
+      "pattern": "open-meteo.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 77,
+      "kind": "domain",
+      "pattern": "meteogiornale.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 78,
+      "kind": "domain",
+      "pattern": "iconmeteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 79,
+      "kind": "domain",
+      "pattern": "timeanddate.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 80,
+      "kind": "url_pattern",
+      "pattern": "/(previsioni|forecast|meteo-previsioni)[-/]",
+      "class": "B7",
+      "reason": "pagina di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 81,
+      "kind": "forecast_same_indicator",
+      "pattern": "(previsioni|previsione|prevista|previsto|prevede|forecast|allerta|maltempo|bel tempo|temporali|piogge|pioggia in arrivo|arriva)",
+      "class": "B7",
+      "reason": "previsione meteo per la stessa citta' e lo stesso giorno della domanda (anche in una notizia)",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:51:49.732826+00:00",
+      "active_to": null
+    },
+    {
+      "id": 82,
+      "kind": "forecast_same_indicator",
+      "pattern": "(previsioni|previsione|prevista|previsto|prevede|forecast|allerta|attes[oi]|probabilit[àa])",
+      "class": "B7",
+      "reason": "previsione sullo stesso indicatore della domanda (qualita' dell'aria, terremoti) nello stesso periodo",
+      "categories": [
+        "ambiente"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-01T07:35:17.024988+00:00",
+      "active_to": null
+    },
+    {
+      "id": 83,
+      "kind": "domain",
+      "pattern": "meteo5.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 84,
+      "kind": "domain",
+      "pattern": "meteomi.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 85,
+      "kind": "domain",
+      "pattern": "weather-forecast.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 86,
+      "kind": "domain",
+      "pattern": "weather25.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 87,
+      "kind": "domain",
+      "pattern": "worldweatherai.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 88,
+      "kind": "domain",
+      "pattern": "meteo2.it",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 89,
+      "kind": "domain",
+      "pattern": "meteolive.it",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 90,
+      "kind": "domain",
+      "pattern": "ilmeteo.net",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 91,
+      "kind": "domain",
+      "pattern": "meteo.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 92,
+      "kind": "url_pattern",
+      "pattern": "/meteo[-/]",
+      "class": "B7",
+      "reason": "sezione meteo di un portale (articoli sul tempo dei prossimi giorni)",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 93,
+      "kind": "title_pattern",
+      "pattern": "(previsioni|previsione|forecast|\b(7|10|14|15) giorni\b|prossimi giorni|weekend|questa settimana|settimana d|in arrivo|\barriva\b|\btorna\b|cambia tutto|maltempo|allerta|ondata|\bdomani\b|day weather)",
+      "class": "B7",
+      "reason": "titolo che annuncia il tempo dei prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.556+00:00"
+    },
+    {
+      "id": 94,
+      "kind": "content_pattern",
+      "pattern": "(nei prossimi giorni|in arrivo|previsioni per|previsto per|prevista per|a partire da (lunedì|martedì|mercoledì|giovedì|venerdì|sabato|domenica)|tendenza meteo|evoluzione meteo)",
+      "class": "B7",
+      "reason": "pagina che descrive il tempo previsto per i prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 2,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 95,
+      "kind": "title_pattern",
+      "pattern": "\b(prediction|predictions|preview & prediction|betting tips|tips)\b",
+      "class": "B3",
+      "reason": "titolo di pronostico (in inglese)",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.666+00:00"
+    },
+    {
+      "id": 96,
+      "kind": "domain",
+      "pattern": "footballodds.io",
+      "class": "B2",
+      "reason": "comparatore di quote e pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 97,
+      "kind": "title_pattern",
+      "pattern": "(comp. quote|comparazione quote|\bquote\b)",
+      "class": "B2",
+      "reason": "pagina di quote della partita",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.8+00:00"
+    },
+    {
+      "id": 98,
+      "kind": "title_pattern",
+      "pattern": "(previsioni|previsione|forecast|\\b(7|10|14|15) giorni\\b|prossimi giorni|weekend|fine settimana|questa settimana|settimana \\d|in arrivo|\\barriva\\b|\\btorna\\b|cambia tutto|maltempo|allerta|ondata|\\bdomani\\b|day weather)",
+      "class": "B7",
+      "reason": "titolo che annuncia il tempo dei prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    },
+    {
+      "id": 99,
+      "kind": "title_pattern",
+      "pattern": "\\b(prediction|predictions|betting tips|tips)\\b",
+      "class": "B3",
+      "reason": "titolo di pronostico (in inglese)",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    },
+    {
+      "id": 100,
+      "kind": "title_pattern",
+      "pattern": "(comp\\. quote|comparazione quote|\\bquote\\b)",
+      "class": "B2",
+      "reason": "pagina di quote della partita",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    }
+  ],
+  "predictions": [
+    {
+      "id": "53af2821-3511-452f-99f4-5e8904768edc",
+      "question_id": "f7da5e6f-3bb0-43bf-8cc3-b389c6eba9df",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google",
+      "prompt_version": "f2c/w1",
+      "condition": "C",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-10-19T06:40:25.944+00:00",
+      "answer": "yes",
+      "confidence": 85,
+      "rationale_it": "La partita si giocherà il 20 ottobre 2026. L'Italia ha un bilancio storico favorevole contro la Georgia (3 vittorie e 1 pareggio su 4 incontri). Giocando in casa e con un buon precedente, la probabilità di vittoria è alta.",
+      "created_at": "2026-10-19T06:40:35.603854+00:00",
+      "created_at_for_hash": "2026-10-19T06:40:35.603854Z",
+      "hash": "436c007964bd33b4cbf81908e8d357ce18749b4d6fcc55927e3fc8eb6f3eb64d"
+    },
+    {
+      "id": "9dfdd3fd-52e4-4cc1-8287-d9bb07d009d8",
+      "question_id": "f7da5e6f-3bb0-43bf-8cc3-b389c6eba9df",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f2c/w1",
+      "condition": "C",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-10-19T06:40:25.943+00:00",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "La nazionale italiana di calcio a 5 è favorita contro la Georgia, considerando il contesto delle qualificazioni e la qualità dei convocati. Tuttavia, il risultato non è scontato.",
+      "created_at": "2026-10-19T06:40:36.21584+00:00",
+      "created_at_for_hash": "2026-10-19T06:40:36.215840Z",
+      "hash": "d73127065a5848dd67c57dde0bdc3822ec5de580eb9851bb4e337f27865feef6"
+    },
+    {
+      "id": "76c1d794-35d9-46d0-b0c0-d782459ad500",
+      "question_id": "f7da5e6f-3bb0-43bf-8cc3-b389c6eba9df",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f2c/w1",
+      "condition": "C",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-10-19T06:40:25.945+00:00",
+      "answer": "yes",
+      "confidence": 85,
+      "rationale_it": "L'Italia affronta la Georgia in una partita di qualificazione al Mondiale di futsal. L'Italia ha un vantaggio storico contro la Georgia, con tre vittorie e un pareggio in quattro incontri. La partita si svolgerà a Rende, con il supporto della tifoseria italiana. Questi fattori, insieme alla forza della squadra italiana, suggeriscono una probabilità elevata di vittoria.",
+      "created_at": "2026-10-19T06:40:39.795447+00:00",
+      "created_at_for_hash": "2026-10-19T06:40:39.795447Z",
+      "hash": "6f2a75737683b6c1969023c20e7fb893e207a8505f73fb90cb3d5c5f66993aab"
+    }
+  ]
+}
