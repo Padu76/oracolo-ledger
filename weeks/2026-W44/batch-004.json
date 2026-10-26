@@ -1,0 +1,2653 @@
+{
+  "schema": "oracolo-ledger/2",
+  "site": "https://oracolo-sepia.vercel.app",
+  "week_id": "2026-W44",
+  "batch_no": 4,
+  "generated_at": "2026-10-26T07:41:04.574Z",
+  "prev_file_sha256": "db87feebccb11740d0250d622d3233f2414bef7b75b1a7e66d99a4435870ad7f",
+  "hash_formula": "sha256_hex( question_id | model_id | answer | confidence | rationale_it | created_at_utc ) con '|' come separatore e created_at nel formato YYYY-MM-DDTHH:MM:SS.ffffffZ",
+  "versions": [
+    {
+      "id": "c3",
+      "kind": "context",
+      "source_sha256": "f2718089549b450a7788a8c62e48c293e5a1a2510ea1c56e80ee80cd4644f3ac",
+      "description": "Schema del contesto c3 (condizione B, v2): come c2, ma per le domande meteo solo osservazioni recenti e climatologia, niente previsioni."
+    },
+    {
+      "id": "f2c",
+      "kind": "forecast",
+      "source_sha256": "c2990ecbd27b42c4e7cdd0fb98d1797b08fe256c80d4cad97dba894cc48ad2dd",
+      "description": "Condizione C (v2): accesso al web con strumenti nostri (web_search, open_page), stessi limiti per i cinque modelli."
+    },
+    {
+      "id": "t5",
+      "kind": "template",
+      "source_sha256": "43bd9997f75ab958bdd1caa603a33ad0b1b8f475bfcf308fecd421efdc48d0ad",
+      "description": "Template v2 dei testi delle domande a fonte strutturata: meteo, calcio, CrimeWatch e le famiglie aggiunte (carburanti MIMIT, cambio BCE, terremoti INGV, qualita' dell'aria, pagine piu' viste di Wikipedia), con le regole di scelta di soglie, date e orari di chiusura."
+    },
+    {
+      "id": "w1",
+      "kind": "tools",
+      "source_sha256": "2df53776b06c487cfd695b1546d6015c69241f3dd5ab35b2abf490cb9795399e",
+      "description": "Strumenti web della condizione C: definizione, limiti e pipeline di filtro delle fonti."
+    }
+  ],
+  "questions": [
+    {
+      "id": "810a99d4-a342-41b6-8dec-5e7071eb9d13",
+      "week_id": "2026-W44",
+      "text_it": "Venezia FC batterà Inter in Serie A il 28 ottobre?",
+      "text_en": "Will Venezia FC beat Inter in Serie A on October 28?",
+      "category": "sport",
+      "scope": "italia",
+      "deadline": "2026-10-28T22:59:00+00:00",
+      "event_date": "2026-10-28",
+      "resolve_after": "2026-10-28T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se Venezia FC vince contro Inter la partita di Serie A in programma il 28 ottobre 2026, con il risultato al termine dei tempi regolamentari riportato da football-data.org. L'esito è NO in caso di pareggio o sconfitta.",
+      "expected_source": "football-data.org: risultato ufficiale della partita",
+      "void_policy": "Se la partita viene rinviata, sospesa o annullata e non si disputa entro 7 giorni dalla data prevista, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "type": "footballdata_match",
+        "kickoff": "2026-10-28T17:30:00Z",
+        "match_id": 558550,
+        "away_team": "Inter",
+        "home_team": "Venezia FC"
+      },
+      "status": "open",
+      "created_at": "2026-10-26T07:03:13.341666+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-10-28T16:30:00+00:00"
+    },
+    {
+      "id": "44a8df4a-0982-4b45-83f4-888c618ae988",
+      "week_id": "2026-W44",
+      "text_it": "Parma batterà Udinese in Serie A il 28 ottobre?",
+      "text_en": "Will Parma beat Udinese in Serie A on October 28?",
+      "category": "sport",
+      "scope": "italia",
+      "deadline": "2026-10-28T22:59:00+00:00",
+      "event_date": "2026-10-28",
+      "resolve_after": "2026-10-28T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se Parma vince contro Udinese la partita di Serie A in programma il 28 ottobre 2026, con il risultato al termine dei tempi regolamentari riportato da football-data.org. L'esito è NO in caso di pareggio o sconfitta.",
+      "expected_source": "football-data.org: risultato ufficiale della partita",
+      "void_policy": "Se la partita viene rinviata, sospesa o annullata e non si disputa entro 7 giorni dalla data prevista, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "type": "footballdata_match",
+        "kickoff": "2026-10-28T17:30:00Z",
+        "match_id": 558553,
+        "away_team": "Udinese",
+        "home_team": "Parma"
+      },
+      "status": "open",
+      "created_at": "2026-10-26T07:03:13.341666+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-10-28T16:30:00+00:00"
+    }
+  ],
+  "contexts": [
+    {
+      "question_id": "810a99d4-a342-41b6-8dec-5e7071eb9d13",
+      "query_used": "football-data:standings:SA",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Classifica Serie A (football-data.org): Venezia FC e Inter",
+          "source": "football-data.org (classifica)",
+          "snippet": "Dati ottenuti il 26/10/26, 08:00. Venezia FC: 20° posto, 3 punti in 8 partite (1 vittorie, 0 pareggi, 7 sconfitte, gol 6-17). Inter: 1° posto, 22 punti in 8 partite (7 vittorie, 1 pareggi, 0 sconfitte, gol 23-10). Partita in casa di Venezia FC."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-10-26T07:03:18.191+00:00",
+      "hash": "43a32701b1c946f7c9b4780341b007359ae240a7709e1c1906a056783823be10",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "44a8df4a-0982-4b45-83f4-888c618ae988",
+      "query_used": "football-data:standings:SA",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Classifica Serie A (football-data.org): Parma e Udinese",
+          "source": "football-data.org (classifica)",
+          "snippet": "Dati ottenuti il 26/10/26, 08:00. Parma: 19° posto, 4 punti in 8 partite (1 vittorie, 1 pareggi, 6 sconfitte, gol 5-15). Udinese: 17° posto, 4 punti in 8 partite (1 vittorie, 1 pareggi, 6 sconfitte, gol 9-18). Partita in casa di Parma."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-10-26T07:03:18.434+00:00",
+      "hash": "57c7d5726e5e342ccf4cf48dee1327d0fe30dfd990eb87af0a921724a8b0574e",
+      "error": null,
+      "schema_version": "c3"
+    }
+  ],
+  "failures": [],
+  "traces": [
+    {
+      "prediction_id": "52a857f1-3b59-4d46-9c8d-51aa59b9fddb",
+      "steps": [
+        {
+          "i": 1,
+          "at": "2026-10-26T07:40:27.128Z",
+          "args": {
+            "query": "Serie A calendario Venezia Inter 28 ottobre 2026"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.repubblica.it/sport/dirette/calcio/serie-a-2026/calendario/venezia-t137/",
+              "date": null,
+              "title": "Calendario Venezia Serie A 2026/2027",
+              "source": "repubblica.it",
+              "snippet": "Calendario Venezia Serie A 2026/2027 ; Mercoledì 28 Ottobre 2026 - 18:30. Venezia. Inter ; Domenica 1 Novembre 2026 - 12:30. Como. Venezia ; Venerdì 6 Novembre ..."
+            },
+            {
+              "url": "https://www.veneziafc.it/teams/men/schedule",
+              "date": null,
+              "title": "Calendario e Risultati 2026/2027 - Serie A",
+              "source": "veneziafc.it",
+              "snippet": "Calendario e Risultati. 2026/2027. GIORNATA 1. dom, 23 ago09:30 · Squadra in casa: Venezia.Squadra in trasferta: Lecce.Partita terminata. Venezia."
+            },
+            {
+              "url": "https://www.legaseriea.it/serie-a/match/a0fa7250d534434388bec601452befc5/venezia-vs-inter",
+              "date": null,
+              "title": "Venezia vs Inter | Serie A Enilive",
+              "source": "legaseriea.it",
+              "snippet": "Dettagli completi di Venezia vs Inter in Serie A Enilive — formazioni, risultato e report della partita su Lega Serie A."
+            },
+            {
+              "url": "https://www.vivaticket.com/it/ticket/serie-a-enilive-2026-27-venezia-inter/322200",
+              "date": null,
+              "title": "VENEZIA - INTER",
+              "source": "vivaticket.com",
+              "snippet": "VENEZIA - INTER. Serie A Enilive 2026/27. Stadio Pier Luigi Penzo - VENEZIA (VE). Mercoledì 28 ottobre 2026 alle ore 18:30. Scegli il tuo posto."
+            },
+            {
+              "url": "https://www.inter.it/it/notizie/venezia-inter-dove-vederla-in-tv-serie-a-2026-27",
+              "date": "20 ore fa",
+              "title": "Venezia-Inter, orari e dove vederla",
+              "source": "inter.it",
+              "snippet": "Nerazzurri in campo mercoledì 28 ottobre alle ore 18:30 allo stadio Pier Luigi Penzo per la nona giornata di campionato · VENEZIA-INTER, DOVE ..."
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "at": "2026-10-26T07:40:29.115Z",
+          "args": {
+            "query": "Venezia FC Serie A 2026/2027 rosa e risultati recenti"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.veneziafc.it/teams/men/schedule",
+              "date": null,
+              "title": "Calendario e Risultati 2026/2027 - Serie A",
+              "source": "veneziafc.it",
+              "snippet": "Calendario e Risultati ; GIORNATA 1. dom, 23 ago · Squadra in casa: Venezia.Squadra in trasferta: Lecce.Partita terminata. ; GIORNATA 2. ven, 28 ago · Squadra in ..."
+            },
+            {
+              "url": "https://it.wikipedia.org/wiki/Venezia_Football_Club_2026-2027",
+              "date": null,
+              "title": "Venezia Football Club 2026-2027",
+              "source": "it.wikipedia.org",
+              "snippet": "Questa voce raccoglie le informazioni riguardanti il Venezia Football Club nelle competizioni ufficiali della stagione 2026-2027."
+            },
+            {
+              "url": "https://www.dazn.com/it-IT/news/altro/rosa-aggiornata-venezia-2026-27-tutti-giocatori-ruoli-numeri-di-maglia/1jp55dg04aimezrpvuu9iql7n",
+              "date": "14 ott 2026",
+              "title": "Rosa Venezia 2026-27: giocatori, ruoli, numeri di maglia ...",
+              "source": "dazn.com",
+              "snippet": "In questa pagina trovi tutti i giocatori del Venezia 2026-27 divisi per ruolo, con numeri di maglia, anno di nascita, allenatore, mercato e ..."
+            },
+            {
+              "url": "https://www.veneziafc.it/teams/men/squad",
+              "date": null,
+              "title": "Lista Giocatori Prima Squadra",
+              "source": "veneziafc.it",
+              "snippet": "Rosa, calendario, risultati e ultime notizie al Venezia FC. ... Calendario e Risultati · Classifica · Stagione 25/26. Portieri. Filip Stankovic."
+            },
+            {
+              "url": "https://www.facebook.com/ComunediVenezia/videos/-ecco-la-prima-squadra-del-venezia-fc-%C3%A8-stata-presentata-ufficialmente-questa-se/1057178696832851/",
+              "date": "2 mesi fa",
+              "title": "Ecco la Prima Squadra del Venezia FC!  È stata presentata ...",
+              "source": "facebook.com",
+              "snippet": "⚽ È stata presentata ufficialmente questa sera la rosa del Venezia FC che affronterà il campionato di Serie A 2026/2027. Davanti a tanti ..."
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "at": "2026-10-26T07:40:30.985Z",
+          "args": {
+            "query": "Inter Serie A 2026/2027 rosa e risultati recenti"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.dazn.com/it-IT/news/calcio/probabile-formazione-inter-modulo-titolari-ballottaggi/1jc03wzhsl2z211bglxrhz6xhw",
+              "date": "6 giorni fa",
+              "title": "Probabile formazione Inter 2026-27: modulo, titolari e ballottaggi",
+              "source": "DAZN",
+              "snippet": "Scopri la probabile formazione dell'Inter 2026-27: il modulo di Cristian Chivu, i titolari, i ballottaggi e i ruoli al Fantacalcio."
+            },
+            {
+              "url": "https://tg24.sky.it/sport/2026/10/22/europa-league-conference-risultati-partite-oggi",
+              "date": "3 giorni fa",
+              "title": "Europa e Conference League, pari Juventus. Ko per Milan e Atalanta",
+              "source": "Sky TG24",
+              "snippet": "Dopo le partite di Champions League di martedì e mercoledì - che hanno fatto registrare quattro vittorie per Roma, Napoli, Como e Inter - oggi è stato il..."
+            },
+            {
+              "url": "https://www.gazzetta.it/calcio/fantanews/11-08-2026/portieri-fantacalcio-2026-27-titolari-secondi-terzi-squadre.shtml",
+              "date": "1 mese fa",
+              "title": "Portieri fantacalcio 2026-27: titolari, secondi e terzi di ogni squadra",
+              "source": "La Gazzetta dello Sport",
+              "snippet": "Blindare la porta è fondamentale, sia per i club di Serie A che per i fantallenatori: clean sheet, gol subiti, rigori parati e continuità di rendimento sono..."
+            },
+            {
+              "url": "https://www.eurosport.it/calcio/calciomercato/2026-2027/parma-via-cuesta-con-linter-ce-gilardino-juve-neto-oggi-la-firma.-da-beltran-e-anguissa-a-richards-linter-prepara-il-colpo-a-parametro-zero_sto23340928/story.shtml",
+              "date": "1 mese fa",
+              "title": "Parma, via Cuesta: con l'Inter c'è Gilardino? Juve-Neto: oggi la firma",
+              "source": "Eurosport.it",
+              "snippet": "CALCIOMERCATO - Dopo l'esonero dello spagnolo, il Parma potrebbe puntare sull'ex Gilardino. In casa Juve oggi sarà il giorno della firma di Neto, l'Inter..."
+            },
+            {
+              "url": "https://www.dazn.com/it-IT/news/calcio/rosa-aggiornata-parma-2026-27-tutti-giocatori-ruoli-numeri-di-maglia/60dqmweqg48d1mfo694z0t872",
+              "date": "4 settimane fa",
+              "title": "Rosa aggiornata Parma 2026-27: tutti i giocatori, ruoli e numeri di maglia",
+              "source": "DAZN",
+              "snippet": "La rosa aggiornata del Parma 2026-27: tutti i giocatori divisi per ruolo, numeri di maglia, data di nascita, allenatore, mercato e calendario di Serie A..."
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "at": "2026-10-26T07:40:33.805Z",
+          "note": "tentativo 1",
+          "tool": "answer"
+        }
+      ],
+      "n_searches": 3,
+      "n_pages": 0,
+      "n_blocked": 0,
+      "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google AI Studio",
+      "tokens": 6710,
+      "cost_usd": 0.00196
+    },
+    {
+      "prediction_id": "08cc2515-ed1f-4064-a751-9d92f4e3d4b5",
+      "steps": [
+        {
+          "i": 1,
+          "at": "2026-10-26T07:40:26.757Z",
+          "args": {
+            "query": "Serie A calendario Parma Udinese 28 ottobre 2026"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.udinese.it/stagione/calendario-e-risultati/serie-a",
+              "date": null,
+              "title": "Serie A < Calendario e Risultati < Stagione ...",
+              "source": "udinese.it",
+              "snippet": "25 ottobre 2026. Udinese. udinese.png –. milan.png Milan. 28 ottobre 2026. Parma. parma.png –. udinese.png Udinese. 31 ottobre 2026."
+            },
+            {
+              "url": "https://www.dazn.com/it-IT/news/calcio/calendario-completo-serie-a-dove-vedere-le-partite/1qtugc7g9k7w71sjt6einxmm8w",
+              "date": "25 set 2026",
+              "title": "Calendario Completo Serie A Enilive 2026/2027, guarda ...",
+              "source": "dazn.com",
+              "snippet": "Parma-Udinese. 28/10 ... Sono due i turni infrasettimanali previsti per la Serie A Enilive 2026/27: il 28 ottobre 2026 e il 6 gennaio 2027 ."
+            },
+            {
+              "url": "https://images.legaseriea.it/image/private/fl_attachment/prd/blpfycdm1ozusg4otblb.pdf",
+              "date": "18 ott 2026",
+              "title": "stagione 26/27",
+              "source": "images.legaseriea.it",
+              "snippet": "UDINESE VS MILAN. GIORNATA 9. FIORENTINA VS. 28/10/2026. ATALANTA. FROSINONE VS LECCE. GENOA VS. JUVENTUS. MILAN VS BOLOGNA. MONZA VS NAPOLI."
+            },
+            {
+              "url": "https://www.repubblica.it/sport/dirette/calcio/serie-a-2026/calendario/parma-t131/",
+              "date": null,
+              "title": "Calendario Parma Serie A 2026/2027",
+              "source": "repubblica.it",
+              "snippet": "Mercoledì 28 Ottobre 2026 - 18:30. Parma. Udinese. Lunedì 2 Novembre 2026 - 20 ... 18:30 Parma - Udinese. 18:30 Venezia - Inter. 20:45 Genoa - Juventus. 20 ..."
+            },
+            {
+              "url": "https://www.parmacalcio1913.com/calendario/",
+              "date": null,
+              "title": "Calendario | Parma Calcio 1913",
+              "source": "parmacalcio1913.com",
+              "snippet": "calendario. giornata 9. Serie A. mer 28 ott. Parma. 18:30 (CET). Udinese. acquista biglietto. giornata 10. Serie A. lun 02 nov. Atalanta. 20:45 (CET). Parma ..."
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "at": "2026-10-26T07:40:30.078Z",
+          "args": {
+            "query": "Parma Udinese Serie A storico risultati"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.udinese.it/Apps/WebObjects/Udinese.woa/wa/viewSection?id=46292&lang=esp",
+              "date": null,
+              "title": "Udinese-Parma: i precedenti",
+              "source": "udinese.it",
+              "snippet": "Quella in programma domenica 18 alle 18 alla Dacia Arena è la sfida numero 47 tra le due squadre. Questi i precedenti in Serie A: Gare disputate a Udine 23"
+            },
+            {
+              "url": "https://www.365scores.com/it/football/match/serie-a-17/parma-udinese-229-241-17",
+              "date": null,
+              "title": "Parma Vs Udinese: risultati in diretta, formazioni e testa a ...",
+              "source": "365scores.com",
+              "snippet": "Parma v Udinese (28/10) in Italy Serie A. Ottieni l'anteprima della partita con risultati in diretta, formazioni, statistiche, testa a testa e molto altro."
+            },
+            {
+              "url": "https://www.calcio.com/squadre/udinese/precedenti/parma",
+              "date": null,
+              "title": "Precedenti Udinese vs Parma | Testa a testa, risultati",
+              "source": "calcio.com",
+              "snippet": "Tutte le partite disputate ; 2025-03-01, Udinese · Parma, 1:0, Serie A ; 2024-09-16, Parma · Udinese, 2:3, Serie A."
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=MmM4Ysa0qWk",
+              "date": "5 anni fa",
+              "title": "Pareggio in rimonta dell'Udinese a Parma | Serie A TIM",
+              "source": "youtube.com",
+              "snippet": "Un tempo a testa per Parma e Udinese: finisce 2-2, Okaka e Nuytinck completano la rimonta | Serie A TIM This is the official channel for the ..."
+            },
+            {
+              "url": "https://www.gazzetta.it/Calcio/Serie-A/Udinese/18-04-2026/udinese-parma-risultato-e-marcatori-serie-a.shtml",
+              "date": "20 apr 2026",
+              "title": "Udinese-Parma 0-1, Elphege decide la gara col primo gol ...",
+              "source": "gazzetta.it",
+              "snippet": "Il Parma invece è in crisi di risultati, 14° a quota 36, non vince da sei turni e con 23 gol totali ha il secondo peggior attacco della Serie A."
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "at": "2026-10-26T07:40:32.549Z",
+          "args": {
+            "query": "Parma Serie A 2026/2027 classifica"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://sport.sky.it/calcio/serie-a/classifica-serie-a-2026-2027",
+              "date": null,
+              "title": "Serie A, la classifica della stagione 2026-2027",
+              "source": "sport.sky.it",
+              "snippet": "19) PARMA. 4 punti; 8 partite giocate; 5 gol fatti; 15 gol subiti. 20/20. 20) VENEZIA. 3 punti; 8 partite giocate; 6 gol fatti; 17 gol subiti. TAG: fotogallery ..."
+            },
+            {
+              "url": "https://www.forzaparma.it/classifica-parma-calcio/",
+              "date": null,
+              "title": "Classifica Parma – Serie A 2026-2027",
+              "source": "forzaparma.it",
+              "snippet": "Vuoi sapere la posizione in classifica del Parma Calcio 1913? Forza Parma propone la classifica Serie A 2026-2027, continuamente aggiornata."
+            },
+            {
+              "url": "https://www.repubblica.it/sport/dirette/calcio/serie-a-2026/classifica/",
+              "date": null,
+              "title": "Classifica Serie A 2026/2027 - Calcio",
+              "source": "repubblica.it",
+              "snippet": "Classifica Serie A 2026/2027 ; Udinese. 4, 8 ; Fiorentina. 4, 8 ; Parma. 4, 8 ; Venezia. 3, 8 ..."
+            },
+            {
+              "url": "https://it.wikipedia.org/wiki/Serie_A_2026-2027",
+              "date": null,
+              "title": "Serie A 2026-2027",
+              "source": "it.wikipedia.org",
+              "snippet": "Con tre club a testa ci sono l'Emilia-Romagna (Bologna, Parma e Sassuolo) e il Lazio (Frosinone, Lazio e Roma). Segue con due squadre il Piemonte (Juventus ..."
+            },
+            {
+              "url": "https://www.legaseriea.it/team/parma",
+              "date": null,
+              "title": "Parma: calendario e risultati",
+              "source": "legaseriea.it",
+              "snippet": "Classifica delle squadre principali ordinata per punti. Posizione, nome club e statistiche sono visualizzati in colonne."
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "at": "2026-10-26T07:40:34.453Z",
+          "args": {
+            "query": "Udinese Serie A 2026/2027 classifica"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://sport.sky.it/calcio/serie-a/classifica-serie-a-2026-2027",
+              "date": null,
+              "title": "Serie A, la classifica della stagione 2026-2027",
+              "source": "sport.sky.it",
+              "snippet": "Serie A, la classifica della stagione 2026-2027 ; 1/20. 1) INTER. 22 punti ; 4/20. 4) MILAN. 18 punti ; 7/20. 7) JUVENTUS. 14 punti ; 10/20. 10) NAPOLI. 11 punti ..."
+            },
+            {
+              "url": "https://www.repubblica.it/sport/dirette/calcio/serie-a-2026/classifica/",
+              "date": null,
+              "title": "Classifica Serie A 2026/2027 - Calcio",
+              "source": "repubblica.it",
+              "snippet": "Classifica Serie A 2026/2027 ; Udinese. 4, 8 ; Fiorentina. 4, 8 ; Parma. 4, 8 ; Venezia. 3, 8 ..."
+            },
+            {
+              "url": "https://it.wikipedia.org/wiki/Serie_A_2026-2027",
+              "date": null,
+              "title": "Serie A 2026-2027",
+              "source": "it.wikipedia.org",
+              "snippet": "Dopo le prime cinque giornate, a guidare la classifica sono tre squadre a pari merito, tutte a quota tredici punti: a fare compagnia all'Inter di Chivu e alla ..."
+            },
+            {
+              "url": "https://www.corrieredellosport.it/live/classifica-serie-a",
+              "date": null,
+              "title": "Classifica Serie A 2026-27: risultati e aggiornamenti live",
+              "source": "corrieredellosport.it",
+              "snippet": "Classifica Serie A ; 17. Udinese. 4 ; 18. Fiorentina. 4 ; 19. Parma. 4 ; 20. Venezia. 3 ..."
+            },
+            {
+              "url": "https://www.sportmediaset.mediaset.it/risultati-classifiche/",
+              "date": null,
+              "title": "Serie A 2026/2027: Risultati e Classifiche",
+              "source": "sportmediaset.mediaset.it",
+              "snippet": "Guarda i risultati e le classifiche di Serie A 2026/2027 su SportMediaset. ... Udinese, 4, 7, 1, 1, 5, 9, 16, -7. 17. Genoa, 4, 7, 1, 1, 5, 5, 13, -8. 18."
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "at": "2026-10-26T07:40:37.556Z",
+          "note": "tentativo 1",
+          "tool": "answer"
+        }
+      ],
+      "n_searches": 4,
+      "n_pages": 0,
+      "n_blocked": 0,
+      "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google AI Studio",
+      "tokens": 9977,
+      "cost_usd": 0.00229
+    },
+    {
+      "prediction_id": "5af6d638-224e-40df-938f-0b964a74c797",
+      "steps": [
+        {
+          "i": 1,
+          "at": "2026-10-26T07:40:32.783Z",
+          "args": {
+            "query": "Venezia FC vs Inter Serie A 28 ottobre 2026"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.veneziafc.it/serie-a/match/3c6ec38bb39d40729a6cbfac48680bae/venezia-vs-inter",
+              "date": null,
+              "title": "Venezia - Inter | Serie A Enilive",
+              "source": "veneziafc.it",
+              "snippet": "10:30ottobre 28, 2026. INTInter. aggiungi al calendario. Overview · Info Generali. Le informazioni sull'arbitro non sono disponibili in questo momento."
+            },
+            {
+              "url": "https://www.inter.it/it/notizie/venezia-inter-dove-vederla-in-tv-serie-a-2026-27",
+              "date": "20 ore fa",
+              "title": "Venezia-Inter, orari e dove vederla",
+              "source": "inter.it",
+              "snippet": "Nerazzurri in campo mercoledì 28 ottobre alle ore 18:30 allo stadio Pier Luigi Penzo per la nona giornata di campionato · VENEZIA-INTER, DOVE ..."
+            },
+            {
+              "url": "https://www.legaseriea.it/serie-a/match/a0fa7250d534434388bec601452befc5/venezia-vs-inter/info",
+              "date": null,
+              "title": "Venezia vs Inter | Serie A Enilive",
+              "source": "legaseriea.it",
+              "snippet": "Dettagli completi di Venezia vs Inter in Serie A Enilive — formazioni, risultato e report della partita su Lega Serie A."
+            },
+            {
+              "url": "https://www.vivaticket.com/it/ticket/serie-a-enilive-2026-27-venezia-inter/322200",
+              "date": null,
+              "title": "VENEZIA - INTER",
+              "source": "vivaticket.com",
+              "snippet": "VENEZIA - INTER. Serie A Enilive 2026/27. Stadio Pier Luigi Penzo - VENEZIA (VE). Mercoledì 28 ottobre 2026 alle ore 18:30. Scegli il tuo posto."
+            },
+            {
+              "url": "https://www.diretta.it/partita/calcio/inter-Iw7eKK25/venezia-MkPmVv50/",
+              "date": null,
+              "title": "Venezia v Inter LIVE 28/10/2026 | Calcio",
+              "source": "diretta.it",
+              "snippet": "Segui Venezia v Inter 28/10/2026 live, Venezia ultimi risultati, news e altre informazioni, Venezia vs Inter statistiche H2H! La copertura del calcio di ..."
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "at": "2026-10-26T07:40:37.856Z",
+          "args": {
+            "query": "Venezia FC vs Inter Serie A statistiche storiche"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.legaseriea.it/serie-a/match/10026e6379c34e85b0e4a46615f68f81/inter-vs-venezia",
+              "date": null,
+              "title": "Inter vs Venezia | Serie A Enilive",
+              "source": "legaseriea.it",
+              "snippet": "Risultati delle partite precedenti ; 12 gen, 2025 · 0 - 1 ; 03 nov, 2024 · 1 - 0 ; 22 gen, 2022 · 2 - 1 ; 27 nov, 2021 · 0 - 2 ; 26 gen, 2002 · 1 - 1."
+            },
+            {
+              "url": "https://sport.sky.it/calcio/coppa-italia/partite/2025/ottavi/inter-venezia/tabellino-statistiche",
+              "date": null,
+              "title": "Statistiche e tabellino di Inter-Venezia",
+              "source": "sport.sky.it",
+              "snippet": "Statistiche e tabellino di Inter-Venezia ; Possesso palla, 53.7% ; Tiri in porta, 10 ; Tiri totali, 19 ; Pali / Traverse, 0."
+            },
+            {
+              "url": "https://www.calcio.com/squadre/venezia/precedenti/inter",
+              "date": null,
+              "title": "Precedenti Venezia vs Inter | Testa a testa, risultati",
+              "source": "calcio.com",
+              "snippet": "Tutte le partite disputate ; 2022-01-22, Inter · Venezia, 2:1, Serie A ; 2021-11-27, Venezia · Inter, 0:2, Serie A ..."
+            },
+            {
+              "url": "https://www.eurosport.it/calcio/serie-a/2026-2027/venezia-inter_mtc21874123/live-stats.shtml",
+              "date": null,
+              "title": "Statistiche Venezia - Inter: Risultati Calcio - Eurosport",
+              "source": "eurosport.it",
+              "snippet": "Statistiche Venezia - Inter ; 03/12/2025 - Coppa Italia. Ottavi di finale · 5. 1 ; 12/01/2025 - Serie A. 20. Giornata · 0. 1 ; 03/11/2024 - Serie A. 11. Giornata · 1."
+            },
+            {
+              "url": "https://www.diretta.it/partita/calcio/inter-Iw7eKK25/venezia-MkPmVv50/",
+              "date": null,
+              "title": "Venezia v Inter LIVE 28/10/2026 | Calcio",
+              "source": "diretta.it",
+              "snippet": "Segui Venezia v Inter 28/10/2026 live - statistiche H2H, ultimi risultati e altre informazioni su Diretta.it."
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "at": "2026-10-26T07:40:43.606Z",
+          "note": "tentativo 1",
+          "tool": "answer"
+        }
+      ],
+      "n_searches": 2,
+      "n_pages": 0,
+      "n_blocked": 0,
+      "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "tokens": 5099,
+      "cost_usd": 0.00184
+    },
+    {
+      "prediction_id": "8301b6e2-bdd8-4131-ae5b-d8fa5ed3fa3c",
+      "steps": [
+        {
+          "i": 1,
+          "at": "2026-10-26T07:40:37.224Z",
+          "args": {
+            "query": "Parma vs Udinese 28 ottobre 2026"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.diretta.it/partita/calcio/parma-6DxlaxHN/udinese-rXw8YKDE/",
+              "date": null,
+              "title": "Parma v Udinese LIVE 28/10/2026 | Calcio",
+              "source": "diretta.it",
+              "snippet": "Segui Parma v Udinese 28/10/2026 live, Parma ultimi risultati, news e altre informazioni, Parma vs Udinese statistiche H2H! La copertura del calcio di ..."
+            },
+            {
+              "url": "https://www.vivaticket.com/it/ticket/serie-a-enilive-2026-27-parma-udinese/317178",
+              "date": null,
+              "title": "PARMA - UDINESE",
+              "source": "vivaticket.com",
+              "snippet": "Mercoledì 28 ottobre 2026 alle ore 18:30. Scegli il tuo posto. INFO PREVENDITA. Per consultare il comunicato completo clicca qui. PARMA - UDINESE. Acquista."
+            },
+            {
+              "url": "https://sport.sky.it/calcio/serie-a/partite/2026/giornata-9/parma-udinese",
+              "date": null,
+              "title": "Parma–Udinese: come seguire la partita.",
+              "source": "sport.sky.it",
+              "snippet": "Segui live la partita di Serie A Parma-Udinese su skysport.it. La gara vedrà di fronte i due allenatori Cuesta C. e Runjaic K.."
+            },
+            {
+              "url": "https://www.ticketkosta.com/it/Serie-a/Parma-vs-udinese-74817/",
+              "date": null,
+              "title": "Parma vs Udinese Serie A Acquista Biglietti 28/10/2026",
+              "source": "ticketkosta.com",
+              "snippet": "Prenota ora i tuoi biglietti per la prossima partita tra Parma e Udinese al Ennio Tardini Stadium, dove si affronteranno nel Serie A il 28/10/2026."
+            },
+            {
+              "url": "https://www.fotmob.com/it/matches/udinese-vs-parma/2wutm8",
+              "date": null,
+              "title": "Parma vs Udinese - punteggio in diretta, formazioni ...",
+              "source": "fotmob.com",
+              "snippet": "Parma contro Udinese il Wed, Oct 28, 2026, 17:30 UTC. Controlla i risultati in diretta, H2H, statistiche della partita, formazioni, valutazioni dei ..."
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "at": "2026-10-26T07:40:43.045Z",
+          "args": {
+            "url": "https://www.fotmob.com/it/matches/udinese-vs-parma/2wutm8"
+          },
+          "page": {
+            "url": "https://www.fotmob.com/it/matches/udinese-vs-parma/2wutm8",
+            "chars": 0,
+            "sha256": "",
+            "blocked": {
+              "class": "B5",
+              "stage": "open_content",
+              "rule_id": 59
+            },
+            "excerpt": ""
+          },
+          "tool": "open_page"
+        },
+        {
+          "i": 3,
+          "at": "2026-10-26T07:40:50.963Z",
+          "args": {
+            "query": "Parma Udinese ultime partite"
+          },
+          "tool": "web_search",
+          "blocked": [
+            {
+              "url": "https://www.sofascore.com/it/football/match/udinese-parma/PdbsVdb",
+              "class": "B5",
+              "stage": "search_result",
+              "rule_id": 56
+            }
+          ],
+          "results": [
+            {
+              "url": "https://www.udinese.it/Apps/WebObjects/Udinese.woa/wa/viewSection?id=46292&lang=esp",
+              "date": null,
+              "title": "Udinese-Parma: i precedenti",
+              "source": "udinese.it",
+              "snippet": "Udinese-Parma: i precedenti ; Gare disputate ; a Udine 23 ; Gare disputate a Parma 23 ; Gare disputate totali 46"
+            },
+            {
+              "url": "https://www.diretta.it/partita/calcio/parma-6DxlaxHN/udinese-rXw8YKDE/",
+              "date": null,
+              "title": "Parma v Udinese LIVE 28/10/2026 | Calcio",
+              "source": "diretta.it",
+              "snippet": "Segui Parma v Udinese 28/10/2026 live, Parma ultimi risultati, news e altre informazioni, Parma vs Udinese statistiche H2H! La copertura del calcio di ..."
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=q23GRonJw7I",
+              "date": "11 mesi fa",
+              "title": "PARMA-UDINESE 0-2 | HIGHLIGHTS | 13ª GIORNATA",
+              "source": "youtube.com",
+              "snippet": "I Friulani espugnano il Tardini con Zaniolo che apre la partita ... ultime novità del campionato. Iscriviti qui al canale! https://bit ..."
+            },
+            {
+              "url": "https://www.gazzetta.it/Calcio/Serie-A/Udinese/18-04-2026/udinese-parma-risultato-e-marcatori-serie-a.shtml",
+              "date": "20 apr 2026",
+              "title": "Udinese-Parma 0-1, Elphege decide la gara col primo gol ...",
+              "source": "gazzetta.it",
+              "snippet": "Cinismo allo stato puro: il Parma ha vinto tutte le sue partite senza aver segnato più di un gol di scarto. O 1-0, come oggi, o 2-1. L'Udinese ..."
+            },
+            {
+              "url": "https://www.365scores.com/it/football/match/serie-a-17/parma-udinese-229-241-17",
+              "date": null,
+              "title": "Parma Vs Udinese: risultati in diretta, formazioni e testa a ...",
+              "source": "365scores.com",
+              "snippet": "Trend. Parma Calcio 1913. Parma: Under 2.5 goal in casa - 8/9 Ultime Partite ... Udinese Calcio. Udinese: Entrambe le squadre hanno segnato - 6/7 Ultime Partite."
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "at": "2026-10-26T07:40:53.285Z",
+          "args": {
+            "query": "Parma Udinese formazione attuale"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.udinese.it/Apps/WebObjects/Udinese.woa/wa/viewSection?id=49319&lang=esp",
+              "date": null,
+              "title": "Parma - Udinese, le formazioni ufficiali",
+              "source": "udinese.it",
+              "snippet": "Formazioni ufficiali. PARMA - UDINESE | 23^ Giornata di Serie A TIM Parma(4-3-3): Sepe; Conti, Bani, Gagliolo, Pezzella; Hernani, Brugman, Kucka; Karamoh, ..."
+            },
+            {
+              "url": "https://sport.sky.it/calcio/serie-a/2026/04/17/udinese-parma-probabili-formazioni-33-giornata",
+              "date": "18 apr 2026",
+              "title": "Udinese Parma, le formazioni ufficiali della partita di Serie A",
+              "source": "sport.sky.it",
+              "snippet": "Formazioni Ufficiali ... Le scelte di Cuesta. PARMA (3-5-2), la formazione ufficiale: Suzuki; Circati, Troilo, N'Diaye; Delprato ..."
+            },
+            {
+              "url": "https://sportparma.com/parma-calcio/parma-udinese-convocati-e-probabili-formazioni-4.html",
+              "date": "28 nov 2025",
+              "title": "Parma-Udinese: convocati e probabili formazioni",
+              "source": "sportparma.com",
+              "snippet": "Portieri: 1 Nunziante, 40 Okoye, 93 Padelli, 90 Sava. Difensori: 2 Goglichidze, 13 Bertola, 19 Ehizibue, 77 Modesto, 16 Palma, 27 Kabasele, 28 ..."
+            },
+            {
+              "url": "https://www.gazzetta.it/calcio/fantanews/18-04-2026/udinese-parma-formazioni-ufficiali-tutti-i-titolari.shtml",
+              "date": "18 apr 2026",
+              "title": "Udinese-Parma, le formazioni ufficiali: tutti i titolari",
+              "source": "gazzetta.it",
+              "snippet": "Udinese-Parma, le formazioni ufficiali: Runjaic con Zaniolo, Cuesta ritrova Pellegrino · Le scelte dei due allenatori per la sfida della 33ª ..."
+            },
+            {
+              "url": "https://mylineups.app/it/matches/serie-a/parma-vs-udinese-2026-10-28/",
+              "date": "tra 2 giorni",
+              "title": "Parma - Udinese: formazioni, 28 ott",
+              "source": "mylineups.app",
+              "snippet": "Parma - Udinese, 28 ott alle 18:30. Ultime formazioni note (3-5-2 contro 3-4-2-1), panchina e classifica. Serie A, 9ª giornata."
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "at": "2026-10-26T07:41:02.440Z",
+          "note": "tentativo 1",
+          "tool": "answer"
+        }
+      ],
+      "n_searches": 3,
+      "n_pages": 1,
+      "n_blocked": 2,
+      "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "tokens": 7684,
+      "cost_usd": 0.00278
+    },
+    {
+      "prediction_id": "cc39bb20-6dd9-4943-ac08-c3e86f758fda",
+      "steps": [
+        {
+          "i": 1,
+          "at": "2026-10-26T07:40:27.252Z",
+          "args": {
+            "query": "Parma vs Udinese Serie A 28 ottobre 2026 preview"
+          },
+          "tool": "web_search",
+          "blocked": [
+            {
+              "url": "https://sports.williamhill.it/betting/it-it/calcio/italia/serie-a/parma-vs-udinese",
+              "class": "B1",
+              "stage": "search_result",
+              "rule_id": 5
+            }
+          ],
+          "results": [
+            {
+              "url": "https://www.legaseriea.it/serie-a/match/05f17c6d618f4627aeec0017eac8e637/parma-vs-udinese",
+              "date": null,
+              "title": "Parma vs Udinese | Serie A Enilive",
+              "source": "legaseriea.it",
+              "snippet": "Dettagli completi di Parma vs Udinese in Serie A Enilive — formazioni, risultato e report della partita su Lega Serie A."
+            },
+            {
+              "url": "https://sport.sky.it/calcio/serie-a/partite/2026/giornata-9/parma-udinese",
+              "date": null,
+              "title": "Parma–Udinese: come seguire la partita.",
+              "source": "sport.sky.it",
+              "snippet": "Segui live la partita di Serie A Parma-Udinese su skysport.it. La gara vedrà di fronte i due allenatori Cuesta C. e Runjaic K.."
+            },
+            {
+              "url": "https://www.fotmob.com/it/matches/udinese-vs-parma/2wutm8",
+              "date": null,
+              "title": "Parma vs Udinese - punteggio in diretta, formazioni ...",
+              "source": "fotmob.com",
+              "snippet": "Parma contro Udinese il Wed, Oct 28, 2026, 17:30 UTC. Controlla i risultati in diretta, H2H, statistiche della partita, formazioni, valutazioni dei ..."
+            },
+            {
+              "url": "https://www.eurosport.it/calcio/serie-a/2026-2027/parma-udinese_mtc21874388/live.shtml",
+              "date": null,
+              "title": "Live Parma - Udinese - Serie A: Punteggi & Highlights Calcio",
+              "source": "eurosport.it",
+              "snippet": "Seguite Serie A 2026/2027 in diretta la partita di Calcio tra Parma e Udinese su Eurosport. La partita inizia alle 18:30 del 28 ottobre 2026. Seguite le ultime ..."
+            },
+            {
+              "url": "https://www.udinese.it/Apps/WebObjects/Udinese.woa/wa/viewSection?id=89746&lang=ita",
+              "date": "16 apr 2026",
+              "title": "La preview di Udinese-Parma",
+              "source": "udinese.it",
+              "snippet": "Di fronte ci sarà il secondo peggiore attacco del campionato con 23 gol realizzati, di cui otto portano la firma di Mateo Pellegrino. La punta ..."
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "at": "2026-10-26T07:40:28.379Z",
+          "args": {
+            "query": "Parma calcio notizie ottobre 2026"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.forzaparma.it/",
+              "date": null,
+              "title": "Forza Parma: Parma calcio news, calciomercato, classifica e ...",
+              "source": "forzaparma.it",
+              "snippet": "Il sito dei tifosi del Parma Calcio. News, calcio mercato, dirette, ultimi risultati, classifica, rosa e notizie per rimanere sempre aggiornati sui Ducali."
+            },
+            {
+              "url": "https://www.parmacalcio1913.com/news/",
+              "date": null,
+              "title": "News - Parma Calcio 1913",
+              "source": "parmacalcio1913.com",
+              "snippet": "23 ott 2026. PARMA CALCIO E FONDAZIONE ARTURO TOSCANINI: UNA NUOVA PARTNERSHIP ISTITUZIONALE. in club. mostra altro."
+            },
+            {
+              "url": "https://it.wikipedia.org/wiki/Parma_Calcio_1913_2026-2027",
+              "date": null,
+              "title": "Parma Calcio 1913 2026-2027",
+              "source": "it.wikipedia.org",
+              "snippet": "Questa voce raccoglie le informazioni riguardanti il Parma Calcio 1913 nelle competizioni ufficiali della stagione 2026-2027."
+            },
+            {
+              "url": "https://parmawelcome.it/evento/parma-calcio-campionato-serie-a-maschile-2026-2027/",
+              "date": null,
+              "title": "Parma calcio Campionato Serie A maschile 2026 - 2027",
+              "source": "parmawelcome.it",
+              "snippet": "Il calendario delle partite per il campionato 2026 - 2027. Sabato 22 agosto alle 20.45. Parma - Cagliari. Domenica 6 settembre alle 15.00. Parma - Monza."
+            },
+            {
+              "url": "https://sportparma.com/parma-calcio/live-parma-trattative-e-ufficialita-dellultimo-giorno-di-mercato-2.html",
+              "date": "1 set 2026",
+              "title": "LIVE PARMA: trattative e ufficialità dell'ultimo giorno di ...",
+              "source": "sportparma.com",
+              "snippet": "Dilettanti 2026/2027: il tabellone del calciomercato estivo · day 7 01.08.2026 ritiro Parma Calcio a Pinzolo Lautaro Valenti sguardo basso ..."
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "at": "2026-10-26T07:40:29.395Z",
+          "args": {
+            "query": "Udinese calcio notizie ottobre 2026"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.udinese.it/news/squadra/il-calendario-dei-bianconeri-a-ottobre-e-novembre",
+              "date": "3 set 2026",
+              "title": "Il calendario dei bianconeri a ottobre e novembre",
+              "source": "udinese.it",
+              "snippet": "della Serie A 2026/27. Ecco gli impegni dei bianconeri: 6ª giornata. Torino-Udinese Lunedì 12 ottobre ore 20.45 (DAZN/Sky) 7ª giornata. Udinese- ..."
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=pIt92lUcHDk",
+              "date": "6 giorni fa",
+              "title": "UDINESE TONIGHT | 10/19/2026",
+              "source": "youtube.com",
+              "snippet": "UDINESE TONIGHT | 10/19/2026 · Comments."
+            },
+            {
+              "url": "https://tg24.sky.it/sport/video/2026/10/25/serie-a-udinese-milan-0-2-video-gol-highlights-1134727",
+              "date": "9 ore fa",
+              "title": "Serie A, Udinese-Milan 0-2. Video, gol e highlights",
+              "source": "tg24.sky.it",
+              "snippet": "Per favore riprova più tardi. Il Milan vince a Udine nell'8a giornata del campionato italiano di calcio di Serie A. ... Copyright 2026 Sky ..."
+            },
+            {
+              "url": "https://www.udinese.it/",
+              "date": null,
+              "title": "Udinese Calcio",
+              "source": "udinese.it",
+              "snippet": "Udinese-Milan | Palma e Runjaic in conferenza... Squadra | 26 ottobre 2026 · Udinese-Milan 0-2 Udinese-Milan 0-2 Squadra | 25 ottobre 2026 · Udinese-Milan | Le ..."
+            },
+            {
+              "url": "https://it.wikipedia.org/wiki/Udinese_Calcio_2026-2027",
+              "date": null,
+              "title": "Udinese Calcio 2026-2027",
+              "source": "it.wikipedia.org",
+              "snippet": "Udine 18 ottobre 2026, ore 12:30 CEST 7ª giornata, Udinese, 0 – 3 referto · Lecce · Bluenergy Stadium. Arbitro: Guida (Torre Annunziata). Marcatori, Gol 11' ..."
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "at": "2026-10-26T07:40:33.062Z",
+          "args": {
+            "url": "https://www.legaseriea.it/serie-a/match/05f17c6d618f4627aeec0017eac8e637/parma-vs-udinese"
+          },
+          "page": {
+            "url": "https://www.legaseriea.it/serie-a/match/05f17c6d618f4627aeec0017eac8e637/parma-vs-udinese",
+            "chars": 1186,
+            "sha256": "b416280d7b577e63de685a358d4e3c03f163f0fd854d45935e43f843462f1e17",
+            "excerpt": "Parma vs Udinese | Serie A Enilive | Lega Serie A Serie A Enilive Coppa Italia Frecciarossa EA Sports FC Supercup Primavera 1 Coppa Italia Primavera Supercoppa Primavera Calendario e Risultati Classifica Highlights Statistiche Club Altro Radio TV Documenti Cerca search search Overview Games Info &amp; download No data available No data available No data available Caricamento ... Loading widget... Caricamento ... Loading widget... Caricamento ... Loading widget... Ultimi Highlights Vedi tutti 3:0"
+          },
+          "tool": "open_page"
+        },
+        {
+          "i": 5,
+          "at": "2026-10-26T07:40:33.799Z",
+          "args": {
+            "url": "https://www.forzaparma.it/"
+          },
+          "note": "errore 403",
+          "tool": "open_page"
+        },
+        {
+          "i": 6,
+          "at": "2026-10-26T07:40:35.361Z",
+          "note": "tentativo 1",
+          "tool": "answer"
+        }
+      ],
+      "n_searches": 3,
+      "n_pages": 2,
+      "n_blocked": 1,
+      "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "OpenAI",
+      "tokens": 5771,
+      "cost_usd": 0.01359
+    },
+    {
+      "prediction_id": "9bef9b11-d16f-4740-aac9-0abdad6b78c9",
+      "steps": [
+        {
+          "i": 1,
+          "at": "2026-10-26T07:40:29.169Z",
+          "args": {
+            "query": "Parma Udinese Serie A 28 ottobre 2026 previsione"
+          },
+          "tool": "web_search",
+          "blocked": [
+            {
+              "url": "https://www.futbol24.com/it/pronostici-calcio/previsione/28-10-2026-parma-udinese-pronostico/",
+              "class": "B3",
+              "stage": "search_result",
+              "rule_id": 46
+            },
+            {
+              "url": "https://www.wincomparator.com/it-it/pronostici/parma-udinese-8522178/",
+              "class": "B3",
+              "stage": "search_result",
+              "rule_id": 46
+            }
+          ],
+          "results": [
+            {
+              "url": "https://sport.sky.it/calcio/serie-a/partite/2026/giornata-9/parma-udinese",
+              "date": null,
+              "title": "Parma–Udinese: come seguire la partita.",
+              "source": "sport.sky.it",
+              "snippet": "Segui live la partita di Serie A Parma-Udinese su skysport.it. La gara vedrà di fronte i due allenatori Cuesta C. e Runjaic K.."
+            },
+            {
+              "url": "https://www.vivaticket.com/it/ticket/serie-a-enilive-2026-27-parma-udinese/317178",
+              "date": null,
+              "title": "PARMA - UDINESE",
+              "source": "vivaticket.com",
+              "snippet": "PARMA - UDINESE. Serie A Enilive 2026/27. Stadio Ennio Tardini - PARMA (PR). Mercoledì 28 ottobre 2026 alle ore 18:30. Scegli il tuo posto."
+            },
+            {
+              "url": "https://www.diretta.it/partita/calcio/parma-6DxlaxHN/udinese-rXw8YKDE/",
+              "date": null,
+              "title": "Parma v Udinese LIVE 28/10/2026 | Calcio",
+              "source": "diretta.it",
+              "snippet": "Segui Parma v Udinese 28/10/2026 live - statistiche H2H, ultimi risultati e altre informazioni su Diretta.it."
+            },
+            {
+              "url": "https://www.rai.it/dl/raiSport/speciali/statistiche/serie_a/2026/live_frame.html?id=299270_4109",
+              "date": null,
+              "title": "PARMA - UDINESE : 0 - 2",
+              "source": "rai.it",
+              "snippet": "L'Udinese si impone a Parma e conquista una vittoria che mette fine alla serie di due sconfitte consecutive. La coppia d'attacco dei friulani timbra le due ..."
+            },
+            {
+              "url": "https://www.eurosport.it/calcio/serie-a/2026-2027/parma-udinese_mtc21874388/live.shtml",
+              "date": null,
+              "title": "Live Parma - Udinese - Serie A: Punteggi & Highlights Calcio",
+              "source": "eurosport.it",
+              "snippet": "Parma - Udinese Riassunto della partita. Serie A / 9. Giornata. Stadio Ennio Tardini / 28.10.2026 / 18:30. https://www.eurosport.it/calcio/squadre/parma-."
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "at": "2026-10-26T07:40:39.743Z",
+          "args": {
+            "url": "https://www.rai.it/dl/raiSport/speciali/statistiche/serie_a/2026/live_frame.html?id=299270_4109"
+          },
+          "page": {
+            "url": "https://www.rai.it/dl/raiSport/speciali/statistiche/serie_a/2026/live_frame.html?id=299270_4109",
+            "chars": 260,
+            "sha256": "9e7cf036da796080b9ac2e6a7da3ba1ffcbab3677660151fe7cf2f7755614aca",
+            "excerpt": "Stadio:&nbsp; Data: Ora: 33' S. GERSON 55' J. JORGINHO (R) - ( - ) 1t 6' E. PULGAR (A) 9' H. KANE 41' L. GORETZKA 73' H. KANE Cronaca Tabellino Formazione 1° Tempo 2° Tempo 1° Tempo Suppl. 2° Tempo Suppl. Rigori Titolari Riserve Titolari Riserve Dati a cura di"
+          },
+          "tool": "open_page"
+        },
+        {
+          "i": 3,
+          "at": "2026-10-26T07:40:42.960Z",
+          "note": "tentativo 1",
+          "tool": "answer"
+        }
+      ],
+      "n_searches": 1,
+      "n_pages": 1,
+      "n_blocked": 2,
+      "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "StreamLake",
+      "tokens": 4076,
+      "cost_usd": 0.00133
+    },
+    {
+      "prediction_id": "6360a447-5632-4b45-947c-3ecf3b016e2c",
+      "steps": [
+        {
+          "i": 1,
+          "at": "2026-10-26T07:40:29.865Z",
+          "args": {
+            "query": "Parma Udinese 28 ottobre 2026 Serie A"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.udinese.it/stagione/calendario-e-risultati/serie-a",
+              "date": null,
+              "title": "Serie A < Calendario e Risultati < Stagione ...",
+              "source": "udinese.it",
+              "snippet": "25 ottobre 2026. Udinese. udinese.png –. milan.png Milan. 28 ottobre 2026. Parma. parma.png –. udinese.png Udinese. 31 ottobre 2026."
+            },
+            {
+              "url": "https://sport.sky.it/calcio/serie-a/partite/2026/giornata-9/parma-udinese",
+              "date": null,
+              "title": "Parma–Udinese: come seguire la partita.",
+              "source": "sport.sky.it",
+              "snippet": "Segui live la partita di Serie A Parma-Udinese su skysport.it. La gara vedrà di fronte i due allenatori Cuesta C. e Runjaic K.."
+            },
+            {
+              "url": "https://www.vivaticket.com/it/ticket/serie-a-enilive-2026-27-parma-udinese/317178",
+              "date": null,
+              "title": "PARMA - UDINESE",
+              "source": "vivaticket.com",
+              "snippet": "PARMA - UDINESE. Serie A Enilive 2026/27. Stadio Ennio Tardini - PARMA (PR). Mercoledì 28 ottobre 2026 alle ore 18:30. Scegli il tuo posto."
+            },
+            {
+              "url": "https://www.eurosport.it/calcio/serie-a/2026-2027/parma-udinese_mtc21874388/live.shtml",
+              "date": null,
+              "title": "Live Parma - Udinese - Serie A: Punteggi & Highlights Calcio",
+              "source": "eurosport.it",
+              "snippet": "Parma - Udinese Riassunto della partita. Serie A / 9. Giornata. Stadio Ennio Tardini / 28.10.2026 / 18:30. https://www.eurosport.it/calcio/squadre/parma-."
+            },
+            {
+              "url": "https://www.rai.it/dl/raiSport/speciali/statistiche/serie_a/2026/live_frame.html?id=299270_4109",
+              "date": null,
+              "title": "PARMA - UDINESE : 0 - 2",
+              "source": "rai.it",
+              "snippet": "L'Udinese si impone a Parma e conquista una vittoria che mette fine alla serie di due sconfitte consecutive. La coppia d'attacco dei friulani timbra le due ..."
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "at": "2026-10-26T07:40:31.814Z",
+          "args": {
+            "query": "Parma Serie A 2026 classifica forma risultati"
+          },
+          "tool": "web_search",
+          "blocked": [
+            {
+              "url": "https://www.eurosport.it/scommesse/lazio-parma-pronostico-consigli-sulle-scommesse-e-quote/",
+              "class": "B3",
+              "stage": "search_result",
+              "rule_id": 46
+            },
+            {
+              "url": "https://www.goal.com/it/scommesse/pronostici/pronostici-inter-parma-10-10-2026/A%3Ablt38b25f8d5c22ae9c",
+              "class": "B3",
+              "stage": "search_result",
+              "rule_id": 46
+            }
+          ],
+          "results": [
+            {
+              "url": "https://www.gazzetta.it/calcio/serie-a/partita/inter-parma/2638176/classifica/",
+              "date": "2 settimane fa",
+              "title": "Classifica - Serie A",
+              "source": "La Gazzetta dello Sport",
+              "snippet": "Classifica aggiornata di Serie A su Gazzetta.it. Punti, vittorie, pareggi e sconfitte di tutte le squadre."
+            },
+            {
+              "url": "https://www.corriere.it/sport/calcio/serie-a/partita/lazio-parma/2638197/cronaca/",
+              "date": "1 giorno fa",
+              "title": "Lazio - Parma: 2-1 | Serie A - Risultati | Corriere della Sera",
+              "source": "Corriere della Sera",
+              "snippet": "Lazio vs Parma: cronaca, statistiche e formazioni di Serie A su Corriere.it."
+            },
+            {
+              "url": "https://www.dazn.com/it-IT/news/calcio/probabile-formazione-como-modulo-titolari-ballottaggi/17urzn1rlpthw1ngnuck408uw8",
+              "date": "6 giorni fa",
+              "title": "Probabile formazione Como 2026-27: modulo, titolari e ballottaggi",
+              "source": "DAZN",
+              "snippet": "Come gioca il Como di Cesc Fàbregas nella stagione 2026-27? Il tecnico spagnolo continua ad affidarsi principalmente al 4-2-3-1, un sistema che valorizza il..."
+            },
+            {
+              "url": "https://www.corrieredellosport.it/live/classifica-serie-a",
+              "date": null,
+              "title": "Classifica Serie A 2026-27: risultati e aggiornamenti live",
+              "source": "corrieredellosport.it",
+              "snippet": "Segui la classifica Serie A 2026-27 live: aggiornamenti in tempo reale ... Parma. 4, 8, 1, 1, 6, 5, 15. 20. Venezia. 3, 8, 1, 0, 7, 6, 17. CalendarioLive ..."
+            },
+            {
+              "url": "https://sportparma.com/parma-calcio/calcio_serie_a/serie-a-26-27-risultati-classifica-e-marcatori-della-7a-giornata.html",
+              "date": "17 ott 2026",
+              "title": "Serie A 26/27: risultati, classifica e marcatori della 7ª giornata",
+              "source": "sportparma.com",
+              "snippet": "Lunedì si giocano due postici, alle 20:45 fari sul Tardini dove andrà in scena Parma-Torino. Segui LIVE risultati, classifica e marcatori della ..."
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "at": "2026-10-26T07:40:35.599Z",
+          "args": {
+            "query": "Udinese Serie A 2026 classifica forma risultati"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.corrieredellosport.it/live/classifica-serie-a",
+              "date": null,
+              "title": "Classifica Serie A 2026-27: risultati e aggiornamenti live",
+              "source": "corrieredellosport.it",
+              "snippet": "Segui la classifica Serie A 2026-27 live: aggiornamenti in tempo reale su ... Udinese. 4, 8, 1, 1, 6, 9, 18. 18. Fiorentina. 4, 8, 1, 1, 6, 9, 19. 19."
+            },
+            {
+              "url": "https://www.udinese.it/stagione/classifica",
+              "date": null,
+              "title": "Classifica < Stagione < Udinese",
+              "source": "udinese.it",
+              "snippet": "Calendario e Risultati · Serie A Coppa Italia · Classifica · Giovanili · Calendari e Risultati Classifiche · Club · Storia · Organigramma · Compliance · Tutela ..."
+            },
+            {
+              "url": "https://www.facebook.com/blunoteweb/videos/serie-arisultati-e-classifica-della-4%C2%AA-giornata-2026-2027/1118821200703119/",
+              "date": "1 mese fa",
+              "title": "SERIE A Risultati e classifica della 4ª giornata 2026-2027",
+              "source": "facebook.com",
+              "snippet": "The image also features the Inter Milan, FC Barcelona, FC Napoli, and FC Turin logos, with the Risultati logo prominently displayed."
+            },
+            {
+              "url": "https://www.legaseriea.it/serie-a/classifica",
+              "date": null,
+              "title": "Classifica | Serie A Enilive",
+              "source": "legaseriea.it",
+              "snippet": "CLASSIFICA ; 17. Udinese. 4, 7 ; 18. Fiorentina. 4, 8 ; 19. Venezia. 4, 8 ; 20. Parma. 4, 8 ..."
+            },
+            {
+              "url": "https://sport.sky.it/calcio/serie-a/classifica",
+              "date": null,
+              "title": "Classifica Serie A 2026/2027",
+              "source": "sport.sky.it",
+              "snippet": "Calendario e Risultati · Classifica · Probabili · Squadre · Pagelle. Classifica Serie ... Udinese, 4, 7, 1, 1, 5, 9, 16, -7. UDI1 - 2LAZPINT5 - 3UDIPUDI0 - 1CAGP ..."
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "at": "2026-10-26T07:40:37.898Z",
+          "args": {
+            "query": "Serie A calendario ottobre 2026 giornata"
+          },
+          "tool": "web_search",
+          "blocked": [],
+          "results": [
+            {
+              "url": "https://www.corrieredellosport.it/live/calendario-serie-a",
+              "date": null,
+              "title": "Calendario e risultati Serie A 2026-27 di calcio",
+              "source": "corrieredellosport.it",
+              "snippet": "La Serie A 2026-2027 in un unico calendario completo: scopri date, orari, anticipi e posticipi di ogni giornata. Segui le partite e i risultati Serie A per ..."
+            },
+            {
+              "url": "https://www.legaseriea.it/serie-a/calendario-risultati",
+              "date": null,
+              "title": "Calendario | Serie A Enilive",
+              "source": "legaseriea.it",
+              "snippet": "dom, 25 ott 2026 ; 04:30 · Home team: Inter.Away team: Fiorentina.Upcoming match. Inter ; 07:00 · Home team: Atalanta.Away team: Frosinone.Upcoming match."
+            },
+            {
+              "url": "https://www.idealista.it/news/finanza/casa/2026/10/02/457310-calendario-serie-a-ottobre-2026-il-primo-derby-e-tra-milan-ed-inter",
+              "date": "2 ott 2026",
+              "title": "Calendario Serie A ottobre 2026, il primo derby è tra Milan ...",
+              "source": "idealista.it",
+              "snippet": "Calendario 6ª giornata (10 - 12 ottobre 2026) ; INTER - PARMA, Sabato 10/10, 18:00 ; NAPOLI - FROSINONE, Sabato 10/10, 20:45 ; COMO - ROMA ..."
+            },
+            {
+              "url": "https://sport.sky.it/calcio/serie-a/calendario-risultati",
+              "date": null,
+              "title": "Calendario e Risultati Serie A 2026/2027",
+              "source": "sport.sky.it",
+              "snippet": "Giornata 16 ; Frosinone · 18:30 ; Lecce · 20:45 ; Sassuolo · 15:00 ; Milan · 18:00 ; Roma · 20:45 ..."
+            },
+            {
+              "url": "https://www.repubblica.it/sport/dirette/calcio/serie-a-2026/calendario/",
+              "date": null,
+              "title": "Calendario Serie A 2026/2027",
+              "source": "repubblica.it",
+              "snippet": "Serie A 2026/2027 - Giornata 8. Udinese. Fine. 0. 2. 25/10. ore. 20:45. Milan · Lecce ... Sabato 10 Ottobre 2026 - 15:00. Genoa. 2. Fine. 1. Fiorentina · Sabato ..."
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "at": "2026-10-26T07:40:42.095Z",
+          "args": {
+            "url": "https://www.corrieredellosport.it/live/classifica-serie-a"
+          },
+          "page": {
+            "url": "https://www.corrieredellosport.it/live/classifica-serie-a",
+            "chars": 3719,
+            "sha256": "ce62f7e0823859095a7926850b8c109f34699c2297790c316863d4ee7d27264d",
+            "excerpt": "Classifica Serie A 2026-27: risultati e aggiornamenti live Vai al contenuto principale Live Abbonati ora lunedì 26 ottobre 2026 Leggi il giornale Contenuti Plus Classifica Serie A Calendario Serie A Calcio Scommesse Casinò Tutte le gare Serie A Serie B Coppa Italia Champions League Europa League Conference League Premier League Liga Bundesliga Ligue 1 Serie C - Girone A Serie C - Girone B Serie C - Girone C Serie A Femminile live Classifica Serie A Classifica Serie A La Serie A 2026-2027&nbsp; &"
+          },
+          "tool": "open_page"
+        },
+        {
+          "i": 6,
+          "at": "2026-10-26T07:40:44.471Z",
+          "args": {
+            "url": "https://www.rai.it/dl/raiSport/speciali/statistiche/serie_a/2026/live_frame.html?id=299270_4109"
+          },
+          "page": {
+            "url": "https://www.rai.it/dl/raiSport/speciali/statistiche/serie_a/2026/live_frame.html?id=299270_4109",
+            "chars": 260,
+            "sha256": "9e7cf036da796080b9ac2e6a7da3ba1ffcbab3677660151fe7cf2f7755614aca",
+            "excerpt": "Stadio:&nbsp; Data: Ora: 33' S. GERSON 55' J. JORGINHO (R) - ( - ) 1t 6' E. PULGAR (A) 9' H. KANE 41' L. GORETZKA 73' H. KANE Cronaca Tabellino Formazione 1° Tempo 2° Tempo 1° Tempo Suppl. 2° Tempo Suppl. Rigori Titolari Riserve Titolari Riserve Dati a cura di"
+          },
+          "tool": "open_page"
+        },
+        {
+          "i": 7,
+          "at": "2026-10-26T07:40:54.196Z",
+          "note": "tentativo 1",
+          "tool": "answer"
+        }
+      ],
+      "n_searches": 4,
+      "n_pages": 2,
+      "n_blocked": 2,
+      "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "tokens": 17159,
+      "cost_usd": 0.06156
+    }
+  ],
+  "reference_forecasts": [],
+  "source_rules": [
+    {
+      "id": 1,
+      "kind": "domain",
+      "pattern": "bet365.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 2,
+      "kind": "domain",
+      "pattern": "sisal.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 3,
+      "kind": "domain",
+      "pattern": "snai.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 4,
+      "kind": "domain",
+      "pattern": "eurobet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 5,
+      "kind": "domain",
+      "pattern": "williamhill.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 6,
+      "kind": "domain",
+      "pattern": "williamhill.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 7,
+      "kind": "domain",
+      "pattern": "betfair.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 8,
+      "kind": "domain",
+      "pattern": "betfair.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 9,
+      "kind": "domain",
+      "pattern": "pinnacle.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 10,
+      "kind": "domain",
+      "pattern": "goldbet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 11,
+      "kind": "domain",
+      "pattern": "planetwin365.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 12,
+      "kind": "domain",
+      "pattern": "lottomatica.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 13,
+      "kind": "domain",
+      "pattern": "bwin.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 14,
+      "kind": "domain",
+      "pattern": "unibet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 15,
+      "kind": "domain",
+      "pattern": "888sport.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 16,
+      "kind": "domain",
+      "pattern": "betway.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 17,
+      "kind": "domain",
+      "pattern": "stanleybet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 18,
+      "kind": "domain",
+      "pattern": "betflag.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 19,
+      "kind": "domain",
+      "pattern": "leovegas.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 20,
+      "kind": "domain",
+      "pattern": "netbet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 21,
+      "kind": "domain",
+      "pattern": "starcasino.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 22,
+      "kind": "domain",
+      "pattern": "1xbet.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 23,
+      "kind": "domain",
+      "pattern": "bet-at-home.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 24,
+      "kind": "domain",
+      "pattern": "oddschecker.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 25,
+      "kind": "domain",
+      "pattern": "oddsportal.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 26,
+      "kind": "domain",
+      "pattern": "betexplorer.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 27,
+      "kind": "domain",
+      "pattern": "oddspedia.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 28,
+      "kind": "domain",
+      "pattern": "betbrain.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 29,
+      "kind": "domain",
+      "pattern": "sportsbettingdime.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 30,
+      "kind": "domain",
+      "pattern": "betiball.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 31,
+      "kind": "domain",
+      "pattern": "extratips.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 32,
+      "kind": "domain",
+      "pattern": "forebet.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 33,
+      "kind": "domain",
+      "pattern": "predictz.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 34,
+      "kind": "domain",
+      "pattern": "sportytrader.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 35,
+      "kind": "domain",
+      "pattern": "sportytrader.it",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 36,
+      "kind": "domain",
+      "pattern": "statarea.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 37,
+      "kind": "domain",
+      "pattern": "vitibet.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 38,
+      "kind": "domain",
+      "pattern": "foresportia.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 39,
+      "kind": "domain",
+      "pattern": "betimate.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 40,
+      "kind": "domain",
+      "pattern": "windrawwin.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 41,
+      "kind": "domain",
+      "pattern": "betensured.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 42,
+      "kind": "domain",
+      "pattern": "pronosoft.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 43,
+      "kind": "domain",
+      "pattern": "scores24.live",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 44,
+      "kind": "domain",
+      "pattern": "dimers.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 45,
+      "kind": "url_pattern",
+      "pattern": "^https?://[^/]*(pronostic|scommess|betting|tipster)[^/]*/",
+      "class": "B3",
+      "reason": "nome del sito riferito a pronostici/scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 46,
+      "kind": "url_pattern",
+      "pattern": "/(pronostic[oi]|scommesse|betting-tips|football-predictions|soccer-predictions|predictions?/|odds/|quote-)",
+      "class": "B3",
+      "reason": "sezione di pronostici/quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 47,
+      "kind": "title_pattern",
+      "pattern": "(pronostic[oi]|betting tips?|\\bquote\\b.{0,30}(scommess|1x2|partita)|\\bodds\\b|predictions? (and|&) (odds|tips)|probabili formazioni e pronostico)",
+      "class": "B3",
+      "reason": "titolo di pronostico/quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 48,
+      "kind": "domain",
+      "pattern": "polymarket.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 49,
+      "kind": "domain",
+      "pattern": "kalshi.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 50,
+      "kind": "domain",
+      "pattern": "metaculus.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 51,
+      "kind": "domain",
+      "pattern": "manifold.markets",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 52,
+      "kind": "domain",
+      "pattern": "predictit.org",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 53,
+      "kind": "domain",
+      "pattern": "gjopen.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 54,
+      "kind": "domain",
+      "pattern": "insightprediction.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 55,
+      "kind": "domain",
+      "pattern": "augur.net",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 56,
+      "kind": "content_pattern",
+      "pattern": "probabilit[àa]\\s+di\\s+(vittoria|successo)",
+      "class": "B5",
+      "reason": "probabilita' di vittoria gia' calcolata",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 57,
+      "kind": "content_pattern",
+      "pattern": "(win|winning)\\s+probability|probability\\s+of\\s+winning|implied\\s+probability",
+      "class": "B5",
+      "reason": "probabilita' di vittoria gia' calcolata",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 58,
+      "kind": "content_pattern",
+      "pattern": "\\b1\\s*[x×]\\s*2\\b",
+      "class": "B5",
+      "reason": "quote 1X2",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 59,
+      "kind": "content_pattern",
+      "pattern": "\\bodds\\b",
+      "class": "B5",
+      "reason": "quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 60,
+      "kind": "content_pattern",
+      "pattern": "\\bquot[ae]\\b[^.\\n]{0,40}\\d[.,]\\d{2}",
+      "class": "B5",
+      "reason": "quote decimali",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 61,
+      "kind": "content_pattern",
+      "pattern": "\\bpronostic\\w*",
+      "class": "B5",
+      "reason": "pronostico",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 62,
+      "kind": "domain",
+      "pattern": "tradingeconomics.com",
+      "class": "B6",
+      "reason": "previsioni/consensus su indicatori",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 63,
+      "kind": "url_pattern",
+      "pattern": "investing\\.com/economic-calendar",
+      "class": "B6",
+      "reason": "calendario economico con consensus",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 64,
+      "kind": "url_pattern",
+      "pattern": "/(forecast|consensus|previsioni-)",
+      "class": "B6",
+      "reason": "pagina di previsioni/consensus",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 65,
+      "kind": "forecast_same_indicator",
+      "pattern": "(forecast|previsione|previsioni|consensus|attes[oi]|expected|projection|proiezion\\w+|stim\\w+)",
+      "class": "B6",
+      "reason": "previsione/proiezione sullo stesso indicatore e periodo della domanda",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 66,
+      "kind": "domain",
+      "pattern": "ilmeteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 67,
+      "kind": "domain",
+      "pattern": "3bmeteo.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 68,
+      "kind": "domain",
+      "pattern": "meteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 69,
+      "kind": "domain",
+      "pattern": "meteoam.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 70,
+      "kind": "domain",
+      "pattern": "windy.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 71,
+      "kind": "domain",
+      "pattern": "yr.no",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 72,
+      "kind": "domain",
+      "pattern": "accuweather.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 73,
+      "kind": "domain",
+      "pattern": "weather.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 74,
+      "kind": "domain",
+      "pattern": "meteoblue.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 75,
+      "kind": "domain",
+      "pattern": "wetter.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 76,
+      "kind": "domain",
+      "pattern": "open-meteo.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 77,
+      "kind": "domain",
+      "pattern": "meteogiornale.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 78,
+      "kind": "domain",
+      "pattern": "iconmeteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 79,
+      "kind": "domain",
+      "pattern": "timeanddate.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 80,
+      "kind": "url_pattern",
+      "pattern": "/(previsioni|forecast|meteo-previsioni)[-/]",
+      "class": "B7",
+      "reason": "pagina di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 81,
+      "kind": "forecast_same_indicator",
+      "pattern": "(previsioni|previsione|prevista|previsto|prevede|forecast|allerta|maltempo|bel tempo|temporali|piogge|pioggia in arrivo|arriva)",
+      "class": "B7",
+      "reason": "previsione meteo per la stessa citta' e lo stesso giorno della domanda (anche in una notizia)",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:51:49.732826+00:00",
+      "active_to": null
+    },
+    {
+      "id": 82,
+      "kind": "forecast_same_indicator",
+      "pattern": "(previsioni|previsione|prevista|previsto|prevede|forecast|allerta|attes[oi]|probabilit[àa])",
+      "class": "B7",
+      "reason": "previsione sullo stesso indicatore della domanda (qualita' dell'aria, terremoti) nello stesso periodo",
+      "categories": [
+        "ambiente"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-01T07:35:17.024988+00:00",
+      "active_to": null
+    },
+    {
+      "id": 83,
+      "kind": "domain",
+      "pattern": "meteo5.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 84,
+      "kind": "domain",
+      "pattern": "meteomi.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 85,
+      "kind": "domain",
+      "pattern": "weather-forecast.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 86,
+      "kind": "domain",
+      "pattern": "weather25.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 87,
+      "kind": "domain",
+      "pattern": "worldweatherai.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 88,
+      "kind": "domain",
+      "pattern": "meteo2.it",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 89,
+      "kind": "domain",
+      "pattern": "meteolive.it",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 90,
+      "kind": "domain",
+      "pattern": "ilmeteo.net",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 91,
+      "kind": "domain",
+      "pattern": "meteo.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 92,
+      "kind": "url_pattern",
+      "pattern": "/meteo[-/]",
+      "class": "B7",
+      "reason": "sezione meteo di un portale (articoli sul tempo dei prossimi giorni)",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 93,
+      "kind": "title_pattern",
+      "pattern": "(previsioni|previsione|forecast|\b(7|10|14|15) giorni\b|prossimi giorni|weekend|questa settimana|settimana d|in arrivo|\barriva\b|\btorna\b|cambia tutto|maltempo|allerta|ondata|\bdomani\b|day weather)",
+      "class": "B7",
+      "reason": "titolo che annuncia il tempo dei prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.556+00:00"
+    },
+    {
+      "id": 94,
+      "kind": "content_pattern",
+      "pattern": "(nei prossimi giorni|in arrivo|previsioni per|previsto per|prevista per|a partire da (lunedì|martedì|mercoledì|giovedì|venerdì|sabato|domenica)|tendenza meteo|evoluzione meteo)",
+      "class": "B7",
+      "reason": "pagina che descrive il tempo previsto per i prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 2,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 95,
+      "kind": "title_pattern",
+      "pattern": "\b(prediction|predictions|preview & prediction|betting tips|tips)\b",
+      "class": "B3",
+      "reason": "titolo di pronostico (in inglese)",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.666+00:00"
+    },
+    {
+      "id": 96,
+      "kind": "domain",
+      "pattern": "footballodds.io",
+      "class": "B2",
+      "reason": "comparatore di quote e pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 97,
+      "kind": "title_pattern",
+      "pattern": "(comp. quote|comparazione quote|\bquote\b)",
+      "class": "B2",
+      "reason": "pagina di quote della partita",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.8+00:00"
+    },
+    {
+      "id": 98,
+      "kind": "title_pattern",
+      "pattern": "(previsioni|previsione|forecast|\\b(7|10|14|15) giorni\\b|prossimi giorni|weekend|fine settimana|questa settimana|settimana \\d|in arrivo|\\barriva\\b|\\btorna\\b|cambia tutto|maltempo|allerta|ondata|\\bdomani\\b|day weather)",
+      "class": "B7",
+      "reason": "titolo che annuncia il tempo dei prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    },
+    {
+      "id": 99,
+      "kind": "title_pattern",
+      "pattern": "\\b(prediction|predictions|betting tips|tips)\\b",
+      "class": "B3",
+      "reason": "titolo di pronostico (in inglese)",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    },
+    {
+      "id": 100,
+      "kind": "title_pattern",
+      "pattern": "(comp\\. quote|comparazione quote|\\bquote\\b)",
+      "class": "B2",
+      "reason": "pagina di quote della partita",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    }
+  ],
+  "predictions": [
+    {
+      "id": "52a857f1-3b59-4d46-9c8d-51aa59b9fddb",
+      "question_id": "810a99d4-a342-41b6-8dec-5e7071eb9d13",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google AI Studio",
+      "prompt_version": "f2c/w1",
+      "condition": "C",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-10-26T07:40:26.003+00:00",
+      "answer": "no",
+      "confidence": 75,
+      "rationale_it": "L'Inter è storicamente una delle squadre più forti del campionato italiano e, pur non avendo informazioni specifiche sulla stagione 2026/2027, è probabile che mantenga un livello competitivo elevato. Il Venezia, pur essendo in Serie A, parte sfavorito contro una squadra di tale calibro. La previsione è quindi per una non vittoria del Venezia.",
+      "created_at": "2026-10-26T07:40:34.107928+00:00",
+      "created_at_for_hash": "2026-10-26T07:40:34.107928Z",
+      "hash": "298576f5490d3f3fb8fdeca7b6286bd6af7a7e0dcbe5f2731d35db0cc826613d"
+    },
+    {
+      "id": "cc39bb20-6dd9-4943-ac08-c3e86f758fda",
+      "question_id": "44a8df4a-0982-4b45-83f4-888c618ae988",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "OpenAI",
+      "prompt_version": "f2c/w1",
+      "condition": "C",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-10-26T07:40:26.005+00:00",
+      "answer": "no",
+      "confidence": 70,
+      "rationale_it": "Parma ha recentemente perso contro la Lazio, mentre l'Udinese ha perso contro il Milan. Entrambe le squadre non sembrano in forma ottimale. Tuttavia, senza dettagli specifici sulle formazioni o infortuni, è difficile prevedere un chiaro vincitore. Considerando le recenti prestazioni, la probabilità di una vittoria del Parma non è alta.",
+      "created_at": "2026-10-26T07:40:35.452103+00:00",
+      "created_at_for_hash": "2026-10-26T07:40:35.452103Z",
+      "hash": "60b5bd9c312731119516c065e6b0fbcc43c184871295357572ded86377b44ae6"
+    },
+    {
+      "id": "08cc2515-ed1f-4064-a751-9d92f4e3d4b5",
+      "question_id": "44a8df4a-0982-4b45-83f4-888c618ae988",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google AI Studio",
+      "prompt_version": "f2c/w1",
+      "condition": "C",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-10-26T07:40:26.006+00:00",
+      "answer": "no",
+      "confidence": 60,
+      "rationale_it": "La partita Parma-Udinese del 28 ottobre 2026 vede entrambe le squadre in fondo alla classifica di Serie A, con 4 punti dopo 8 giornate. I precedenti tra le due squadre sono spesso equilibrati, con pareggi e vittorie di misura. Data la situazione di bassa classifica e la tendenza storica, un pareggio o una sconfitta del Parma sono esiti più probabili di una vittoria.",
+      "created_at": "2026-10-26T07:40:37.620814+00:00",
+      "created_at_for_hash": "2026-10-26T07:40:37.620814Z",
+      "hash": "c58a991a2ee3128bf77234de22a524daf59a9faccdca1ba9fdca9385947880c1"
+    },
+    {
+      "id": "9bef9b11-d16f-4740-aac9-0abdad6b78c9",
+      "question_id": "44a8df4a-0982-4b45-83f4-888c618ae988",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "StreamLake",
+      "prompt_version": "f2c/w1",
+      "condition": "C",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-10-26T07:40:26.005+00:00",
+      "answer": "no",
+      "confidence": 70,
+      "rationale_it": "Non sono riuscito a trovare informazioni conclusive sull'esito della partita tra Parma e Udinese del 28 ottobre 2026. Tuttavia, considerando la mancanza di dati recenti e il contesto generale, propendo per un esito negativo per Parma.",
+      "created_at": "2026-10-26T07:40:43.218697+00:00",
+      "created_at_for_hash": "2026-10-26T07:40:43.218697Z",
+      "hash": "a3797a660e06580edec8853354e375f0af0d6545f89767fc27a2167e84fdc419"
+    },
+    {
+      "id": "5af6d638-224e-40df-938f-0b964a74c797",
+      "question_id": "810a99d4-a342-41b6-8dec-5e7071eb9d13",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f2c/w1",
+      "condition": "C",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-10-26T07:40:26.004+00:00",
+      "answer": "no",
+      "confidence": 75,
+      "rationale_it": "Le statistiche storiche mostrano che l'Inter ha un vantaggio significativo su Venezia FC, con risultati favorevoli negli ultimi incontri. La probabilità che Venezia FC batta l'Inter in questa partita è bassa, considerando anche la differenza di forza tra le due squadre.",
+      "created_at": "2026-10-26T07:40:43.671182+00:00",
+      "created_at_for_hash": "2026-10-26T07:40:43.671182Z",
+      "hash": "965d99168d33c0d287d952524066def53ccf52b3563e8ef1dccc827bc06082a9"
+    },
+    {
+      "id": "6360a447-5632-4b45-947c-3ecf3b016e2c",
+      "question_id": "44a8df4a-0982-4b45-83f4-888c618ae988",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f2c/w1",
+      "condition": "C",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-10-26T07:40:26.005+00:00",
+      "answer": "no",
+      "confidence": 58,
+      "rationale_it": "Scontro diretto tra ultime due della classe, entrambe con 4 punti e 6 sconfitte. Parma ha il peggior attacco (5 gol in 8 partite). Udinese leggermente più pericolosa offensivamente. Partita equilibrata ma difficile prevedere vittoria Parma data la forma pessima",
+      "created_at": "2026-10-26T07:40:54.26796+00:00",
+      "created_at_for_hash": "2026-10-26T07:40:54.267960Z",
+      "hash": "a5d4a14c068e7624faec38441d2f05cfad29e4af2273898f7075f5a24d28836d"
+    },
+    {
+      "id": "8301b6e2-bdd8-4131-ae5b-d8fa5ed3fa3c",
+      "question_id": "44a8df4a-0982-4b45-83f4-888c618ae988",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f2c/w1",
+      "condition": "C",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-10-26T07:40:34.295+00:00",
+      "answer": "no",
+      "confidence": 60,
+      "rationale_it": "Le statistiche storiche e le ultime formazioni delle squadre non mostrano un netto vantaggio per Parma. L'Udinese ha dimostrato di essere una squadra competitiva, e le ultime partite tra le due squadre non hanno mostrato un dominio netto di Parma. Pertanto, la previsione è che Parma non vincerà la partita, con una fiducia moderata.",
+      "created_at": "2026-10-26T07:41:02.518436+00:00",
+      "created_at_for_hash": "2026-10-26T07:41:02.518436Z",
+      "hash": "ad61fc9cddf99456fcec939e40927b44e3922b5ccdc132284a1d0e56a2c625c4"
+    }
+  ]
+}
