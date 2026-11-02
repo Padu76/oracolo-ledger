@@ -1,0 +1,1859 @@
+{
+  "schema": "oracolo-ledger/2",
+  "site": "https://oracolo-sepia.vercel.app",
+  "week_id": "2026-W45",
+  "batch_no": 2,
+  "generated_at": "2026-11-02T07:22:19.864Z",
+  "prev_file_sha256": "0f8ccfa59f62a34e6599bac7d892536f3d10816d1f0e1a77ef06844cf15566f0",
+  "hash_formula": "sha256_hex( question_id | model_id | answer | confidence | rationale_it | created_at_utc ) con '|' come separatore e created_at nel formato YYYY-MM-DDTHH:MM:SS.ffffffZ",
+  "versions": [
+    {
+      "id": "c3",
+      "kind": "context",
+      "source_sha256": "f2718089549b450a7788a8c62e48c293e5a1a2510ea1c56e80ee80cd4644f3ac",
+      "description": "Schema del contesto c3 (condizione B, v2): come c2, ma per le domande meteo solo osservazioni recenti e climatologia, niente previsioni."
+    },
+    {
+      "id": "t5",
+      "kind": "template",
+      "source_sha256": "43bd9997f75ab958bdd1caa603a33ad0b1b8f475bfcf308fecd421efdc48d0ad",
+      "description": "Template v2 dei testi delle domande a fonte strutturata: meteo, calcio, CrimeWatch e le famiglie aggiunte (carburanti MIMIT, cambio BCE, terremoti INGV, qualita' dell'aria, pagine piu' viste di Wikipedia), con le regole di scelta di soglie, date e orari di chiusura."
+    }
+  ],
+  "questions": [
+    {
+      "id": "4d12ae3f-8e4f-441d-a262-7a6d86837461",
+      "week_id": "2026-W45",
+      "text_it": "Cagliari batterà Frosinone in Serie A il 7 novembre?",
+      "text_en": "Will Cagliari beat Frosinone in Serie A on November 7?",
+      "category": "sport",
+      "scope": "italia",
+      "deadline": "2026-11-07T22:59:00+00:00",
+      "event_date": "2026-11-07",
+      "resolve_after": "2026-11-07T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se Cagliari vince contro Frosinone la partita di Serie A in programma il 7 novembre 2026, con il risultato al termine dei tempi regolamentari riportato da football-data.org. L'esito è NO in caso di pareggio o sconfitta.",
+      "expected_source": "football-data.org: risultato ufficiale della partita",
+      "void_policy": "Se la partita viene rinviata, sospesa o annullata e non si disputa entro 7 giorni dalla data prevista, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "type": "footballdata_match",
+        "kickoff": "2026-11-07T14:00:00Z",
+        "match_id": 558534,
+        "away_team": "Frosinone",
+        "home_team": "Cagliari"
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-07T13:00:00+00:00"
+    },
+    {
+      "id": "6e228171-d077-4778-8c77-4592d7f5009b",
+      "week_id": "2026-W45",
+      "text_it": "Il PM10 medio giornaliero a Verona del 6 novembre 2026 sarà di almeno 20 µg/m³ secondo il modello europeo CAMS?",
+      "text_en": "Will the daily mean PM10 in Verona on November 6, 2026 be at least 20 µg/m³ according to the European CAMS model?",
+      "category": "ambiente",
+      "scope": "italia",
+      "deadline": "2026-11-06T22:59:00+00:00",
+      "event_date": "2026-11-06",
+      "resolve_after": "2026-11-07T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se la media delle 24 concentrazioni orarie di PM10 del 6 novembre 2026 (ora italiana) a Verona, secondo i dati del modello di qualità dell'aria europeo CAMS distribuiti da Open-Meteo per le coordinate 45.4384, 10.9916, è pari o superiore a 20 µg/m³. L'esito è NO se è inferiore. È una stima di modello, non la misura di una centralina. Il dato si legge due giorni dopo.",
+      "expected_source": "Open-Meteo (open-meteo.com), qualità dell'aria: modello CAMS Europe, PM10 orario per Verona",
+      "void_policy": "Se Open-Meteo non fornisce tutti i valori orari del giorno entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "lat": 45.4384,
+        "lon": 10.9916,
+        "city": "Verona",
+        "date": "2026-11-06",
+        "type": "openmeteo_airquality",
+        "threshold": 20,
+        "period_terms": [
+          "6 novembre",
+          "6 novembre 2026"
+        ],
+        "indicator_terms": [
+          "PM10",
+          "polveri sottili",
+          "qualità dell'aria"
+        ]
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-05T23:00:00+00:00"
+    },
+    {
+      "id": "8b403115-0db1-4c2f-9642-429faa45b502",
+      "week_id": "2026-W45",
+      "text_it": "Il prezzo di Bitcoin alle 00:00 UTC del 6 novembre 2026 sarà di almeno 69.000 euro secondo CoinGecko?",
+      "text_en": "Will the price of Bitcoin at 00:00 UTC on November 6, 2026 be at least 69.000 euro according to CoinGecko?",
+      "category": "economia",
+      "scope": "italia",
+      "deadline": "2026-11-06T22:59:00+00:00",
+      "event_date": "2026-11-06",
+      "resolve_after": "2026-11-06T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se il prezzo di Bitcoin in euro alle 00:00 UTC del 6 novembre 2026, come riportato dai dati storici giornalieri di CoinGecko (endpoint coins/bitcoin/history, campo market_data.current_price.eur), è pari o superiore a 69.000 euro. L'esito è NO se è inferiore.",
+      "expected_source": "CoinGecko (coingecko.com): prezzo storico giornaliero di Bitcoin in euro",
+      "void_policy": "Se CoinGecko non fornisce il prezzo di quel giorno entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "date": "2026-11-06",
+        "type": "coingecko_btc",
+        "threshold": 69000,
+        "period_terms": [
+          "6 novembre",
+          "6 novembre 2026"
+        ],
+        "indicator_terms": [
+          "Bitcoin",
+          "BTC"
+        ]
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-04T23:00:00+00:00"
+    }
+  ],
+  "contexts": [
+    {
+      "question_id": "4d12ae3f-8e4f-441d-a262-7a6d86837461",
+      "query_used": "football-data:standings:SA",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Classifica Serie A (football-data.org): Cagliari e Frosinone",
+          "source": "football-data.org (classifica)",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. Cagliari: 12° posto, 13 punti in 10 partite (4 vittorie, 1 pareggi, 5 sconfitte, gol 9-15). Frosinone: 6° posto, 20 punti in 10 partite (6 vittorie, 2 pareggi, 2 sconfitte, gol 24-14). Partita in casa di Cagliari."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:02:59.93+00:00",
+      "hash": "b8716aa9a2f74ad09f62beafd7a59bb5436509669e900a78d99c1abde92dda4e",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "8b403115-0db1-4c2f-9642-429faa45b502",
+      "query_used": "coingecko:bitcoin:eur",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Prezzo di Bitcoin in euro, ultimi giorni (CoinGecko)",
+          "source": "CoinGecko",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. Prezzo giornaliero alle 00:00 UTC, ultimi 10 giorni (euro): 23 ottobre: 72.477 · 24 ottobre: 72.401 · 25 ottobre: 72.127 · 26 ottobre: 71.363 · 27 ottobre: 71.623 · 28 ottobre: 72.620 · 29 ottobre: 72.855 · 30 ottobre: 69.608 · 31 ottobre: 68.922 · 1 novembre: 69.176. Minimo e massimo del periodo: 68.922 e 74.846."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:03:03.577+00:00",
+      "hash": "de2224276375f556f6646f11fff56c62f18493f016861fec428c7fc9fd26e9ef",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "6e228171-d077-4778-8c77-4592d7f5009b",
+      "query_used": "open-meteo:air-quality:Verona",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "PM10 medio giornaliero a Verona (modello CAMS, ultimi giorni)",
+          "source": "Open-Meteo, qualità dell'aria (CAMS Europe)",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. Ultimi 7 giorni completi: 26 ottobre: 22,6 µg/m³ · 27 ottobre: 25,3 µg/m³ · 28 ottobre: 34,6 µg/m³ · 29 ottobre: 24,9 µg/m³ · 30 ottobre: 22,7 µg/m³ · 31 ottobre: 21,0 µg/m³ · 1 novembre: 12,9 µg/m³. Ultimi 45 giorni: mediana 18,3, minimo 7,4, massimo 43,7 µg/m³. È una stima di modello, non la misura di una centralina."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:03:02.946+00:00",
+      "hash": "7565e8189648004070fae2e5eb361bf939635999f8e29b0c3f8db2c663f9e975",
+      "error": null,
+      "schema_version": "c3"
+    }
+  ],
+  "failures": [
+    {
+      "id": "932cab2e-77eb-46e6-af02-216ecabbeafb",
+      "question_id": "6e228171-d077-4778-8c77-4592d7f5009b",
+      "model_id": "gemini",
+      "condition": "C",
+      "attempts": 2,
+      "kind": "invalid",
+      "reason": "motivazione di 479 caratteri (max 400)",
+      "trace": {
+        "steps": [
+          {
+            "i": 1,
+            "at": "2026-11-02T07:20:50.945Z",
+            "args": {
+              "query": "previsioni PM10 Verona 6 novembre 2026 CAMS Open-Meteo"
+            },
+            "tool": "web_search",
+            "blocked": [
+              {
+                "url": "https://www.comune.verona.it/Novita/Notizie/PM10-allerta-colore-Arancione",
+                "class": "B7",
+                "stage": "search_result",
+                "rule_id": 82
+              }
+            ],
+            "results": [
+              {
+                "url": "https://www.arpa.veneto.it/",
+                "date": null,
+                "title": "Home - Agenzia Regionale per la Prevenzione e Protezione ...",
+                "source": "arpa.veneto.it",
+                "snippet": "Meteo Veneto. A settembre 2026 temperature record e poche piogge · VICENZA · BELLUNO · PADOVA · ROVIGO · TREVISO · VENEZIA · VERONA · VICENZA."
+              },
+              {
+                "url": "https://www.meteoam.it/it/meteo-citta/verona",
+                "date": null,
+                "title": "Previsioni Meteo Verona",
+                "source": "meteoam.it",
+                "snippet": "Scopri le previsioni meteo per la città di Verona più aggiornate, fino a 3 giorni prima, elaborate da Meteo Aeronautica Militare."
+              },
+              {
+                "url": "https://www.meteopop.it/",
+                "date": null,
+                "title": "Meteo POP - Previsioni Osservazioni Professionali",
+                "source": "meteopop.it",
+                "snippet": "Consulta le webcam meteorologiche raccolte da Meteo POP per osservare in modo diretto nuvolosità, precipitazioni, neve, nebbia, visibilità e condizioni del ..."
+              },
+              {
+                "url": "https://www.iqair.com/it/air-quality/italy/veneto/verona",
+                "date": null,
+                "title": "Indice di qualità dell'aria (AQI) di Verona e inquinamento ...",
+                "source": "iqair.com",
+                "snippet": "L'indice di qualità dell'aria (AQI) di Verona è ora Buona. Ottieni dati in tempo reale, storici e previsioni sul PM2.5 e sul meteo. Leggi l'inquinamento..."
+              },
+              {
+                "url": "https://daily.veronanetwork.it/servizi-utili/il-meteo-a-verona-e-in-veneto-per-domenica-1-novembre-2026/",
+                "date": "2 giorni fa",
+                "title": "Il meteo a Verona e in Veneto per domenica 1° novembre ...",
+                "source": "daily.veronanetwork.it",
+                "snippet": "Tempo atteso: Modesta variabilità, con schiarite anche ampie, alternate a nubi irregolari. Precipitazioni: Già dalle prime ore saranno probabili ..."
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "at": "2026-11-02T07:20:52.977Z",
+            "args": {
+              "query": "previsioni meteo Verona 6 novembre 2026"
+            },
+            "tool": "web_search",
+            "blocked": [],
+            "results": [
+              {
+                "url": "https://meteo.tempoitalia.it/previsioni/verona?d=6",
+                "date": null,
+                "title": "Meteo Verona: venerdì 6 novembre parzialmente nuvoloso ...",
+                "source": "meteo.tempoitalia.it",
+                "snippet": "Previsioni Meteo Verona per venerdì 6 novembre: parzialmente nuvoloso, temperatura da 6°C a 15°C. Il sole sorge alle ore 07:02 e tramonta alle ore 16:56."
+              },
+              {
+                "url": "https://www.accuweather.com/it/it/verona/216712/november-weather/216712",
+                "date": null,
+                "title": "Verona, Veneto, Italia Meteo mensile",
+                "source": "accuweather.com",
+                "snippet": "novembre. gennaio febbraio marzo aprile maggio giugno luglio agosto settembre ... 6. Soleggiato. 58°. 41° · 7. Soleggiato. 57°. 42° · 8. Prevalentemente ..."
+              },
+              {
+                "url": "https://www.meteolive.it/previsione-meteo/italia/veneto/Verona/14/",
+                "date": null,
+                "title": "Previsioni meteo Verona venerdì 13 novembre 2026",
+                "source": "meteolive.it",
+                "snippet": "13:00. Possibile pioggia. 13.4 °C Molto fresco, 66 % Normale, 1.3mm Debole Prob. 37 % ; 19:00. Nuvoloso. 12.2 °C Freddo moderato, 75 % Un po' umido, - ..."
+              },
+              {
+                "url": "https://www.meteo5.com/europe/italy/veneto/verona?page=month&month=November",
+                "date": null,
+                "title": "Verona meteo in novembre 2026",
+                "source": "meteo5.com",
+                "snippet": "Le temperature a Verona a novembre sono abbastanza fredde con temperature tra 7°C e 13°C. Puoi aspettarti da 3 a 8 giorni di pioggia a Verona durante il ..."
+              },
+              {
+                "url": "https://daily.veronanetwork.it/servizi-utili/il-meteo-a-verona-e-in-veneto-per-domenica-1-novembre-2026/",
+                "date": "2 giorni fa",
+                "title": "Il meteo a Verona e in Veneto per domenica 1° novembre ...",
+                "source": "daily.veronanetwork.it",
+                "snippet": "Tempo atteso: Modesta variabilità, con schiarite anche ampie, alternate a nubi irregolari. Precipitazioni: Già dalle prime ore saranno probabili ..."
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "at": "2026-11-02T07:20:54.754Z",
+            "args": {
+              "query": "Open-Meteo CAMS Europe PM10 Verona 6 novembre 2026"
+            },
+            "tool": "web_search",
+            "blocked": [
+              {
+                "url": "https://www.comune.verona.it/Novita/Notizie/PM10-allerta-colore-Arancione",
+                "class": "B7",
+                "stage": "search_result",
+                "rule_id": 82
+              },
+              {
+                "url": "https://weather.com/it-IT/it/verona/verona/locality/mizzole/air-quality",
+                "class": "B7",
+                "stage": "search_result",
+                "rule_id": 82
+              }
+            ],
+            "results": [
+              {
+                "url": "https://open-meteo.com/en/docs/air-quality-api",
+                "date": null,
+                "title": "Air Quality API",
+                "source": "open-meteo.com",
+                "snippet": "Get accurate forecasts for gases, particulate matter (PM), and pollen with the Air Quality API. Access this powerful API for free for non-commercial use."
+              },
+              {
+                "url": "https://www.arpa.veneto.it/",
+                "date": null,
+                "title": "Home - Agenzia Regionale per la Prevenzione e Protezione ...",
+                "source": "arpa.veneto.it",
+                "snippet": "6 ottobre 2026. Meteo Veneto. A settembre 2026 temperature record e poche piogge ... PM10: riprende l'emissione del bollettino. Dal 1 ottobre al 30 aprile ..."
+              },
+              {
+                "url": "https://www.iqair.com/it/air-quality/italy/veneto/verona",
+                "date": null,
+                "title": "Indice di qualità dell'aria (AQI) di Verona e inquinamento ...",
+                "source": "iqair.com",
+                "snippet": "L'indice di qualità dell'aria (AQI) di Verona è ora Buona. Ottieni dati in tempo reale, storici e previsioni sul PM2.5 e sul meteo. Leggi l'inquinamento..."
+              },
+              {
+                "url": "https://www.meteopop.it/previsioni/verona/",
+                "date": null,
+                "title": "Meteo Verona (Verona) oggi e 7 giorni",
+                "source": "meteopop.it",
+                "snippet": "Meteo Verona (Verona) oggi: Rovesci deboli, temperature 9°/17°, pioggia 5%, vento fino a 8 km/h. Previsioni dettagliate e tendenza per i prossimi 7 giorni."
+              },
+              {
+                "url": "https://dati.veneto.it/opendata/Comune_di_Verona_Rete_di_centraline_open_source_per_monitoraggio_polveri_sottili",
+                "date": "1 lug 2022",
+                "title": "Comune di Verona - Rete di centraline open source per ...",
+                "source": "dati.veneto.it",
+                "snippet": "Comune di Verona - Rete di centraline open source per il monitoraggio distribuito di polveri sottili sul territorio."
+              }
+            ]
+          },
+          {
+            "i": 4,
+            "at": "2026-11-02T07:20:56.936Z",
+            "note": "tentativo 1",
+            "tool": "answer"
+          },
+          {
+            "i": 5,
+            "at": "2026-11-02T07:20:57.876Z",
+            "note": "tentativo 2",
+            "tool": "answer"
+          }
+        ],
+        "n_pages": 0,
+        "n_blocked": 3,
+        "n_searches": 3,
+        "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22"
+      },
+      "created_at": "2026-11-02T07:20:57.941502+00:00",
+      "requested_at": "2026-11-02T07:20:50.336+00:00"
+    },
+    {
+      "id": "5fd6fc7d-3cda-4c23-ac6b-77b07f99d29e",
+      "question_id": "8b403115-0db1-4c2f-9642-429faa45b502",
+      "model_id": "gpt",
+      "condition": "C",
+      "attempts": 2,
+      "kind": "invalid",
+      "reason": "motivazione di 421 caratteri (max 400)",
+      "trace": {
+        "steps": [
+          {
+            "i": 1,
+            "at": "2026-11-02T07:20:57.854Z",
+            "args": {
+              "query": "Bitcoin price prediction November 2026"
+            },
+            "tool": "web_search",
+            "blocked": [
+              {
+                "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-in-november",
+                "class": "B4",
+                "stage": "search_result",
+                "rule_id": 48
+              },
+              {
+                "url": "https://kalshi.com/markets/kxbtcminy/how-low-will-bitcoin-fall-this-year/kxbtcminy-27jan01",
+                "class": "B4",
+                "stage": "search_result",
+                "rule_id": 49
+              },
+              {
+                "url": "https://www.kraken.com/price-prediction/bitcoin",
+                "class": "B6",
+                "stage": "search_result",
+                "rule_id": 65
+              }
+            ],
+            "results": [
+              {
+                "url": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-price-prediction-november-2026-204712855.html",
+                "date": "11 ore fa",
+                "title": "Bitcoin Price Prediction for November 2026",
+                "source": "Yahoo Finance",
+                "snippet": "After two straight losing Octobers and a historic breach at the world's largest crypto exchange, Bitcoin heads into November facing a gauntlet of..."
+              },
+              {
+                "url": "https://sailgp.com/prediction-markets/crypto/bitcoin",
+                "date": "1 settimana fa",
+                "title": "Bitcoin Prediction Markets: Best Sites to Trade BTC in 2026",
+                "source": "SailGP",
+                "snippet": "Bitcoin prediction markets let you trade on BTC price outcomes across platforms like Kalshi and Polymarket. Here's how."
+              },
+              {
+                "url": "https://247wallst.com/investing/cryptocurrency/2026/11/01/bitcoin-price-prediction-for-november-2026/",
+                "date": "11 ore fa",
+                "title": "Bitcoin Price Prediction for November 2026",
+                "source": "24/7 Wall St.",
+                "snippet": "After two straight losing Octobers and a historic breach at the world's largest crypto exchange, Bitcoin heads into November facing a gauntlet of..."
+              },
+              {
+                "url": "https://coindcx.com/blog/price-predictions/bitcoin-price-weekly",
+                "date": "2 giorni fa",
+                "title": "Bitcoin Price Prediction Oct 2026: BTC Reclaims 50-Day EMA",
+                "source": "CoinDCX",
+                "snippet": "Bitcoin price prediction October 2026: BTC slips 0.34% to $80976 but holds above the 50-day EMA after buyers absorbed another dip below $80000."
+              },
+              {
+                "url": "https://cryptoticker.io/en/bitcoin-monthly-returns-november/",
+                "date": "19 ore fa",
+                "title": "Bitcoin Monthly Returns: What November Holds in 2026",
+                "source": "CryptoTicker.io",
+                "snippet": "Bitcoin fell 7.3% in October 2026. What monthly returns since 2016 say about November, and the dates that will move the price this month."
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "at": "2026-11-02T07:21:00.714Z",
+            "args": {
+              "url": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-price-prediction-november-2026-204712855.html"
+            },
+            "page": {
+              "url": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-price-prediction-november-2026-204712855.html",
+              "chars": 6000,
+              "sha256": "ad4d929e49f124497083af005bc74f226031154da7af54fe29f6f3a8d8fa44c8",
+              "excerpt": "Bitcoin Price Prediction for November 2026 Oops, something went wrong Skip to navigation Skip to main content Skip to right column Home News Finance Sports More News US Politics World Tech Science Originals 2026 Elections Weather Newsletters Finance My portfolio News Markets Research Community Personal finance Videos Sports Fantasy Football 2026 NFL College football NBA MLB NHL College basketball Soccer Fantasy Sports Betting NFL Odds Yahoo Sports AM Shopping Style Beauty Health Home and garden "
+            },
+            "tool": "open_page"
+          },
+          {
+            "i": 3,
+            "at": "2026-11-02T07:21:00.920Z",
+            "args": {
+              "url": "https://247wallst.com/investing/cryptocurrency/2026/11/01/bitcoin-price-prediction-for-november-2026/"
+            },
+            "page": {
+              "url": "https://247wallst.com/investing/cryptocurrency/2026/11/01/bitcoin-price-prediction-for-november-2026/",
+              "chars": 6000,
+              "sha256": "cd641ab93b79968e165d4ed21f3994504f93b0e8b109cbb8b2e44b40a199ee05",
+              "excerpt": "Bitcoin Price Prediction for November 2026 - 24/7 Wall St. Skip to content Authoritative Financial News · Since 2006 AI Investor Podcast Menu Investing Personal Finance Technology Economy Politics AI Portfolio &#10074;&#10074; ● Markets open At close S&amp;P 500 7,621.60 +0.45% Dow Jones 51,969.00 +0.34% Nasdaq 100 28,676.00 +0.94% Russell 2000 2,831.26 +0.61% S&amp;P 500 7,621.60 +0.45% Dow Jones 51,969.00 +0.34% Nasdaq 100 28,676.00 +0.94% Russell 2000 2,831.26 +0.61% S&amp;P 500 7,621.60 +0.4"
+            },
+            "tool": "open_page"
+          },
+          {
+            "i": 4,
+            "at": "2026-11-02T07:21:03.037Z",
+            "note": "tentativo 1",
+            "tool": "answer"
+          },
+          {
+            "i": 5,
+            "at": "2026-11-02T07:21:05.383Z",
+            "note": "tentativo 2",
+            "tool": "answer"
+          }
+        ],
+        "n_pages": 2,
+        "n_blocked": 3,
+        "n_searches": 1,
+        "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22"
+      },
+      "created_at": "2026-11-02T07:21:05.44481+00:00",
+      "requested_at": "2026-11-02T07:20:55.756+00:00"
+    },
+    {
+      "id": "3bbde736-2cec-45a3-aa77-7e9837a53cfa",
+      "question_id": "4d12ae3f-8e4f-441d-a262-7a6d86837461",
+      "model_id": "gemini",
+      "condition": "C",
+      "attempts": 2,
+      "kind": "invalid",
+      "reason": "motivazione di 436 caratteri (max 400)",
+      "trace": {
+        "steps": [
+          {
+            "i": 1,
+            "at": "2026-11-02T07:21:12.034Z",
+            "args": {
+              "query": "Serie A calendario Cagliari Frosinone 7 novembre 2026"
+            },
+            "tool": "web_search",
+            "blocked": [],
+            "results": [
+              {
+                "url": "https://www.repubblica.it/sport/dirette/calcio/serie-a-2026/calendario/cagliari-t124/",
+                "date": null,
+                "title": "Calendario Cagliari Serie A 2026/2027",
+                "source": "repubblica.it",
+                "snippet": "Sabato 7 Novembre 2026 - 15:00. Cagliari. Frosinone. Sabato 21 Novembre 2026 ... Frosinone. Cagliari. Domenica 30 Maggio 2027 - 15:00. Cagliari. Roma. Cagliari."
+              },
+              {
+                "url": "https://www.corrieredellosport.it/squadra/calcio/cagliari/calendario/t124",
+                "date": null,
+                "title": "Calendario partite Cagliari 2026",
+                "source": "corrieredellosport.it",
+                "snippet": "La prossima partita della Cagliari sarà il 07.11.2026: Cagliari-Frosinone per il campionato Serie A. L'ultima partita disputata dalla Cagliari è stata il ..."
+              },
+              {
+                "url": "https://sport.sky.it/calcio/serie-a/partite/2026/giornata-11/cagliari-frosinone",
+                "date": null,
+                "title": "Cagliari–Frosinone: come seguire la partita.",
+                "source": "sport.sky.it",
+                "snippet": "Serie AGiornata 11 - sabato 7 novembre 2026Giornata 11 - sab 7 nov. Cagliari. 15:00. Frosinone. Cagliari15:00 Frosinone."
+              },
+              {
+                "url": "https://www.ticketkosta.com/it/Serie-a/Cagliari-vs-frosinone-74997/",
+                "date": null,
+                "title": "Cagliari vs Frosinone Serie A Acquista Biglietti 07/11/2026",
+                "source": "ticketkosta.com",
+                "snippet": "Prenota ora i tuoi biglietti per la prossima partita tra Cagliari e Frosinone al Sardegna Arena, Cagliari , Italy , dove si affronteranno nel Serie A il ..."
+              },
+              {
+                "url": "https://www.legaseriea.it/serie-a/match/f293cf5a937c4ba89b3049a508f743ab/cagliari-vs-frosinone",
+                "date": null,
+                "title": "Cagliari vs Frosinone | Serie A Enilive",
+                "source": "legaseriea.it",
+                "snippet": "Dettagli completi di Cagliari vs Frosinone in Serie A Enilive — formazioni, risultato e report della partita su Lega Serie A."
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "at": "2026-11-02T07:21:13.956Z",
+            "args": {
+              "query": "Cagliari Frosinone precedenti Serie A"
+            },
+            "tool": "web_search",
+            "blocked": [],
+            "results": [
+              {
+                "url": "https://www.calcio.com/squadre/frosinone/precedenti/cagliari",
+                "date": null,
+                "title": "Precedenti Frosinone vs Cagliari | Testa a testa, risultati",
+                "source": "calcio.com",
+                "snippet": "Tutte le partite disputate ; 2019-04-20, Cagliari · Frosinone, 1:0, Serie A ; 2018-12-02, Frosinone · Cagliari, 1:1, Serie A."
+              },
+              {
+                "url": "https://www.youtube.com/watch?v=Dvpa3hzo8rk",
+                "date": "1 anno fa",
+                "title": "Highlights | Cagliari-Frosinone 4-1 | Coppa Italia Frecciarossa",
+                "source": "youtube.com",
+                "snippet": "Grande vittoria maturata nella ripresa per il Cagliari, che accede agli ottavi di finale di Coppa Italia Frecciarossa, dove a dicembre ..."
+              },
+              {
+                "url": "https://www.legaseriea.it/serie-a/match/f293cf5a937c4ba89b3049a508f743ab/cagliari-vs-frosinone",
+                "date": null,
+                "title": "Cagliari vs Frosinone | Serie A Enilive",
+                "source": "legaseriea.it",
+                "snippet": "Risultati delle partite precedenti ; 21 gen, 2024. FRO · 3 - 1 ; 29 ott, 2023. CAG · 4 - 3 ; 20 apr, 2019. CAG · 1 - 0 ; 02 dic, 2018. FRO · 1 - 1."
+              },
+              {
+                "url": "https://cagliaricalcio.com/news/highlights-frosinone-cagliari-3-1/",
+                "date": "22 gen 2024",
+                "title": "Serie A | Frosinone 3-1 Cagliari",
+                "source": "cagliaricalcio.com",
+                "snippet": "Serie A | Frosinone 3-1 Cagliari. Il Cagliari esce sconfitto dal “Benito Stirpe” di Frosinone. Dopo un primo tempo chiuso in vantaggio ..."
+              },
+              {
+                "url": "https://www.youtube.com/watch?v=fsCzv8Kik38",
+                "date": "3 anni fa",
+                "title": "cagliari-frosinone 4-3 | highlights | 10ª giornata",
+                "source": "youtube.com",
+                "snippet": "CAGLIARI-FROSINONE 4-3 | HIGHLIGHTS | 10ª GIORNATA | SERIE A TIM 2023/24."
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "at": "2026-11-02T07:21:17.652Z",
+            "args": {
+              "query": "Cagliari Frosinone stato di forma 2026"
+            },
+            "tool": "web_search",
+            "blocked": [],
+            "results": [
+              {
+                "url": "https://cagliaricalcio.com/news/cagliari-frosinone-i-biglietti-due-fasi-di-vendita/",
+                "date": "5 giorni fa",
+                "title": "Cagliari-Frosinone, i biglietti: due fasi di vendita",
+                "source": "cagliaricalcio.com",
+                "snippet": "Undicesima giornata di Serie A EniLive 2026/2027, in programma sabato 7 novembre alle ore 15 all'Unipol Domus. Di scena Cagliari e Frosinone."
+              },
+              {
+                "url": "https://www.corrieredellosport.it/formazione/calcio/serie-a/2026/11/07-2638222/cagliari-frosinone",
+                "date": null,
+                "title": "Probabili formazioni Cagliari - Frosinone 2026/2027",
+                "source": "corrieredellosport.it",
+                "snippet": "Scopri le probabili formazioni di Cagliari - Frosinone aggiornate in tempo reale per la 11° giornata di Serie A 2026/2027."
+              },
+              {
+                "url": "https://sport.sky.it/calcio/serie-a/partite/2026/giornata-11/cagliari-frosinone",
+                "date": null,
+                "title": "Cagliari–Frosinone: come seguire la partita.",
+                "source": "sport.sky.it",
+                "snippet": "La gara vedrà di fronte i due allenatori Pisacane F. e Alvini M.. Le probabili formazioni, tutte le news per arrivare preparato al meglio al match e tutti gli ..."
+              },
+              {
+                "url": "https://it.whoscored.com/matches/1980940/show/italia-serie-a-2026-2027-cagliari-italia",
+                "date": null,
+                "title": "Cagliari-Frosinone - Serie A 2026/2027 - Statistiche Testa ...",
+                "source": "it.whoscored.com",
+                "snippet": "Frosinone: segneranno con un tiro da lontano. Molto Probabile ; Cagliari: segneranno su calcio piazzato diretto. Probabile ; Frosinone: toglieranno spesso la ..."
+              },
+              {
+                "url": "https://www.youtube.com/watch?v=l7jnkR6B5lk",
+                "date": "6 mesi fa",
+                "title": "UNDER 20 | Highlights | Frosinone-Cagliari 1-4 | Primavera 1",
+                "source": "youtube.com",
+                "snippet": "Nel campionato Primavera 1 il Cagliari travolge il Frosinone con un netto 4-1 in trasferta, al termine di una gara dominata sin dalle ..."
+              }
+            ]
+          },
+          {
+            "i": 4,
+            "at": "2026-11-02T07:21:19.870Z",
+            "note": "tentativo 1",
+            "tool": "answer"
+          },
+          {
+            "i": 5,
+            "at": "2026-11-02T07:21:20.723Z",
+            "note": "tentativo 2",
+            "tool": "answer"
+          }
+        ],
+        "n_pages": 0,
+        "n_blocked": 0,
+        "n_searches": 3,
+        "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22"
+      },
+      "created_at": "2026-11-02T07:21:21.006665+00:00",
+      "requested_at": "2026-11-02T07:21:11.416+00:00"
+    }
+  ],
+  "traces": [],
+  "reference_forecasts": [],
+  "source_rules": [
+    {
+      "id": 1,
+      "kind": "domain",
+      "pattern": "bet365.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 2,
+      "kind": "domain",
+      "pattern": "sisal.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 3,
+      "kind": "domain",
+      "pattern": "snai.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 4,
+      "kind": "domain",
+      "pattern": "eurobet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 5,
+      "kind": "domain",
+      "pattern": "williamhill.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 6,
+      "kind": "domain",
+      "pattern": "williamhill.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 7,
+      "kind": "domain",
+      "pattern": "betfair.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 8,
+      "kind": "domain",
+      "pattern": "betfair.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 9,
+      "kind": "domain",
+      "pattern": "pinnacle.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 10,
+      "kind": "domain",
+      "pattern": "goldbet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 11,
+      "kind": "domain",
+      "pattern": "planetwin365.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 12,
+      "kind": "domain",
+      "pattern": "lottomatica.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 13,
+      "kind": "domain",
+      "pattern": "bwin.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 14,
+      "kind": "domain",
+      "pattern": "unibet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 15,
+      "kind": "domain",
+      "pattern": "888sport.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 16,
+      "kind": "domain",
+      "pattern": "betway.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 17,
+      "kind": "domain",
+      "pattern": "stanleybet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 18,
+      "kind": "domain",
+      "pattern": "betflag.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 19,
+      "kind": "domain",
+      "pattern": "leovegas.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 20,
+      "kind": "domain",
+      "pattern": "netbet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 21,
+      "kind": "domain",
+      "pattern": "starcasino.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 22,
+      "kind": "domain",
+      "pattern": "1xbet.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 23,
+      "kind": "domain",
+      "pattern": "bet-at-home.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 24,
+      "kind": "domain",
+      "pattern": "oddschecker.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 25,
+      "kind": "domain",
+      "pattern": "oddsportal.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 26,
+      "kind": "domain",
+      "pattern": "betexplorer.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 27,
+      "kind": "domain",
+      "pattern": "oddspedia.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 28,
+      "kind": "domain",
+      "pattern": "betbrain.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 29,
+      "kind": "domain",
+      "pattern": "sportsbettingdime.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 30,
+      "kind": "domain",
+      "pattern": "betiball.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 31,
+      "kind": "domain",
+      "pattern": "extratips.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 32,
+      "kind": "domain",
+      "pattern": "forebet.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 33,
+      "kind": "domain",
+      "pattern": "predictz.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 34,
+      "kind": "domain",
+      "pattern": "sportytrader.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 35,
+      "kind": "domain",
+      "pattern": "sportytrader.it",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 36,
+      "kind": "domain",
+      "pattern": "statarea.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 37,
+      "kind": "domain",
+      "pattern": "vitibet.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 38,
+      "kind": "domain",
+      "pattern": "foresportia.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 39,
+      "kind": "domain",
+      "pattern": "betimate.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 40,
+      "kind": "domain",
+      "pattern": "windrawwin.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 41,
+      "kind": "domain",
+      "pattern": "betensured.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 42,
+      "kind": "domain",
+      "pattern": "pronosoft.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 43,
+      "kind": "domain",
+      "pattern": "scores24.live",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 44,
+      "kind": "domain",
+      "pattern": "dimers.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 45,
+      "kind": "url_pattern",
+      "pattern": "^https?://[^/]*(pronostic|scommess|betting|tipster)[^/]*/",
+      "class": "B3",
+      "reason": "nome del sito riferito a pronostici/scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 46,
+      "kind": "url_pattern",
+      "pattern": "/(pronostic[oi]|scommesse|betting-tips|football-predictions|soccer-predictions|predictions?/|odds/|quote-)",
+      "class": "B3",
+      "reason": "sezione di pronostici/quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 47,
+      "kind": "title_pattern",
+      "pattern": "(pronostic[oi]|betting tips?|\\bquote\\b.{0,30}(scommess|1x2|partita)|\\bodds\\b|predictions? (and|&) (odds|tips)|probabili formazioni e pronostico)",
+      "class": "B3",
+      "reason": "titolo di pronostico/quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 48,
+      "kind": "domain",
+      "pattern": "polymarket.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 49,
+      "kind": "domain",
+      "pattern": "kalshi.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 50,
+      "kind": "domain",
+      "pattern": "metaculus.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 51,
+      "kind": "domain",
+      "pattern": "manifold.markets",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 52,
+      "kind": "domain",
+      "pattern": "predictit.org",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 53,
+      "kind": "domain",
+      "pattern": "gjopen.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 54,
+      "kind": "domain",
+      "pattern": "insightprediction.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 55,
+      "kind": "domain",
+      "pattern": "augur.net",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 56,
+      "kind": "content_pattern",
+      "pattern": "probabilit[àa]\\s+di\\s+(vittoria|successo)",
+      "class": "B5",
+      "reason": "probabilita' di vittoria gia' calcolata",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 57,
+      "kind": "content_pattern",
+      "pattern": "(win|winning)\\s+probability|probability\\s+of\\s+winning|implied\\s+probability",
+      "class": "B5",
+      "reason": "probabilita' di vittoria gia' calcolata",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 58,
+      "kind": "content_pattern",
+      "pattern": "\\b1\\s*[x×]\\s*2\\b",
+      "class": "B5",
+      "reason": "quote 1X2",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 59,
+      "kind": "content_pattern",
+      "pattern": "\\bodds\\b",
+      "class": "B5",
+      "reason": "quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 60,
+      "kind": "content_pattern",
+      "pattern": "\\bquot[ae]\\b[^.\\n]{0,40}\\d[.,]\\d{2}",
+      "class": "B5",
+      "reason": "quote decimali",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 61,
+      "kind": "content_pattern",
+      "pattern": "\\bpronostic\\w*",
+      "class": "B5",
+      "reason": "pronostico",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 62,
+      "kind": "domain",
+      "pattern": "tradingeconomics.com",
+      "class": "B6",
+      "reason": "previsioni/consensus su indicatori",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 63,
+      "kind": "url_pattern",
+      "pattern": "investing\\.com/economic-calendar",
+      "class": "B6",
+      "reason": "calendario economico con consensus",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 64,
+      "kind": "url_pattern",
+      "pattern": "/(forecast|consensus|previsioni-)",
+      "class": "B6",
+      "reason": "pagina di previsioni/consensus",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 65,
+      "kind": "forecast_same_indicator",
+      "pattern": "(forecast|previsione|previsioni|consensus|attes[oi]|expected|projection|proiezion\\w+|stim\\w+)",
+      "class": "B6",
+      "reason": "previsione/proiezione sullo stesso indicatore e periodo della domanda",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 66,
+      "kind": "domain",
+      "pattern": "ilmeteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 67,
+      "kind": "domain",
+      "pattern": "3bmeteo.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 68,
+      "kind": "domain",
+      "pattern": "meteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 69,
+      "kind": "domain",
+      "pattern": "meteoam.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 70,
+      "kind": "domain",
+      "pattern": "windy.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 71,
+      "kind": "domain",
+      "pattern": "yr.no",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 72,
+      "kind": "domain",
+      "pattern": "accuweather.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 73,
+      "kind": "domain",
+      "pattern": "weather.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 74,
+      "kind": "domain",
+      "pattern": "meteoblue.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 75,
+      "kind": "domain",
+      "pattern": "wetter.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 76,
+      "kind": "domain",
+      "pattern": "open-meteo.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 77,
+      "kind": "domain",
+      "pattern": "meteogiornale.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 78,
+      "kind": "domain",
+      "pattern": "iconmeteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 79,
+      "kind": "domain",
+      "pattern": "timeanddate.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 80,
+      "kind": "url_pattern",
+      "pattern": "/(previsioni|forecast|meteo-previsioni)[-/]",
+      "class": "B7",
+      "reason": "pagina di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 81,
+      "kind": "forecast_same_indicator",
+      "pattern": "(previsioni|previsione|prevista|previsto|prevede|forecast|allerta|maltempo|bel tempo|temporali|piogge|pioggia in arrivo|arriva)",
+      "class": "B7",
+      "reason": "previsione meteo per la stessa citta' e lo stesso giorno della domanda (anche in una notizia)",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:51:49.732826+00:00",
+      "active_to": null
+    },
+    {
+      "id": 82,
+      "kind": "forecast_same_indicator",
+      "pattern": "(previsioni|previsione|prevista|previsto|prevede|forecast|allerta|attes[oi]|probabilit[àa])",
+      "class": "B7",
+      "reason": "previsione sullo stesso indicatore della domanda (qualita' dell'aria, terremoti) nello stesso periodo",
+      "categories": [
+        "ambiente"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-01T07:35:17.024988+00:00",
+      "active_to": null
+    },
+    {
+      "id": 83,
+      "kind": "domain",
+      "pattern": "meteo5.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 84,
+      "kind": "domain",
+      "pattern": "meteomi.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 85,
+      "kind": "domain",
+      "pattern": "weather-forecast.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 86,
+      "kind": "domain",
+      "pattern": "weather25.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 87,
+      "kind": "domain",
+      "pattern": "worldweatherai.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 88,
+      "kind": "domain",
+      "pattern": "meteo2.it",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 89,
+      "kind": "domain",
+      "pattern": "meteolive.it",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 90,
+      "kind": "domain",
+      "pattern": "ilmeteo.net",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 91,
+      "kind": "domain",
+      "pattern": "meteo.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 92,
+      "kind": "url_pattern",
+      "pattern": "/meteo[-/]",
+      "class": "B7",
+      "reason": "sezione meteo di un portale (articoli sul tempo dei prossimi giorni)",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 93,
+      "kind": "title_pattern",
+      "pattern": "(previsioni|previsione|forecast|\b(7|10|14|15) giorni\b|prossimi giorni|weekend|questa settimana|settimana d|in arrivo|\barriva\b|\btorna\b|cambia tutto|maltempo|allerta|ondata|\bdomani\b|day weather)",
+      "class": "B7",
+      "reason": "titolo che annuncia il tempo dei prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.556+00:00"
+    },
+    {
+      "id": 94,
+      "kind": "content_pattern",
+      "pattern": "(nei prossimi giorni|in arrivo|previsioni per|previsto per|prevista per|a partire da (lunedì|martedì|mercoledì|giovedì|venerdì|sabato|domenica)|tendenza meteo|evoluzione meteo)",
+      "class": "B7",
+      "reason": "pagina che descrive il tempo previsto per i prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 2,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 95,
+      "kind": "title_pattern",
+      "pattern": "\b(prediction|predictions|preview & prediction|betting tips|tips)\b",
+      "class": "B3",
+      "reason": "titolo di pronostico (in inglese)",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.666+00:00"
+    },
+    {
+      "id": 96,
+      "kind": "domain",
+      "pattern": "footballodds.io",
+      "class": "B2",
+      "reason": "comparatore di quote e pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 97,
+      "kind": "title_pattern",
+      "pattern": "(comp. quote|comparazione quote|\bquote\b)",
+      "class": "B2",
+      "reason": "pagina di quote della partita",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.8+00:00"
+    },
+    {
+      "id": 98,
+      "kind": "title_pattern",
+      "pattern": "(previsioni|previsione|forecast|\\b(7|10|14|15) giorni\\b|prossimi giorni|weekend|fine settimana|questa settimana|settimana \\d|in arrivo|\\barriva\\b|\\btorna\\b|cambia tutto|maltempo|allerta|ondata|\\bdomani\\b|day weather)",
+      "class": "B7",
+      "reason": "titolo che annuncia il tempo dei prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    },
+    {
+      "id": 99,
+      "kind": "title_pattern",
+      "pattern": "\\b(prediction|predictions|betting tips|tips)\\b",
+      "class": "B3",
+      "reason": "titolo di pronostico (in inglese)",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    },
+    {
+      "id": 100,
+      "kind": "title_pattern",
+      "pattern": "(comp\\. quote|comparazione quote|\\bquote\\b)",
+      "class": "B2",
+      "reason": "pagina di quote della partita",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    }
+  ],
+  "predictions": []
+}
