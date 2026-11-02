@@ -1,0 +1,1682 @@
+{
+  "schema": "oracolo-ledger/2",
+  "site": "https://oracolo-sepia.vercel.app",
+  "week_id": "2026-W45",
+  "batch_no": 3,
+  "generated_at": "2026-11-02T07:32:25.086Z",
+  "prev_file_sha256": "f3d144c01946716639e7ee8c3ef123b8f4c9443b1e270737bd3c32d0a00cf03d",
+  "hash_formula": "sha256_hex( question_id | model_id | answer | confidence | rationale_it | created_at_utc ) con '|' come separatore e created_at nel formato YYYY-MM-DDTHH:MM:SS.ffffffZ",
+  "versions": [
+    {
+      "id": "c3",
+      "kind": "context",
+      "source_sha256": "f2718089549b450a7788a8c62e48c293e5a1a2510ea1c56e80ee80cd4644f3ac",
+      "description": "Schema del contesto c3 (condizione B, v2): come c2, ma per le domande meteo solo osservazioni recenti e climatologia, niente previsioni."
+    },
+    {
+      "id": "t5",
+      "kind": "template",
+      "source_sha256": "43bd9997f75ab958bdd1caa603a33ad0b1b8f475bfcf308fecd421efdc48d0ad",
+      "description": "Template v2 dei testi delle domande a fonte strutturata: meteo, calcio, CrimeWatch e le famiglie aggiunte (carburanti MIMIT, cambio BCE, terremoti INGV, qualita' dell'aria, pagine piu' viste di Wikipedia), con le regole di scelta di soglie, date e orari di chiusura."
+    }
+  ],
+  "questions": [
+    {
+      "id": "ccc0c676-0f0c-4d9a-bcba-3ba200bc9b00",
+      "week_id": "2026-W45",
+      "text_it": "Nel periodo dal 3 novembre al 9 novembre 2026 (compresi) l'INGV registrerà almeno un terremoto di magnitudo 4,0 o superiore nell'area dell'Italia?",
+      "text_en": "From November 3 to November 9, 2026 (inclusive), will INGV record at least one earthquake of magnitude 4.0 or higher in the Italian area?",
+      "category": "ambiente",
+      "scope": "italia",
+      "deadline": "2026-11-09T22:59:00+00:00",
+      "event_date": "2026-11-09",
+      "resolve_after": "2026-11-10T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se il catalogo degli eventi sismici dell'INGV (servizio FDSN) contiene almeno un evento di tipo terremoto con magnitudo (di qualsiasi tipo) pari o superiore a 4,0, con epicentro nel rettangolo di latitudine 35-48 e longitudine 6-19 gradi, con tempo origine tra le 00:00 del 3 novembre e le 23:59 del 9 novembre 2026 (ora italiana). L'esito è NO altrimenti. Il catalogo si legge due giorni dopo la fine del periodo.",
+      "expected_source": "INGV (webservices.ingv.it): catalogo degli eventi sismici, servizio fdsnws-event",
+      "void_policy": "Se il servizio INGV non è consultabile entro 7 giorni dalla fine del periodo, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "to": "2026-11-09",
+        "mag": 4,
+        "from": "2026-11-03",
+        "type": "ingv_quake",
+        "period_terms": [
+          "3 novembre",
+          "9 novembre",
+          "9 novembre 2026"
+        ],
+        "indicator_terms": [
+          "terremoto",
+          "terremoti",
+          "sisma"
+        ]
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-02T23:00:00+00:00"
+    },
+    {
+      "id": "c96a3066-d377-4a16-bfa9-745472548c9c",
+      "week_id": "2026-W45",
+      "text_it": "La pagina «Romano Floriani Mussolini» di Wikipedia in italiano sarà tra le 10 più visitate il 5 novembre 2026?",
+      "text_en": "Will the Italian Wikipedia page «Romano Floriani Mussolini» be among the 10 most viewed on November 5, 2026?",
+      "category": "cultura",
+      "scope": "italia",
+      "deadline": "2026-11-05T22:59:00+00:00",
+      "event_date": "2026-11-05",
+      "resolve_after": "2026-11-06T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se la pagina «Romano Floriani Mussolini» di it.wikipedia.org è tra le prime 10 della classifica giornaliera delle pagine più visitate (accesso da tutte le piattaforme, giorno UTC 5 novembre 2026, pubblicata da Wikimedia), dopo aver escluso la Pagina principale e le pagine con prefisso di spazio dei nomi (Speciale:, Wikipedia:, Aiuto:, File:, Categoria:, Portale:, Template: e simili). L'esito è NO altrimenti. La classifica si legge due giorni dopo.",
+      "expected_source": "Wikimedia (wikimedia.org): API delle visite alle pagine, classifica giornaliera di it.wikipedia",
+      "void_policy": "Se Wikimedia non pubblica la classifica del giorno entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "date": "2026-11-05",
+        "type": "wikipedia_top",
+        "article": "Romano_Floriani_Mussolini",
+        "rank_max": 10,
+        "period_terms": [
+          "5 novembre",
+          "5 novembre 2026"
+        ],
+        "indicator_terms": [
+          "Romano Floriani Mussolini"
+        ]
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-04T23:00:00+00:00"
+    }
+  ],
+  "contexts": [
+    {
+      "question_id": "c96a3066-d377-4a16-bfa9-745472548c9c",
+      "query_used": "wikimedia:top:Romano_Floriani_Mussolini",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Posizione di «Romano Floriani Mussolini» nella classifica giornaliera di it.wikipedia, ultimi 7 giorni",
+          "source": "Wikimedia (API delle visite alle pagine)",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. Posizione (dopo aver escluso Pagina principale e spazi dei nomi) e visite, dal giorno più lontano: 26 ottobre: 575° (988 visite) · 27 ottobre: 5° (24257 visite) · 28 ottobre: 1° (36071 visite) · 29 ottobre: 4° (15636 visite) · 30 ottobre: 11° (7838 visite) · 31 ottobre: 22° (6581 visite) · 1 novembre: 24° (8312 visite)."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:03:03.361+00:00",
+      "hash": "2f4f66d16a62e7b2042ecccd927173934ec20b161ec48ad32eec393dce6c80f0",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "ccc0c676-0f0c-4d9a-bcba-3ba200bc9b00",
+      "query_used": "ingv:quake:4",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Terremoti di magnitudo 4,0 o più in Italia, storico settimanale (INGV)",
+          "source": "INGV (catalogo eventi sismici)",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. Area: latitudine 35-48, longitudine 6-19. Eventi di magnitudo 4,0 o più nelle ultime 8 settimane (dalla più lontana): 0, 1, 0, 0, 1, 0, 7, 0. Nelle ultime 52 settimane almeno un evento nel 38% delle settimane."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:03:02.474+00:00",
+      "hash": "39a55d0fd8cdd8ee1352b1fe42337a620b6dcdb55eded673fcad5d9215313e20",
+      "error": null,
+      "schema_version": "c3"
+    }
+  ],
+  "failures": [
+    {
+      "id": "3e8fdf2a-967b-4c93-b647-8a703a23f8bb",
+      "question_id": "ccc0c676-0f0c-4d9a-bcba-3ba200bc9b00",
+      "model_id": "gpt",
+      "condition": "C",
+      "attempts": 2,
+      "kind": "invalid",
+      "reason": "motivazione di 410 caratteri (max 400)",
+      "trace": {
+        "steps": [
+          {
+            "i": 1,
+            "at": "2026-11-02T07:31:36.739Z",
+            "args": {
+              "query": "terremoti Italia novembre 2026 previsioni"
+            },
+            "tool": "web_search",
+            "blocked": [
+              {
+                "url": "https://polymarket.com/it/event/biggest-earthquake-2026-11-01/biggest-earthquake-2026-11-01-5-3-to-5-4",
+                "class": "B4",
+                "stage": "search_result",
+                "rule_id": 48
+              },
+              {
+                "url": "https://www.laquilablog.it/terremoti-tozzi-impossibile-fare-previsioni/",
+                "class": "B7",
+                "stage": "search_result",
+                "rule_id": 82
+              }
+            ],
+            "results": [
+              {
+                "url": "https://ingvterremoti.com/2026/10/03/le-mappe-mensili-della-sismicita-settembre-2026/",
+                "date": "3 ott 2026",
+                "title": "Le mappe mensili della sismicità, settembre 2026",
+                "source": "ingvterremoti.com",
+                "snippet": "Dei 1332 eventi registrati, 144 terremoti hanno avuto una magnitudo pari o superiore a 2.0 e soltanto 14 eventi magnitudo pari o superiore a 3.0 ..."
+              },
+              {
+                "url": "http://rigagiulio.blogspot.com/2026/01/sequenze-sismiche-dellitalia-12026.html",
+                "date": "5 giorni fa",
+                "title": "SEQUENZE SISMICHE DELL'ITALIA 1/2026",
+                "source": "rigagiulio.blogspot.com",
+                "snippet": "L'epicentro dell'evento sismico di magnitudo 3,8 ML accaduto nella zona · La fase di rilascio di energia è ancora attiva. Sulla struttura della ..."
+              },
+              {
+                "url": "https://www.scienzainrete.it/articoli/ce-qualcosa-universale-sequenze-sismiche/",
+                "date": "19 feb 2026",
+                "title": "Sequenze sismiche: esiste un comportamento universale?",
+                "source": "scienzainrete.it",
+                "snippet": "... Italia pari a circa 18 terremoti sopra magnitudo 3,95 all'anno. Tuttavia, questi 18 terremoti non sono distribuiti uniformemente sulla penisola."
+              },
+              {
+                "url": "https://www.facebook.com/groups/EarthquakesForecast/posts/3526248900865878/",
+                "date": "7 mesi fa",
+                "title": "Nuovo periodo di rischio sismico M5 dal 27 al 30.03.2026.",
+                "source": "facebook.com",
+                "snippet": "Nuovo periodo di rischio sismico M5 dal 27 al 30.03.2026. **Ne siamo fuori! Passato anche questo periodo M5 e senza danni!"
+              },
+              {
+                "url": "https://www.3bmeteo.com/terremoti/italia",
+                "date": null,
+                "title": "Terremoti in Italia ≈ Ultime scosse di ...",
+                "source": "3bmeteo.com",
+                "snippet": "38.0238. 14.2988. 02-11-2026 03:35. 1.9. 9 Km. Tonnarella (Costa Siciliana nord-orientale (Messina)). 38.1602. 15.1238. 02-11-2026 02:14. 1.9. 9 Km. Tonnarella ..."
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "at": "2026-11-02T07:31:38.549Z",
+            "args": {
+              "query": "attività sismica recente Italia 2026"
+            },
+            "tool": "web_search",
+            "blocked": [],
+            "results": [
+              {
+                "url": "https://ingvterremoti.com/2026/10/24/approfondimento-sulla-sequenza-sismica-del-tirreno-meridionale-ottobre-2026/",
+                "date": "1 settimana fa",
+                "title": "Approfondimento sulla sequenza sismica del Tirreno meridionale, ottobre 2026",
+                "source": "INGVterremoti",
+                "snippet": "Negli ultimi giorni, ed in particolare dalla notte del 20 ottobre 2026, il Servizio di Sorveglianza Sismica Nazionale dell'INGV ha localizzato una serie di..."
+              },
+              {
+                "url": "https://www.palermotoday.it/cronaca/terremoto-palermo-23-ottobre-2026.html",
+                "date": "1 settimana fa",
+                "title": "Terremoto a Palermo, forte scossa avvertita dalla popolazione: scuole evacuate e gente in strada",
+                "source": "PalermoToday",
+                "snippet": "Uno sciame sismico è stato registrato dai sismografi dell'Ingv nel Tirreno meridionale, a nord ovest di Alicudi. L'evento più forte di magnitudo 5.0."
+              },
+              {
+                "url": "https://www.ilsole24ore.com/art/terremoti-mar-tirreno-come-e-perche-si-verificano-AJL053wB",
+                "date": "3 giorni fa",
+                "title": "Terremoti nel Mar Tirreno: come e perché si verificano",
+                "source": "Il Sole 24 ORE",
+                "snippet": "Analisi dei terremoti di ottobre nel Tirreno, tra sorgenti crostali e attività vulcanica. Scopri il ruolo delle placche e il monitoraggio Ingv."
+              },
+              {
+                "url": "https://ingvterremoti.com/2026/10/23/sequenza-sismica-nel-mar-tirreno-meridionale-23-ottobre-2026/",
+                "date": "1 settimana fa",
+                "title": "Sequenza sismica nel Mar Tirreno Meridionale, 23 ottobre 2026",
+                "source": "INGVterremoti",
+                "snippet": "Dalla notte del 20 ottobre 2026 la Rete Sismica Nazionale ha registrato una serie di eventi sismici nel Mar Tirreno Meridionale, circa 30 km a nord-ovest di..."
+              },
+              {
+                "url": "https://friulisera.it/dieci-anni-dalla-sequenza-sismica-in-italia-centrale-lingv-racconta-il-lavoro-in-emergenza-con-video-podcast/",
+                "date": "2 giorni fa",
+                "title": "Dieci anni dalla sequenza sismica in Italia centrale: l’INGV racconta il lavoro in emergenza con Video Podcast",
+                "source": "Friuli Sera",
+                "snippet": "A dieci anni dalla sequenza sismica che ha colpito l'Italia centrale tra il 2016 e il 2017, il Dipartimento Terremoti dell'Istituto Nazionale di Geofisica e..."
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "at": "2026-11-02T07:31:41.387Z",
+            "note": "tentativo 1",
+            "tool": "answer"
+          },
+          {
+            "i": 4,
+            "at": "2026-11-02T07:31:44.222Z",
+            "note": "tentativo 2",
+            "tool": "answer"
+          }
+        ],
+        "n_pages": 0,
+        "n_blocked": 2,
+        "n_searches": 2,
+        "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22"
+      },
+      "created_at": "2026-11-02T07:31:44.510685+00:00",
+      "requested_at": "2026-11-02T07:31:35.799+00:00"
+    },
+    {
+      "id": "52e8a260-7030-4340-98c4-f637e5afea49",
+      "question_id": "c96a3066-d377-4a16-bfa9-745472548c9c",
+      "model_id": "gemini",
+      "condition": "C",
+      "attempts": 2,
+      "kind": "invalid",
+      "reason": "motivazione di 465 caratteri (max 400)",
+      "trace": {
+        "steps": [
+          {
+            "i": 1,
+            "at": "2026-11-02T07:31:59.384Z",
+            "args": {
+              "query": "Romano Floriani Mussolini Wikipedia"
+            },
+            "tool": "web_search",
+            "blocked": [],
+            "results": [
+              {
+                "url": "https://it.wikipedia.org/wiki/Romano_Floriani_Mussolini",
+                "date": null,
+                "title": "Romano Floriani Mussolini",
+                "source": "it.wikipedia.org",
+                "snippet": "Romano Floriani Mussolini (Roma, 27 gennaio 2003) è un calciatore italiano, difensore o centrocampista della Lazio. Romano Floriani Mussolini."
+              },
+              {
+                "url": "https://it.wikipedia.org/wiki/Romano_Mussolini",
+                "date": null,
+                "title": "Romano Mussolini",
+                "source": "it.wikipedia.org",
+                "snippet": "Romano Mussolini (Forlì, 26 settembre 1927 – Roma, 3 febbraio 2006) è stato un pianista, compositore e pittore italiano."
+              },
+              {
+                "url": "https://www.instagram.com/romanoflorianimussolini/",
+                "date": null,
+                "title": "Romano Floriani Mussolini (@romanoflorianimussolini)",
+                "source": "instagram.com",
+                "snippet": "Onorato di essere stato inserito nella Top 11 della Serie B 2024/2025. Un riconoscimento ..."
+              },
+              {
+                "url": "https://www.deejay.it/articoli/romano-floriani-mussolini-genitori-padre-nonno/",
+                "date": "19 nov 2024",
+                "title": "Chi è Romano Floriani Mussolini: genitori, padre e nonno",
+                "source": "deejay.it",
+                "snippet": "Romano Floriani Mussolini, il bisnipote di Benito e figlio di Alessandra gioca in Serie B. Il cognome, si sa, a volte si pesa più di quanto si ..."
+              },
+              {
+                "url": "https://www.transfermarkt.it/romano-floriani-mussolini/profil/spieler/708086",
+                "date": "22 set 2026",
+                "title": "Romano Floriani Mussolini - Profilo giocatore 26/27",
+                "source": "transfermarkt.it",
+                "snippet": "Nato il: 27/01/2003 (23) Luogo di nascita: Roma Italia (Roma, Lazio) Altezza: 1,88 m Nazionalità: Italia Posizione: Difesa - Terzino destro ..."
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "at": "2026-11-02T07:32:00.857Z",
+            "args": {
+              "query": "Romano Floriani Mussolini Lazio Serie B 2026"
+            },
+            "tool": "web_search",
+            "blocked": [],
+            "results": [
+              {
+                "url": "https://www.gazzetta.it/sportweek/31-10-2026/romano-floriani-mussolini-il-talento-della-lazio-che-ha-stregato-gattuso.shtml",
+                "date": "2 giorni fa",
+                "title": "Romano Floriani Mussolini, il talento della Lazio che ha ...",
+                "source": "gazzetta.it",
+                "snippet": "Romano ha 23 anni, è il terzino destro della Lazio di Gattuso, arriva dal primo gol in Serie A contro il Sassuolo ed è il pronipote di Benito ..."
+              },
+              {
+                "url": "https://it.wikipedia.org/wiki/Romano_Floriani_Mussolini",
+                "date": null,
+                "title": "Romano Floriani Mussolini",
+                "source": "it.wikipedia.org",
+                "snippet": "Romano Floriani Mussolini (Roma, 27 gennaio 2003) è un calciatore italiano, difensore o centrocampista della Lazio. Romano Floriani Mussolini."
+              },
+              {
+                "url": "https://video.gazzetta.it/video-mussolini-lazio-la-sua-storia-dai-prestiti-in-serie-b-alla-fiducia-di-gattuso/dae0c5e9-14b0-45f6-ba3b-1c41c0bb6xlk",
+                "date": "18 ore fa",
+                "title": "VIDEO Mussolini Lazio, la sua storia: dai prestiti in Serie B alla ...",
+                "source": "video.gazzetta.it",
+                "snippet": "Uno dei talenti che sta sbocciando in questa prima parte di stagione è Romano Floriani Mussolini, in testa alla classifica con la sua Lazio."
+              },
+              {
+                "url": "https://www.instagram.com/p/DYxmnygCFxy/",
+                "date": "5 mesi fa",
+                "title": "Romano Floriani Mussolini farà ritorno alla Lazio ...",
+                "source": "instagram.com",
+                "snippet": "Romano Floriani Mussolini farà ritorno alla Lazio, la Cremonese dopo la retrocessione in Serie B ha deciso di non riscattarlo."
+              },
+              {
+                "url": "https://www.transfermarkt.it/romano-floriani-mussolini/profil/spieler/708086",
+                "date": "22 set 2026",
+                "title": "Romano Floriani Mussolini - Profilo giocatore 26/27",
+                "source": "transfermarkt.it",
+                "snippet": "Nato il: 27/01/2003 (23) Luogo di nascita: Roma Italia (Roma, Lazio) Altezza: 1,88 m Nazionalità: Italia Posizione: Difesa - Terzino destro ..."
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "at": "2026-11-02T07:32:02.571Z",
+            "args": {
+              "query": "calciatori italiani più cercati Wikipedia"
+            },
+            "tool": "web_search",
+            "blocked": [],
+            "results": [
+              {
+                "url": "https://it.wikipedia.org/wiki/Calciatori_della_nazionale_italiana",
+                "date": null,
+                "title": "Calciatori della nazionale italiana",
+                "source": "it.wikipedia.org",
+                "snippet": "Gianluigi Buffon, in nazionale dal 1997 al 2018, è il detentore del record di presenze (176) in maglia azzurra. Gigi Riva, in nazionale dal 1965 al 1974, è ..."
+              },
+              {
+                "url": "https://it.wikipedia.org/wiki/Calciatori_plurivincitori_del_campionato_italiano",
+                "date": null,
+                "title": "Calciatori plurivincitori del campionato italiano",
+                "source": "it.wikipedia.org",
+                "snippet": "10 campionati · Gianluigi Buffon (Juventus 2001-02, 2002-03, 2011-12, 2012-13, 2013-14, 2014-15, 2015-16, 2016-17, 2017-18, 2019-20) ; 9 campionati · Leonardo ..."
+              },
+              {
+                "url": "https://it.wikipedia.org/wiki/Discussioni_aiuto:Criteri_di_enciclopedicit%C3%A0/Calciatori/Criteri_per_i_calciatori_italiani,_uno_sforzo",
+                "date": null,
+                "title": "Criteri per i calciatori italiani, uno sforzo",
+                "source": "it.wikipedia.org",
+                "snippet": "una presenza in Europa League o Champions League; 3 presenze in Serie A (o 90 minuti se le presenze sono meno); 100 presenze in B (o 20 gol se le presenze sono ..."
+              },
+              {
+                "url": "https://it.wikipedia.org/wiki/Classifica_di_presenze_in_Serie_A",
+                "date": null,
+                "title": "Classifica di presenze in Serie A",
+                "source": "it.wikipedia.org",
+                "snippet": "Il portiere italiano Gianluigi Buffon, in Serie A tra il 1995 e il 2021, è il calciatore più presente nella storia del massimo campionato nazionale. I due ..."
+              },
+              {
+                "url": "https://it.wikipedia.org/wiki/Categoria:Calciatori_italiani",
+                "date": null,
+                "title": "Categoria:Calciatori italiani",
+                "source": "it.wikipedia.org",
+                "snippet": "Categoria che raggruppa le biografie di calciatori italiani. Il titolo delle voci è nella forma Nome Cognome, ma qui sono ordinate alfabeticamente per ..."
+              }
+            ]
+          },
+          {
+            "i": 4,
+            "at": "2026-11-02T07:32:04.060Z",
+            "args": {
+              "query": "pagine Wikipedia più visitate 5 novembre"
+            },
+            "tool": "web_search",
+            "blocked": [],
+            "results": [
+              {
+                "url": "https://it.wikipedia.org/wiki/5_novembre",
+                "date": null,
+                "title": "5 novembre",
+                "source": "it.wikipedia.org",
+                "snippet": "Il 5 novembre è il 309º giorno del calendario gregoriano (il 310º negli anni bisestili). Mancano 56 giorni alla fine dell'anno."
+              },
+              {
+                "url": "https://www.wikimedia.it/news/la-classifica-delle-voci-piu-lette-su-wikipedia-nel-2025/",
+                "date": "19 dic 2025",
+                "title": "La classifica delle voci più lette su Wikipedia nel 2025",
+                "source": "wikimedia.it",
+                "snippet": "La classifica delle voci più lette su Wikipedia nel 2025 · 1. Jannik Sinner (3.877.370 visite) · 2. Papa Francesco (3.144.224 visite) · 3. Papa ..."
+              },
+              {
+                "url": "https://it.wikipedia.org/wiki/Wikipedia:Bar/Discussioni/top25_pagine_pi%C3%B9_visitate_su_it.wikipedia",
+                "date": null,
+                "title": "Wikipedia:Bar/Discussioni/top25 pagine più visitate su it. ...",
+                "source": "it.wikipedia.org",
+                "snippet": "Secondo: ho velocemente scoperto che descrivere le 25 pagine ogni settimana è un lavoro veramente lungo, quindi se qualcuno vuole dare una mano è ben accetto :)."
+              },
+              {
+                "url": "https://it.wikipedia.org/wiki/File:Cinque_Terre_(Italy,_October_2020)_-_11_(50543748322).jpg",
+                "date": null,
+                "title": "File:Cinque Terre (Italy, October 2020) - 11 (50543748322) ...",
+                "source": "it.wikipedia.org",
+                "snippet": "Usato nelle seguenti pagine di lv.wikipedia.org: Činkve Terre. Usato nelle seguenti pagine di pl.wikipedia.org: Liguria. Usato nelle seguenti pagine di sr ..."
+              },
+              {
+                "url": "https://it.wikipedia.org/wiki/Pagina_principale",
+                "date": null,
+                "title": "Wikipedia, l'enciclopedia libera",
+                "source": "it.wikipedia.org",
+                "snippet": "Wikipedia è un'enciclopedia online, libera e collaborativa. Grazie al contributo di volontari da tutto il mondo, Wikipedia è disponibile in oltre 340 lingue ..."
+              }
+            ]
+          },
+          {
+            "i": 5,
+            "at": "2026-11-02T07:32:06.226Z",
+            "note": "tentativo 1",
+            "tool": "answer"
+          },
+          {
+            "i": 6,
+            "at": "2026-11-02T07:32:08.422Z",
+            "note": "tentativo 2",
+            "tool": "answer"
+          }
+        ],
+        "n_pages": 0,
+        "n_blocked": 0,
+        "n_searches": 4,
+        "rules_hash": "872bc1b34776d3ef37242105bbb92ffa4e63eabaea7136a32df07164619cbe22"
+      },
+      "created_at": "2026-11-02T07:32:08.49085+00:00",
+      "requested_at": "2026-11-02T07:31:58.823+00:00"
+    }
+  ],
+  "traces": [],
+  "reference_forecasts": [],
+  "source_rules": [
+    {
+      "id": 1,
+      "kind": "domain",
+      "pattern": "bet365.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 2,
+      "kind": "domain",
+      "pattern": "sisal.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 3,
+      "kind": "domain",
+      "pattern": "snai.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 4,
+      "kind": "domain",
+      "pattern": "eurobet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 5,
+      "kind": "domain",
+      "pattern": "williamhill.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 6,
+      "kind": "domain",
+      "pattern": "williamhill.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 7,
+      "kind": "domain",
+      "pattern": "betfair.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 8,
+      "kind": "domain",
+      "pattern": "betfair.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 9,
+      "kind": "domain",
+      "pattern": "pinnacle.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 10,
+      "kind": "domain",
+      "pattern": "goldbet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 11,
+      "kind": "domain",
+      "pattern": "planetwin365.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 12,
+      "kind": "domain",
+      "pattern": "lottomatica.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 13,
+      "kind": "domain",
+      "pattern": "bwin.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 14,
+      "kind": "domain",
+      "pattern": "unibet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 15,
+      "kind": "domain",
+      "pattern": "888sport.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 16,
+      "kind": "domain",
+      "pattern": "betway.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 17,
+      "kind": "domain",
+      "pattern": "stanleybet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 18,
+      "kind": "domain",
+      "pattern": "betflag.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 19,
+      "kind": "domain",
+      "pattern": "leovegas.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 20,
+      "kind": "domain",
+      "pattern": "netbet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 21,
+      "kind": "domain",
+      "pattern": "starcasino.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 22,
+      "kind": "domain",
+      "pattern": "1xbet.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 23,
+      "kind": "domain",
+      "pattern": "bet-at-home.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 24,
+      "kind": "domain",
+      "pattern": "oddschecker.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 25,
+      "kind": "domain",
+      "pattern": "oddsportal.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 26,
+      "kind": "domain",
+      "pattern": "betexplorer.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 27,
+      "kind": "domain",
+      "pattern": "oddspedia.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 28,
+      "kind": "domain",
+      "pattern": "betbrain.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 29,
+      "kind": "domain",
+      "pattern": "sportsbettingdime.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 30,
+      "kind": "domain",
+      "pattern": "betiball.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 31,
+      "kind": "domain",
+      "pattern": "extratips.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 32,
+      "kind": "domain",
+      "pattern": "forebet.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 33,
+      "kind": "domain",
+      "pattern": "predictz.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 34,
+      "kind": "domain",
+      "pattern": "sportytrader.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 35,
+      "kind": "domain",
+      "pattern": "sportytrader.it",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 36,
+      "kind": "domain",
+      "pattern": "statarea.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 37,
+      "kind": "domain",
+      "pattern": "vitibet.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 38,
+      "kind": "domain",
+      "pattern": "foresportia.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 39,
+      "kind": "domain",
+      "pattern": "betimate.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 40,
+      "kind": "domain",
+      "pattern": "windrawwin.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 41,
+      "kind": "domain",
+      "pattern": "betensured.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 42,
+      "kind": "domain",
+      "pattern": "pronosoft.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 43,
+      "kind": "domain",
+      "pattern": "scores24.live",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 44,
+      "kind": "domain",
+      "pattern": "dimers.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 45,
+      "kind": "url_pattern",
+      "pattern": "^https?://[^/]*(pronostic|scommess|betting|tipster)[^/]*/",
+      "class": "B3",
+      "reason": "nome del sito riferito a pronostici/scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 46,
+      "kind": "url_pattern",
+      "pattern": "/(pronostic[oi]|scommesse|betting-tips|football-predictions|soccer-predictions|predictions?/|odds/|quote-)",
+      "class": "B3",
+      "reason": "sezione di pronostici/quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 47,
+      "kind": "title_pattern",
+      "pattern": "(pronostic[oi]|betting tips?|\\bquote\\b.{0,30}(scommess|1x2|partita)|\\bodds\\b|predictions? (and|&) (odds|tips)|probabili formazioni e pronostico)",
+      "class": "B3",
+      "reason": "titolo di pronostico/quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 48,
+      "kind": "domain",
+      "pattern": "polymarket.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 49,
+      "kind": "domain",
+      "pattern": "kalshi.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 50,
+      "kind": "domain",
+      "pattern": "metaculus.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 51,
+      "kind": "domain",
+      "pattern": "manifold.markets",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 52,
+      "kind": "domain",
+      "pattern": "predictit.org",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 53,
+      "kind": "domain",
+      "pattern": "gjopen.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 54,
+      "kind": "domain",
+      "pattern": "insightprediction.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 55,
+      "kind": "domain",
+      "pattern": "augur.net",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 56,
+      "kind": "content_pattern",
+      "pattern": "probabilit[àa]\\s+di\\s+(vittoria|successo)",
+      "class": "B5",
+      "reason": "probabilita' di vittoria gia' calcolata",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 57,
+      "kind": "content_pattern",
+      "pattern": "(win|winning)\\s+probability|probability\\s+of\\s+winning|implied\\s+probability",
+      "class": "B5",
+      "reason": "probabilita' di vittoria gia' calcolata",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 58,
+      "kind": "content_pattern",
+      "pattern": "\\b1\\s*[x×]\\s*2\\b",
+      "class": "B5",
+      "reason": "quote 1X2",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 59,
+      "kind": "content_pattern",
+      "pattern": "\\bodds\\b",
+      "class": "B5",
+      "reason": "quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 60,
+      "kind": "content_pattern",
+      "pattern": "\\bquot[ae]\\b[^.\\n]{0,40}\\d[.,]\\d{2}",
+      "class": "B5",
+      "reason": "quote decimali",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 61,
+      "kind": "content_pattern",
+      "pattern": "\\bpronostic\\w*",
+      "class": "B5",
+      "reason": "pronostico",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 62,
+      "kind": "domain",
+      "pattern": "tradingeconomics.com",
+      "class": "B6",
+      "reason": "previsioni/consensus su indicatori",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 63,
+      "kind": "url_pattern",
+      "pattern": "investing\\.com/economic-calendar",
+      "class": "B6",
+      "reason": "calendario economico con consensus",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 64,
+      "kind": "url_pattern",
+      "pattern": "/(forecast|consensus|previsioni-)",
+      "class": "B6",
+      "reason": "pagina di previsioni/consensus",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 65,
+      "kind": "forecast_same_indicator",
+      "pattern": "(forecast|previsione|previsioni|consensus|attes[oi]|expected|projection|proiezion\\w+|stim\\w+)",
+      "class": "B6",
+      "reason": "previsione/proiezione sullo stesso indicatore e periodo della domanda",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 66,
+      "kind": "domain",
+      "pattern": "ilmeteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 67,
+      "kind": "domain",
+      "pattern": "3bmeteo.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 68,
+      "kind": "domain",
+      "pattern": "meteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 69,
+      "kind": "domain",
+      "pattern": "meteoam.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 70,
+      "kind": "domain",
+      "pattern": "windy.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 71,
+      "kind": "domain",
+      "pattern": "yr.no",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 72,
+      "kind": "domain",
+      "pattern": "accuweather.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 73,
+      "kind": "domain",
+      "pattern": "weather.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 74,
+      "kind": "domain",
+      "pattern": "meteoblue.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 75,
+      "kind": "domain",
+      "pattern": "wetter.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 76,
+      "kind": "domain",
+      "pattern": "open-meteo.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 77,
+      "kind": "domain",
+      "pattern": "meteogiornale.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 78,
+      "kind": "domain",
+      "pattern": "iconmeteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 79,
+      "kind": "domain",
+      "pattern": "timeanddate.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 80,
+      "kind": "url_pattern",
+      "pattern": "/(previsioni|forecast|meteo-previsioni)[-/]",
+      "class": "B7",
+      "reason": "pagina di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 81,
+      "kind": "forecast_same_indicator",
+      "pattern": "(previsioni|previsione|prevista|previsto|prevede|forecast|allerta|maltempo|bel tempo|temporali|piogge|pioggia in arrivo|arriva)",
+      "class": "B7",
+      "reason": "previsione meteo per la stessa citta' e lo stesso giorno della domanda (anche in una notizia)",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:51:49.732826+00:00",
+      "active_to": null
+    },
+    {
+      "id": 82,
+      "kind": "forecast_same_indicator",
+      "pattern": "(previsioni|previsione|prevista|previsto|prevede|forecast|allerta|attes[oi]|probabilit[àa])",
+      "class": "B7",
+      "reason": "previsione sullo stesso indicatore della domanda (qualita' dell'aria, terremoti) nello stesso periodo",
+      "categories": [
+        "ambiente"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-01T07:35:17.024988+00:00",
+      "active_to": null
+    },
+    {
+      "id": 83,
+      "kind": "domain",
+      "pattern": "meteo5.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 84,
+      "kind": "domain",
+      "pattern": "meteomi.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 85,
+      "kind": "domain",
+      "pattern": "weather-forecast.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 86,
+      "kind": "domain",
+      "pattern": "weather25.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 87,
+      "kind": "domain",
+      "pattern": "worldweatherai.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 88,
+      "kind": "domain",
+      "pattern": "meteo2.it",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 89,
+      "kind": "domain",
+      "pattern": "meteolive.it",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 90,
+      "kind": "domain",
+      "pattern": "ilmeteo.net",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 91,
+      "kind": "domain",
+      "pattern": "meteo.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 92,
+      "kind": "url_pattern",
+      "pattern": "/meteo[-/]",
+      "class": "B7",
+      "reason": "sezione meteo di un portale (articoli sul tempo dei prossimi giorni)",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 93,
+      "kind": "title_pattern",
+      "pattern": "(previsioni|previsione|forecast|\b(7|10|14|15) giorni\b|prossimi giorni|weekend|questa settimana|settimana d|in arrivo|\barriva\b|\btorna\b|cambia tutto|maltempo|allerta|ondata|\bdomani\b|day weather)",
+      "class": "B7",
+      "reason": "titolo che annuncia il tempo dei prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.556+00:00"
+    },
+    {
+      "id": 94,
+      "kind": "content_pattern",
+      "pattern": "(nei prossimi giorni|in arrivo|previsioni per|previsto per|prevista per|a partire da (lunedì|martedì|mercoledì|giovedì|venerdì|sabato|domenica)|tendenza meteo|evoluzione meteo)",
+      "class": "B7",
+      "reason": "pagina che descrive il tempo previsto per i prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 2,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 95,
+      "kind": "title_pattern",
+      "pattern": "\b(prediction|predictions|preview & prediction|betting tips|tips)\b",
+      "class": "B3",
+      "reason": "titolo di pronostico (in inglese)",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.666+00:00"
+    },
+    {
+      "id": 96,
+      "kind": "domain",
+      "pattern": "footballodds.io",
+      "class": "B2",
+      "reason": "comparatore di quote e pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 97,
+      "kind": "title_pattern",
+      "pattern": "(comp. quote|comparazione quote|\bquote\b)",
+      "class": "B2",
+      "reason": "pagina di quote della partita",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.8+00:00"
+    },
+    {
+      "id": 98,
+      "kind": "title_pattern",
+      "pattern": "(previsioni|previsione|forecast|\\b(7|10|14|15) giorni\\b|prossimi giorni|weekend|fine settimana|questa settimana|settimana \\d|in arrivo|\\barriva\\b|\\btorna\\b|cambia tutto|maltempo|allerta|ondata|\\bdomani\\b|day weather)",
+      "class": "B7",
+      "reason": "titolo che annuncia il tempo dei prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    },
+    {
+      "id": 99,
+      "kind": "title_pattern",
+      "pattern": "\\b(prediction|predictions|betting tips|tips)\\b",
+      "class": "B3",
+      "reason": "titolo di pronostico (in inglese)",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    },
+    {
+      "id": 100,
+      "kind": "title_pattern",
+      "pattern": "(comp\\. quote|comparazione quote|\\bquote\\b)",
+      "class": "B2",
+      "reason": "pagina di quote della partita",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    }
+  ],
+  "predictions": []
+}
