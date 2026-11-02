@@ -1,0 +1,2259 @@
+{
+  "schema": "oracolo-ledger/2",
+  "site": "https://oracolo-sepia.vercel.app",
+  "week_id": "2026-W45",
+  "batch_no": 1,
+  "generated_at": "2026-11-02T07:13:53.667Z",
+  "prev_file_sha256": null,
+  "hash_formula": "sha256_hex( question_id | model_id | answer | confidence | rationale_it | created_at_utc ) con '|' come separatore e created_at nel formato YYYY-MM-DDTHH:MM:SS.ffffffZ",
+  "versions": [
+    {
+      "id": "c3",
+      "kind": "context",
+      "source_sha256": "f2718089549b450a7788a8c62e48c293e5a1a2510ea1c56e80ee80cd4644f3ac",
+      "description": "Schema del contesto c3 (condizione B, v2): come c2, ma per le domande meteo solo osservazioni recenti e climatologia, niente previsioni."
+    },
+    {
+      "id": "f1",
+      "kind": "forecast",
+      "source_sha256": "bd60a59569febfb8c2bdad28126a53ea131b73dbfc30e71c7b15e994334402ab",
+      "description": "Prompt dei previsori: risposta yes/no, fiducia 50-100, motivazione max 400 caratteri, senza accesso al web."
+    },
+    {
+      "id": "t5",
+      "kind": "template",
+      "source_sha256": "43bd9997f75ab958bdd1caa603a33ad0b1b8f475bfcf308fecd421efdc48d0ad",
+      "description": "Template v2 dei testi delle domande a fonte strutturata: meteo, calcio, CrimeWatch e le famiglie aggiunte (carburanti MIMIT, cambio BCE, terremoti INGV, qualita' dell'aria, pagine piu' viste di Wikipedia), con le regole di scelta di soglie, date e orari di chiusura."
+    }
+  ],
+  "questions": [
+    {
+      "id": "4d12ae3f-8e4f-441d-a262-7a6d86837461",
+      "week_id": "2026-W45",
+      "text_it": "Cagliari batterà Frosinone in Serie A il 7 novembre?",
+      "text_en": "Will Cagliari beat Frosinone in Serie A on November 7?",
+      "category": "sport",
+      "scope": "italia",
+      "deadline": "2026-11-07T22:59:00+00:00",
+      "event_date": "2026-11-07",
+      "resolve_after": "2026-11-07T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se Cagliari vince contro Frosinone la partita di Serie A in programma il 7 novembre 2026, con il risultato al termine dei tempi regolamentari riportato da football-data.org. L'esito è NO in caso di pareggio o sconfitta.",
+      "expected_source": "football-data.org: risultato ufficiale della partita",
+      "void_policy": "Se la partita viene rinviata, sospesa o annullata e non si disputa entro 7 giorni dalla data prevista, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "type": "footballdata_match",
+        "kickoff": "2026-11-07T14:00:00Z",
+        "match_id": 558534,
+        "away_team": "Frosinone",
+        "home_team": "Cagliari"
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-07T13:00:00+00:00"
+    },
+    {
+      "id": "29b00600-bff1-4604-aa84-17bfa345530e",
+      "week_id": "2026-W45",
+      "text_it": "La temperatura massima a Torino sarà di almeno 14 °C il 6 novembre?",
+      "text_en": "Will the maximum temperature in Torino be at least 14 °C on November 6?",
+      "category": "meteo",
+      "scope": "italia",
+      "deadline": "2026-11-06T22:59:00+00:00",
+      "event_date": "2026-11-06",
+      "resolve_after": "2026-11-06T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se la temperatura massima giornaliera a Torino del 6 novembre 2026 (ora italiana), secondo i dati giornalieri di Open-Meteo per le coordinate 45.0703, 7.6869, è pari o superiore a 14 °C. L'esito è NO se è inferiore. Il dato si legge il giorno dopo.",
+      "expected_source": "Open-Meteo (open-meteo.com): dati meteorologici giornalieri per Torino",
+      "void_policy": "Se Open-Meteo non fornisce il valore entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "op": "gte",
+        "lat": 45.0703,
+        "lon": 7.6869,
+        "city": "Torino",
+        "date": "2026-11-06",
+        "type": "openmeteo_daily",
+        "variable": "temperature_2m_max",
+        "threshold": 14
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-05T23:00:00+00:00"
+    },
+    {
+      "id": "d89e705f-bf02-46ab-9059-95119c3e5bd7",
+      "week_id": "2026-W45",
+      "text_it": "Pioverà almeno 1 mm a Milano il 6 novembre?",
+      "text_en": "Will it rain at least 1 mm in Milano on November 6?",
+      "category": "meteo",
+      "scope": "italia",
+      "deadline": "2026-11-06T22:59:00+00:00",
+      "event_date": "2026-11-06",
+      "resolve_after": "2026-11-06T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se la precipitazione totale giornaliera a Milano del 6 novembre 2026 (ora italiana), secondo i dati giornalieri di Open-Meteo per le coordinate 45.4642, 9.19, è pari o superiore a 1,0 mm. L'esito è NO se è inferiore. Il dato si legge il giorno dopo.",
+      "expected_source": "Open-Meteo (open-meteo.com): dati meteorologici giornalieri per Milano",
+      "void_policy": "Se Open-Meteo non fornisce il valore entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "op": "gte",
+        "lat": 45.4642,
+        "lon": 9.19,
+        "city": "Milano",
+        "date": "2026-11-06",
+        "type": "openmeteo_daily",
+        "variable": "precipitation_sum",
+        "threshold": 1
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-05T23:00:00+00:00"
+    },
+    {
+      "id": "35c656ba-3d03-415d-aa65-844e795605ba",
+      "week_id": "2026-W45",
+      "text_it": "Venezia FC batterà Udinese in Serie A il 6 novembre?",
+      "text_en": "Will Venezia FC beat Udinese in Serie A on November 6?",
+      "category": "sport",
+      "scope": "italia",
+      "deadline": "2026-11-06T22:59:00+00:00",
+      "event_date": "2026-11-06",
+      "resolve_after": "2026-11-06T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se Venezia FC vince contro Udinese la partita di Serie A in programma il 6 novembre 2026, con il risultato al termine dei tempi regolamentari riportato da football-data.org. L'esito è NO in caso di pareggio o sconfitta.",
+      "expected_source": "football-data.org: risultato ufficiale della partita",
+      "void_policy": "Se la partita viene rinviata, sospesa o annullata e non si disputa entro 7 giorni dalla data prevista, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "type": "footballdata_match",
+        "kickoff": "2026-11-06T19:45:00Z",
+        "match_id": 558537,
+        "away_team": "Udinese",
+        "home_team": "Venezia FC"
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-06T18:45:00+00:00"
+    },
+    {
+      "id": "dfb023a2-bd08-49dc-8b97-a7c65f3f2975",
+      "week_id": "2026-W45",
+      "text_it": "Nella settimana dal 3 novembre al 9 novembre 2026, CrimeWatch registrerà almeno 6 episodi di spaccio in tutta la provincia di Verona?",
+      "text_en": "In the week from November 3 to November 9, 2026, will CrimeWatch record at least 6 drug dealing cases in the whole province of Verona?",
+      "category": "verona_spaccio",
+      "scope": "verona",
+      "deadline": "2026-11-09T22:59:00+00:00",
+      "event_date": "2026-11-09",
+      "resolve_after": "2026-11-13T23:00:00+00:00",
+      "resolution_criteria": "L'esito e' SI' se CrimeWatch registra almeno 6 eventi di categoria \"spaccio\" nella provincia di Verona, con data del fatto dal 2026-11-03 al 2026-11-09; altrimenti NO. Il conteggio si fa il 2026-11-14, cioe' 5 giorni dopo la chiusura del periodo, perche' CrimeWatch registra i fatti con un ritardo mediano di circa 2,6 giorni.",
+      "expected_source": "CrimeWatch: osservatorio sulla criminalità di Verona (aggregazione da fonti pubbliche), tabella eventi",
+      "void_policy": "Se la raccolta di CrimeWatch non risulta attiva dopo la chiusura del periodo, la domanda resta senza esito (non risolta) e non riceve punteggio.",
+      "resolution_spec": {
+        "op": "gte",
+        "to": "2026-11-09",
+        "from": "2026-11-03",
+        "type": "crimewatch_count",
+        "zona": "tutte",
+        "categoria": "spaccio",
+        "threshold": 6
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-02T23:00:00+00:00"
+    },
+    {
+      "id": "ebc5022b-250f-41fc-a3f3-5c6e9d711d24",
+      "week_id": "2026-W45",
+      "text_it": "Il tasso di cambio di riferimento della BCE euro/dollaro del 6 novembre 2026 sarà di almeno 1,115?",
+      "text_en": "Will the ECB euro/US dollar reference exchange rate of November 6, 2026 be at least 1,115?",
+      "category": "economia",
+      "scope": "italia",
+      "deadline": "2026-11-06T22:59:00+00:00",
+      "event_date": "2026-11-06",
+      "resolve_after": "2026-11-06T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se il tasso di cambio di riferimento euro/dollaro statunitense pubblicato dalla Banca centrale europea per il giorno 6 novembre 2026 (dati SDW, serie EXR D.USD.EUR.SP00.A, dollari per un euro) è pari o superiore a 1,115. L'esito è NO se è inferiore.",
+      "expected_source": "Banca centrale europea (data.ecb.europa.eu): tassi di cambio di riferimento giornalieri",
+      "void_policy": "Se la BCE non pubblica un tasso per quel giorno (festività TARGET) entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "date": "2026-11-06",
+        "type": "ecb_fx",
+        "threshold": 1.115,
+        "period_terms": [
+          "6 novembre",
+          "6 novembre 2026"
+        ],
+        "indicator_terms": [
+          "euro dollaro",
+          "EUR/USD",
+          "cambio euro"
+        ]
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-05T23:00:00+00:00"
+    },
+    {
+      "id": "6e228171-d077-4778-8c77-4592d7f5009b",
+      "week_id": "2026-W45",
+      "text_it": "Il PM10 medio giornaliero a Verona del 6 novembre 2026 sarà di almeno 20 µg/m³ secondo il modello europeo CAMS?",
+      "text_en": "Will the daily mean PM10 in Verona on November 6, 2026 be at least 20 µg/m³ according to the European CAMS model?",
+      "category": "ambiente",
+      "scope": "italia",
+      "deadline": "2026-11-06T22:59:00+00:00",
+      "event_date": "2026-11-06",
+      "resolve_after": "2026-11-07T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se la media delle 24 concentrazioni orarie di PM10 del 6 novembre 2026 (ora italiana) a Verona, secondo i dati del modello di qualità dell'aria europeo CAMS distribuiti da Open-Meteo per le coordinate 45.4384, 10.9916, è pari o superiore a 20 µg/m³. L'esito è NO se è inferiore. È una stima di modello, non la misura di una centralina. Il dato si legge due giorni dopo.",
+      "expected_source": "Open-Meteo (open-meteo.com), qualità dell'aria: modello CAMS Europe, PM10 orario per Verona",
+      "void_policy": "Se Open-Meteo non fornisce tutti i valori orari del giorno entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "lat": 45.4384,
+        "lon": 10.9916,
+        "city": "Verona",
+        "date": "2026-11-06",
+        "type": "openmeteo_airquality",
+        "threshold": 20,
+        "period_terms": [
+          "6 novembre",
+          "6 novembre 2026"
+        ],
+        "indicator_terms": [
+          "PM10",
+          "polveri sottili",
+          "qualità dell'aria"
+        ]
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-05T23:00:00+00:00"
+    },
+    {
+      "id": "8b403115-0db1-4c2f-9642-429faa45b502",
+      "week_id": "2026-W45",
+      "text_it": "Il prezzo di Bitcoin alle 00:00 UTC del 6 novembre 2026 sarà di almeno 69.000 euro secondo CoinGecko?",
+      "text_en": "Will the price of Bitcoin at 00:00 UTC on November 6, 2026 be at least 69.000 euro according to CoinGecko?",
+      "category": "economia",
+      "scope": "italia",
+      "deadline": "2026-11-06T22:59:00+00:00",
+      "event_date": "2026-11-06",
+      "resolve_after": "2026-11-06T23:00:00+00:00",
+      "resolution_criteria": "L'esito è SÌ se il prezzo di Bitcoin in euro alle 00:00 UTC del 6 novembre 2026, come riportato dai dati storici giornalieri di CoinGecko (endpoint coins/bitcoin/history, campo market_data.current_price.eur), è pari o superiore a 69.000 euro. L'esito è NO se è inferiore.",
+      "expected_source": "CoinGecko (coingecko.com): prezzo storico giornaliero di Bitcoin in euro",
+      "void_policy": "Se CoinGecko non fornisce il prezzo di quel giorno entro 7 giorni dalla data, la domanda è annullata (nessun punteggio).",
+      "resolution_spec": {
+        "date": "2026-11-06",
+        "type": "coingecko_btc",
+        "threshold": 69000,
+        "period_terms": [
+          "6 novembre",
+          "6 novembre 2026"
+        ],
+        "indicator_terms": [
+          "Bitcoin",
+          "BTC"
+        ]
+      },
+      "status": "open",
+      "created_at": "2026-11-02T07:02:54.995806+00:00",
+      "referee_version": "t5",
+      "design": "v2",
+      "closes_at": "2026-11-04T23:00:00+00:00"
+    }
+  ],
+  "contexts": [
+    {
+      "question_id": "35c656ba-3d03-415d-aa65-844e795605ba",
+      "query_used": "football-data:standings:SA",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Classifica Serie A (football-data.org): Venezia FC e Udinese",
+          "source": "football-data.org (classifica)",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. Venezia FC: 20° posto, 3 punti in 10 partite (1 vittorie, 0 pareggi, 9 sconfitte, gol 6-20). Udinese: 19° posto, 5 punti in 10 partite (1 vittorie, 2 pareggi, 7 sconfitte, gol 11-23). Partita in casa di Venezia FC."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:02:59.289+00:00",
+      "hash": "14f0ce1697c6fb0f3a4ffad7cc1ce2da4c578c6eb2f416c03ba60f5e1d0c5c1d",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "29b00600-bff1-4604-aa84-17bfa345530e",
+      "query_used": "open-meteo:climatology:Torino",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Osservazioni recenti a Torino (analisi Open-Meteo, ultimi 7 giorni)",
+          "source": "Open-Meteo (dati osservati/analisi)",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. 26 ottobre: max 17,5 °C, pioggia 0,0 mm · 27 ottobre: max 16,9 °C, pioggia 0,0 mm · 28 ottobre: max 18,0 °C, pioggia 0,0 mm · 29 ottobre: max 18,8 °C, pioggia 0,0 mm · 30 ottobre: max 17,4 °C, pioggia 0,0 mm · 31 ottobre: max 17,6 °C, pioggia 0,0 mm · 1 novembre: max 13,0 °C, pioggia 0,0 mm"
+        },
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Climatologia di Torino per il 6 novembre (2016-2025, giorni vicini +-3)",
+          "source": "Open-Meteo (archivio storico)",
+          "snippet": "Temperatura massima: media 13,8 °C, mediana 13,9 °C, 25° percentile 11,8 °C, 75° percentile 15,5 °C. Frequenza di giorni con pioggia almeno 1 mm: 34%."
+        }
+      ],
+      "n_items": 2,
+      "collected_at": "2026-11-02T07:02:57.389+00:00",
+      "hash": "7b5e7ec1725bef0ae8e2efb146cfa11517d761b631bb07b3a2696c81aca43460",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "d89e705f-bf02-46ab-9059-95119c3e5bd7",
+      "query_used": "open-meteo:climatology:Milano",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Osservazioni recenti a Milano (analisi Open-Meteo, ultimi 7 giorni)",
+          "source": "Open-Meteo (dati osservati/analisi)",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. 26 ottobre: max 14,9 °C, pioggia 0,0 mm · 27 ottobre: max 16,6 °C, pioggia 0,0 mm · 28 ottobre: max 17,0 °C, pioggia 0,0 mm · 29 ottobre: max 17,5 °C, pioggia 0,0 mm · 30 ottobre: max 17,2 °C, pioggia 0,0 mm · 31 ottobre: max 16,2 °C, pioggia 0,0 mm · 1 novembre: max 14,8 °C, pioggia 0,0 mm"
+        },
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Climatologia di Milano per il 6 novembre (2016-2025, giorni vicini +-3)",
+          "source": "Open-Meteo (archivio storico)",
+          "snippet": "Temperatura massima: media 14,1 °C, mediana 13,9 °C, 25° percentile 12,4 °C, 75° percentile 16,0 °C. Frequenza di giorni con pioggia almeno 1 mm: 49%."
+        }
+      ],
+      "n_items": 2,
+      "collected_at": "2026-11-02T07:02:57.73+00:00",
+      "hash": "a6a05fa67277b8aab663f98b147f39f101ca394b2f3cabaeff119e5bfb2d6820",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "4d12ae3f-8e4f-441d-a262-7a6d86837461",
+      "query_used": "football-data:standings:SA",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Classifica Serie A (football-data.org): Cagliari e Frosinone",
+          "source": "football-data.org (classifica)",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. Cagliari: 12° posto, 13 punti in 10 partite (4 vittorie, 1 pareggi, 5 sconfitte, gol 9-15). Frosinone: 6° posto, 20 punti in 10 partite (6 vittorie, 2 pareggi, 2 sconfitte, gol 24-14). Partita in casa di Cagliari."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:02:59.93+00:00",
+      "hash": "b8716aa9a2f74ad09f62beafd7a59bb5436509669e900a78d99c1abde92dda4e",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "dfb023a2-bd08-49dc-8b97-a7c65f3f2975",
+      "query_used": "crimewatch:baseline:spaccio:tutte",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "CrimeWatch: conteggi settimanali \"spaccio\" (provincia)",
+          "source": "CrimeWatch (aggregazione da fonti pubbliche)",
+          "snippet": "Dati letti il 02/11/26, 08:00. Ultime 8 settimane complete (da 2026-08-31): 5, 4, 7, 3, 7, 5, 14, 14. Mediana 6, minimo 3, massimo 14. Ritardo di registrazione mediano ~2,6 giorni."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:03:01.125+00:00",
+      "hash": "5f8bb9fdaf8d70cdea2034ffd68b2ef4b03b600cb0802b978fd652b56ed143e3",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "8b403115-0db1-4c2f-9642-429faa45b502",
+      "query_used": "coingecko:bitcoin:eur",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Prezzo di Bitcoin in euro, ultimi giorni (CoinGecko)",
+          "source": "CoinGecko",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. Prezzo giornaliero alle 00:00 UTC, ultimi 10 giorni (euro): 23 ottobre: 72.477 · 24 ottobre: 72.401 · 25 ottobre: 72.127 · 26 ottobre: 71.363 · 27 ottobre: 71.623 · 28 ottobre: 72.620 · 29 ottobre: 72.855 · 30 ottobre: 69.608 · 31 ottobre: 68.922 · 1 novembre: 69.176. Minimo e massimo del periodo: 68.922 e 74.846."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:03:03.577+00:00",
+      "hash": "de2224276375f556f6646f11fff56c62f18493f016861fec428c7fc9fd26e9ef",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "ebc5022b-250f-41fc-a3f3-5c6e9d711d24",
+      "query_used": "ecb:EXR:USD",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "Tasso di cambio di riferimento BCE euro/dollaro, ultimi giorni",
+          "source": "Banca centrale europea (data.ecb.europa.eu)",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. Ultimi 10 giorni di pubblicazione (dollari per un euro): 19 ottobre: 1,1225 · 20 ottobre: 1,1215 · 21 ottobre: 1,1234 · 22 ottobre: 1,1205 · 23 ottobre: 1,1193 · 26 ottobre: 1,1188 · 27 ottobre: 1,1150 · 28 ottobre: 1,1133 · 29 ottobre: 1,1130 · 30 ottobre: 1,1172. Minimo e massimo degli ultimi 30 giorni: 1,1130 e 1,1490."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:03:02.255+00:00",
+      "hash": "509cd576b0690726ea4b5d0823b40ff48d156084b9de5f050d46b18f9ee11f27",
+      "error": null,
+      "schema_version": "c3"
+    },
+    {
+      "question_id": "6e228171-d077-4778-8c77-4592d7f5009b",
+      "query_used": "open-meteo:air-quality:Verona",
+      "items": [
+        {
+          "url": null,
+          "date": null,
+          "kind": "data",
+          "title": "PM10 medio giornaliero a Verona (modello CAMS, ultimi giorni)",
+          "source": "Open-Meteo, qualità dell'aria (CAMS Europe)",
+          "snippet": "Dati ottenuti il 02/11/26, 08:00. Ultimi 7 giorni completi: 26 ottobre: 22,6 µg/m³ · 27 ottobre: 25,3 µg/m³ · 28 ottobre: 34,6 µg/m³ · 29 ottobre: 24,9 µg/m³ · 30 ottobre: 22,7 µg/m³ · 31 ottobre: 21,0 µg/m³ · 1 novembre: 12,9 µg/m³. Ultimi 45 giorni: mediana 18,3, minimo 7,4, massimo 43,7 µg/m³. È una stima di modello, non la misura di una centralina."
+        }
+      ],
+      "n_items": 1,
+      "collected_at": "2026-11-02T07:03:02.946+00:00",
+      "hash": "7565e8189648004070fae2e5eb361bf939635999f8e29b0c3f8db2c663f9e975",
+      "error": null,
+      "schema_version": "c3"
+    }
+  ],
+  "failures": [
+    {
+      "id": "9db80977-2afb-4391-9b59-f5f0058af9aa",
+      "question_id": "6e228171-d077-4778-8c77-4592d7f5009b",
+      "model_id": "gemini",
+      "condition": "B",
+      "attempts": 2,
+      "kind": "invalid",
+      "reason": "motivazione di 412 caratteri (max 400)",
+      "trace": null,
+      "created_at": "2026-11-02T07:10:45.031377+00:00",
+      "requested_at": "2026-11-02T07:10:42.509+00:00"
+    },
+    {
+      "id": "77808044-c09e-468c-8447-6fb449b383cc",
+      "question_id": "4d12ae3f-8e4f-441d-a262-7a6d86837461",
+      "model_id": "gpt",
+      "condition": "B",
+      "attempts": 2,
+      "kind": "invalid",
+      "reason": "motivazione di 423 caratteri (max 400)",
+      "trace": null,
+      "created_at": "2026-11-02T07:10:57.434482+00:00",
+      "requested_at": "2026-11-02T07:10:53.764+00:00"
+    },
+    {
+      "id": "15349788-1d0c-40bc-bbd8-18ba5a09b829",
+      "question_id": "dfb023a2-bd08-49dc-8b97-a7c65f3f2975",
+      "model_id": "gemini",
+      "condition": "A",
+      "attempts": 2,
+      "kind": "invalid",
+      "reason": "motivazione di 407 caratteri (max 400)",
+      "trace": null,
+      "created_at": "2026-11-02T07:13:20.378244+00:00",
+      "requested_at": "2026-11-02T07:13:18.239+00:00"
+    }
+  ],
+  "traces": [],
+  "reference_forecasts": [
+    {
+      "question_id": "29b00600-bff1-4604-aa84-17bfa345530e",
+      "source": "open-meteo-ensemble-gfs",
+      "p_yes": 0.1719,
+      "detail": {
+        "band": [
+          0.15,
+          0.85
+        ],
+        "rule": "(k+0.5)/(n+1)",
+        "model": "gfs025",
+        "members": 31,
+        "lead_days": 4,
+        "at_or_above": 5,
+        "obtained_at": "02/11/26, 08:00"
+      },
+      "created_at": "2026-11-02T07:02:57.562236+00:00"
+    },
+    {
+      "question_id": "d89e705f-bf02-46ab-9059-95119c3e5bd7",
+      "source": "open-meteo-ensemble-gfs",
+      "p_yes": 0.2031,
+      "detail": {
+        "band": [
+          0.15,
+          0.85
+        ],
+        "rule": "(k+0.5)/(n+1)",
+        "model": "gfs025",
+        "members": 31,
+        "lead_days": 4,
+        "at_or_above": 6,
+        "obtained_at": "02/11/26, 08:00"
+      },
+      "created_at": "2026-11-02T07:02:57.915019+00:00"
+    }
+  ],
+  "source_rules": [
+    {
+      "id": 1,
+      "kind": "domain",
+      "pattern": "bet365.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 2,
+      "kind": "domain",
+      "pattern": "sisal.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 3,
+      "kind": "domain",
+      "pattern": "snai.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 4,
+      "kind": "domain",
+      "pattern": "eurobet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 5,
+      "kind": "domain",
+      "pattern": "williamhill.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 6,
+      "kind": "domain",
+      "pattern": "williamhill.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 7,
+      "kind": "domain",
+      "pattern": "betfair.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 8,
+      "kind": "domain",
+      "pattern": "betfair.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 9,
+      "kind": "domain",
+      "pattern": "pinnacle.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 10,
+      "kind": "domain",
+      "pattern": "goldbet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 11,
+      "kind": "domain",
+      "pattern": "planetwin365.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 12,
+      "kind": "domain",
+      "pattern": "lottomatica.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 13,
+      "kind": "domain",
+      "pattern": "bwin.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 14,
+      "kind": "domain",
+      "pattern": "unibet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 15,
+      "kind": "domain",
+      "pattern": "888sport.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 16,
+      "kind": "domain",
+      "pattern": "betway.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 17,
+      "kind": "domain",
+      "pattern": "stanleybet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 18,
+      "kind": "domain",
+      "pattern": "betflag.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 19,
+      "kind": "domain",
+      "pattern": "leovegas.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 20,
+      "kind": "domain",
+      "pattern": "netbet.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 21,
+      "kind": "domain",
+      "pattern": "starcasino.it",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 22,
+      "kind": "domain",
+      "pattern": "1xbet.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 23,
+      "kind": "domain",
+      "pattern": "bet-at-home.com",
+      "class": "B1",
+      "reason": "operatore di scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 24,
+      "kind": "domain",
+      "pattern": "oddschecker.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 25,
+      "kind": "domain",
+      "pattern": "oddsportal.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 26,
+      "kind": "domain",
+      "pattern": "betexplorer.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 27,
+      "kind": "domain",
+      "pattern": "oddspedia.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 28,
+      "kind": "domain",
+      "pattern": "betbrain.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 29,
+      "kind": "domain",
+      "pattern": "sportsbettingdime.com",
+      "class": "B2",
+      "reason": "comparatore di quote",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 30,
+      "kind": "domain",
+      "pattern": "betiball.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 31,
+      "kind": "domain",
+      "pattern": "extratips.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 32,
+      "kind": "domain",
+      "pattern": "forebet.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 33,
+      "kind": "domain",
+      "pattern": "predictz.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 34,
+      "kind": "domain",
+      "pattern": "sportytrader.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 35,
+      "kind": "domain",
+      "pattern": "sportytrader.it",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 36,
+      "kind": "domain",
+      "pattern": "statarea.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 37,
+      "kind": "domain",
+      "pattern": "vitibet.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 38,
+      "kind": "domain",
+      "pattern": "foresportia.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 39,
+      "kind": "domain",
+      "pattern": "betimate.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 40,
+      "kind": "domain",
+      "pattern": "windrawwin.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 41,
+      "kind": "domain",
+      "pattern": "betensured.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 42,
+      "kind": "domain",
+      "pattern": "pronosoft.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 43,
+      "kind": "domain",
+      "pattern": "scores24.live",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 44,
+      "kind": "domain",
+      "pattern": "dimers.com",
+      "class": "B3",
+      "reason": "sito di pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 45,
+      "kind": "url_pattern",
+      "pattern": "^https?://[^/]*(pronostic|scommess|betting|tipster)[^/]*/",
+      "class": "B3",
+      "reason": "nome del sito riferito a pronostici/scommesse",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 46,
+      "kind": "url_pattern",
+      "pattern": "/(pronostic[oi]|scommesse|betting-tips|football-predictions|soccer-predictions|predictions?/|odds/|quote-)",
+      "class": "B3",
+      "reason": "sezione di pronostici/quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 47,
+      "kind": "title_pattern",
+      "pattern": "(pronostic[oi]|betting tips?|\\bquote\\b.{0,30}(scommess|1x2|partita)|\\bodds\\b|predictions? (and|&) (odds|tips)|probabili formazioni e pronostico)",
+      "class": "B3",
+      "reason": "titolo di pronostico/quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 48,
+      "kind": "domain",
+      "pattern": "polymarket.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 49,
+      "kind": "domain",
+      "pattern": "kalshi.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 50,
+      "kind": "domain",
+      "pattern": "metaculus.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 51,
+      "kind": "domain",
+      "pattern": "manifold.markets",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 52,
+      "kind": "domain",
+      "pattern": "predictit.org",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 53,
+      "kind": "domain",
+      "pattern": "gjopen.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 54,
+      "kind": "domain",
+      "pattern": "insightprediction.com",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 55,
+      "kind": "domain",
+      "pattern": "augur.net",
+      "class": "B4",
+      "reason": "mercato predittivo / aggregatore di previsioni",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 56,
+      "kind": "content_pattern",
+      "pattern": "probabilit[àa]\\s+di\\s+(vittoria|successo)",
+      "class": "B5",
+      "reason": "probabilita' di vittoria gia' calcolata",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 57,
+      "kind": "content_pattern",
+      "pattern": "(win|winning)\\s+probability|probability\\s+of\\s+winning|implied\\s+probability",
+      "class": "B5",
+      "reason": "probabilita' di vittoria gia' calcolata",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 58,
+      "kind": "content_pattern",
+      "pattern": "\\b1\\s*[x×]\\s*2\\b",
+      "class": "B5",
+      "reason": "quote 1X2",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 59,
+      "kind": "content_pattern",
+      "pattern": "\\bodds\\b",
+      "class": "B5",
+      "reason": "quote",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 60,
+      "kind": "content_pattern",
+      "pattern": "\\bquot[ae]\\b[^.\\n]{0,40}\\d[.,]\\d{2}",
+      "class": "B5",
+      "reason": "quote decimali",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 61,
+      "kind": "content_pattern",
+      "pattern": "\\bpronostic\\w*",
+      "class": "B5",
+      "reason": "pronostico",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 3,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 62,
+      "kind": "domain",
+      "pattern": "tradingeconomics.com",
+      "class": "B6",
+      "reason": "previsioni/consensus su indicatori",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 63,
+      "kind": "url_pattern",
+      "pattern": "investing\\.com/economic-calendar",
+      "class": "B6",
+      "reason": "calendario economico con consensus",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 64,
+      "kind": "url_pattern",
+      "pattern": "/(forecast|consensus|previsioni-)",
+      "class": "B6",
+      "reason": "pagina di previsioni/consensus",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 65,
+      "kind": "forecast_same_indicator",
+      "pattern": "(forecast|previsione|previsioni|consensus|attes[oi]|expected|projection|proiezion\\w+|stim\\w+)",
+      "class": "B6",
+      "reason": "previsione/proiezione sullo stesso indicatore e periodo della domanda",
+      "categories": [
+        "economia"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 66,
+      "kind": "domain",
+      "pattern": "ilmeteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 67,
+      "kind": "domain",
+      "pattern": "3bmeteo.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 68,
+      "kind": "domain",
+      "pattern": "meteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 69,
+      "kind": "domain",
+      "pattern": "meteoam.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 70,
+      "kind": "domain",
+      "pattern": "windy.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 71,
+      "kind": "domain",
+      "pattern": "yr.no",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 72,
+      "kind": "domain",
+      "pattern": "accuweather.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 73,
+      "kind": "domain",
+      "pattern": "weather.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 74,
+      "kind": "domain",
+      "pattern": "meteoblue.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 75,
+      "kind": "domain",
+      "pattern": "wetter.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 76,
+      "kind": "domain",
+      "pattern": "open-meteo.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 77,
+      "kind": "domain",
+      "pattern": "meteogiornale.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 78,
+      "kind": "domain",
+      "pattern": "iconmeteo.it",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 79,
+      "kind": "domain",
+      "pattern": "timeanddate.com",
+      "class": "B7",
+      "reason": "previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 80,
+      "kind": "url_pattern",
+      "pattern": "/(previsioni|forecast|meteo-previsioni)[-/]",
+      "class": "B7",
+      "reason": "pagina di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:42:29.744932+00:00",
+      "active_to": null
+    },
+    {
+      "id": 81,
+      "kind": "forecast_same_indicator",
+      "pattern": "(previsioni|previsione|prevista|previsto|prevede|forecast|allerta|maltempo|bel tempo|temporali|piogge|pioggia in arrivo|arriva)",
+      "class": "B7",
+      "reason": "previsione meteo per la stessa citta' e lo stesso giorno della domanda (anche in una notizia)",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-09-30T20:51:49.732826+00:00",
+      "active_to": null
+    },
+    {
+      "id": 82,
+      "kind": "forecast_same_indicator",
+      "pattern": "(previsioni|previsione|prevista|previsto|prevede|forecast|allerta|attes[oi]|probabilit[àa])",
+      "class": "B7",
+      "reason": "previsione sullo stesso indicatore della domanda (qualita' dell'aria, terremoti) nello stesso periodo",
+      "categories": [
+        "ambiente"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-01T07:35:17.024988+00:00",
+      "active_to": null
+    },
+    {
+      "id": 83,
+      "kind": "domain",
+      "pattern": "meteo5.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 84,
+      "kind": "domain",
+      "pattern": "meteomi.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 85,
+      "kind": "domain",
+      "pattern": "weather-forecast.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 86,
+      "kind": "domain",
+      "pattern": "weather25.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 87,
+      "kind": "domain",
+      "pattern": "worldweatherai.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 88,
+      "kind": "domain",
+      "pattern": "meteo2.it",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 89,
+      "kind": "domain",
+      "pattern": "meteolive.it",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 90,
+      "kind": "domain",
+      "pattern": "ilmeteo.net",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 91,
+      "kind": "domain",
+      "pattern": "meteo.com",
+      "class": "B7",
+      "reason": "sito di previsioni meteo",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 92,
+      "kind": "url_pattern",
+      "pattern": "/meteo[-/]",
+      "class": "B7",
+      "reason": "sezione meteo di un portale (articoli sul tempo dei prossimi giorni)",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 93,
+      "kind": "title_pattern",
+      "pattern": "(previsioni|previsione|forecast|\b(7|10|14|15) giorni\b|prossimi giorni|weekend|questa settimana|settimana d|in arrivo|\barriva\b|\btorna\b|cambia tutto|maltempo|allerta|ondata|\bdomani\b|day weather)",
+      "class": "B7",
+      "reason": "titolo che annuncia il tempo dei prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.556+00:00"
+    },
+    {
+      "id": 94,
+      "kind": "content_pattern",
+      "pattern": "(nei prossimi giorni|in arrivo|previsioni per|previsto per|prevista per|a partire da (lunedì|martedì|mercoledì|giovedì|venerdì|sabato|domenica)|tendenza meteo|evoluzione meteo)",
+      "class": "B7",
+      "reason": "pagina che descrive il tempo previsto per i prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 2,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 95,
+      "kind": "title_pattern",
+      "pattern": "\b(prediction|predictions|preview & prediction|betting tips|tips)\b",
+      "class": "B3",
+      "reason": "titolo di pronostico (in inglese)",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.666+00:00"
+    },
+    {
+      "id": 96,
+      "kind": "domain",
+      "pattern": "footballodds.io",
+      "class": "B2",
+      "reason": "comparatore di quote e pronostici",
+      "categories": null,
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": null
+    },
+    {
+      "id": 97,
+      "kind": "title_pattern",
+      "pattern": "(comp. quote|comparazione quote|\bquote\b)",
+      "class": "B2",
+      "reason": "pagina di quote della partita",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:49:30.080031+00:00",
+      "active_to": "2026-10-06T07:50:42.8+00:00"
+    },
+    {
+      "id": 98,
+      "kind": "title_pattern",
+      "pattern": "(previsioni|previsione|forecast|\\b(7|10|14|15) giorni\\b|prossimi giorni|weekend|fine settimana|questa settimana|settimana \\d|in arrivo|\\barriva\\b|\\btorna\\b|cambia tutto|maltempo|allerta|ondata|\\bdomani\\b|day weather)",
+      "class": "B7",
+      "reason": "titolo che annuncia il tempo dei prossimi giorni",
+      "categories": [
+        "meteo"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    },
+    {
+      "id": 99,
+      "kind": "title_pattern",
+      "pattern": "\\b(prediction|predictions|betting tips|tips)\\b",
+      "class": "B3",
+      "reason": "titolo di pronostico (in inglese)",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    },
+    {
+      "id": 100,
+      "kind": "title_pattern",
+      "pattern": "(comp\\. quote|comparazione quote|\\bquote\\b)",
+      "class": "B2",
+      "reason": "pagina di quote della partita",
+      "categories": [
+        "sport"
+      ],
+      "min_hits": 1,
+      "active_from": "2026-10-06T07:50:46.230388+00:00",
+      "active_to": null
+    }
+  ],
+  "predictions": [
+    {
+      "id": "e1fcaee0-12ca-4f1f-9fa1-44d2e7f4a94a",
+      "question_id": "29b00600-bff1-4604-aa84-17bfa345530e",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google AI Studio",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:25.57+00:00",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Le osservazioni recenti mostrano temperature massime elevate per il periodo, con valori costantemente sopra i 16°C fino al 31 ottobre, e 13°C il 1 novembre. La climatologia indica una media di 13.8°C e una mediana di 13.9°C per il 6 novembre, con il 75° percentile a 15.5°C. Questo suggerisce una buona probabilità che la temperatura superi i 14°C, nonostante il calo del 1 novembre.",
+      "created_at": "2026-11-02T07:10:27.341518+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:27.341518Z",
+      "hash": "cf355727286735e491ee771d1182b09cad68264d6f1b1de9c1f3b5e3db652d82"
+    },
+    {
+      "id": "c09853af-c03d-439f-baf0-a57bd23c8c1c",
+      "question_id": "29b00600-bff1-4604-aa84-17bfa345530e",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "Azure",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:25.57+00:00",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "La climatologia storica indica una temperatura massima media di 13,8 °C per il 6 novembre a Torino, con un 75° percentile di 15,5 °C. Le temperature recenti sono state generalmente sopra i 14 °C, eccetto il 1 novembre. Considerando la tendenza e la climatologia, è probabile che il 6 novembre la temperatura raggiunga almeno 14 °C.",
+      "created_at": "2026-11-02T07:10:27.450317+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:27.450317Z",
+      "hash": "7c80a0f5adfb16efb25b0a9b498a9cdc3d0cd863f18ad1c21671a921dc642899"
+    },
+    {
+      "id": "41c611bc-0d27-488a-9e9e-f91ebb4d25a9",
+      "question_id": "29b00600-bff1-4604-aa84-17bfa345530e",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "StreamLake",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:25.57+00:00",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Le temperature recenti a Torino sono state generalmente superiori a 14°C, con una media storica per il 6 novembre di 13,8°C e un 75° percentile di 15,5°C. Questo suggerisce una probabilità favorevole per l'esito positivo.",
+      "created_at": "2026-11-02T07:10:28.63618+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:28.636180Z",
+      "hash": "0ac1fc17795b7e0e617c93c8c4131134f2b7ed58586c558abed49120ba74ac9c"
+    },
+    {
+      "id": "72367075-e490-48f1-b785-63ae6aff6a3d",
+      "question_id": "d89e705f-bf02-46ab-9059-95119c3e5bd7",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "OpenAI",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 2,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:25.57+00:00",
+      "answer": "no",
+      "confidence": 70,
+      "rationale_it": "Negli ultimi sette giorni a Milano non è stata registrata alcuna precipitazione, suggerendo un periodo di stabilità atmosferica. Tuttavia, la climatologia storica indica che c'è una probabilità del 49% di pioggia di almeno 1 mm il 6 novembre. Considerando l'assenza di pioggia recente, la previsione è che non pioverà, ma la fiducia non è alta data la vicinanza alla soglia del 50%.",
+      "created_at": "2026-11-02T07:10:29.623333+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:29.623333Z",
+      "hash": "e61c7d98483c1de5681d5998165fdfa526833fe5b15f6009bf130ccd4f4378ea"
+    },
+    {
+      "id": "16c82c32-d0e7-4397-9b9d-c6f0c76df1b7",
+      "question_id": "29b00600-bff1-4604-aa84-17bfa345530e",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:25.57+00:00",
+      "answer": "yes",
+      "confidence": 62,
+      "rationale_it": "I dati climatologici mostrano che la temperatura massima media per il 6 novembre a Torino è 13,8°C, molto vicina alla soglia di 14°C. Il 75° percentile raggiunge 15,5°C, indicando che in un quarto dei casi storici la temperatura supera tale valore. Le osservazioni recenti mostrano massime tra 13-18,8°C. La probabilità di raggiungere 14°C è leggermente superiore al 50%.",
+      "created_at": "2026-11-02T07:10:29.789557+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:29.789557Z",
+      "hash": "5bba9ce31db21000b82ee79de1a6912cf0ea6afa11b86948fe587a8789cf0c7a"
+    },
+    {
+      "id": "caac403b-1246-4398-8e19-29469a988908",
+      "question_id": "d89e705f-bf02-46ab-9059-95119c3e5bd7",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google AI Studio",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:28.76+00:00",
+      "answer": "no",
+      "confidence": 65,
+      "rationale_it": "Le osservazioni recenti mostrano assenza di precipitazioni a Milano negli ultimi 7 giorni. Sebbene la climatologia indichi una probabilità del 49% di pioggia, la tendenza attuale suggerisce un periodo secco. La mia fiducia è moderata, data la distanza temporale dalla data di previsione.",
+      "created_at": "2026-11-02T07:10:29.934511+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:29.934511Z",
+      "hash": "197b2cf40ad67434bf56817903502c3f4640d7269ad8c480b3672bc18eb3cdc3"
+    },
+    {
+      "id": "46bfdf5b-70c7-4847-8cfc-eab48d589a45",
+      "question_id": "d89e705f-bf02-46ab-9059-95119c3e5bd7",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:27.54+00:00",
+      "answer": "no",
+      "confidence": 55,
+      "rationale_it": "La climatologia storica mostra che il 6 novembre a Milano piove almeno 1mm nel 49% dei casi, quindi leggermente meno della metà delle volte. Gli ultimi 7 giorni non hanno registrato precipitazioni, suggerendo condizioni stabili. Senza previsioni specifiche per il 6 novembre, la probabilità leggermente inferiore al 50% orienta verso un esito negativo, ma con fiducia limitata.",
+      "created_at": "2026-11-02T07:10:31.200486+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:31.200486Z",
+      "hash": "16c7c022b577f2ce3cc7678d1cec086266ec2449765b572917233f58c50de076"
+    },
+    {
+      "id": "da3353d1-3b12-4dd8-91e4-d00b872902bd",
+      "question_id": "35c656ba-3d03-415d-aa65-844e795605ba",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "OpenAI",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:29.969+00:00",
+      "answer": "no",
+      "confidence": 70,
+      "rationale_it": "Venezia FC è attualmente ultimo in classifica con solo 3 punti e ha vinto una sola partita su dieci. Anche se Udinese è penultima, ha comunque ottenuto più punti e ha segnato più gol. La partita è in casa di Venezia, ma la loro forma attuale rende improbabile una vittoria. Pertanto, la previsione è che Venezia non vincerà.",
+      "created_at": "2026-11-02T07:10:31.340424+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:31.340424Z",
+      "hash": "add9cc3c42114f8a3e6f56db1efcb18f1a61cfc4002b97df62ceef4b669c1f5d"
+    },
+    {
+      "id": "9d72958c-7363-4541-86c9-7bc6b2a6f02c",
+      "question_id": "d89e705f-bf02-46ab-9059-95119c3e5bd7",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "StreamLake",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:27.592+00:00",
+      "answer": "no",
+      "confidence": 70,
+      "rationale_it": "In base alla climatologia recente, la frequenza di pioggia è del 49%, ma negli ultimi 7 giorni non ha piovuto. Prevedo assenza di pioggia con moderata fiducia.",
+      "created_at": "2026-11-02T07:10:31.902313+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:31.902313Z",
+      "hash": "de1e5bce7068da97f5fb185bbb1148b202b40f07106eac7132c9c7ad1f2a5bdc"
+    },
+    {
+      "id": "368fb0ec-53e7-4d52-a353-0d3bcec84982",
+      "question_id": "35c656ba-3d03-415d-aa65-844e795605ba",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google AI Studio",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:31.427+00:00",
+      "answer": "no",
+      "confidence": 65,
+      "rationale_it": "Il Venezia FC è ultimo in classifica con solo 3 punti e una differenza reti molto negativa. L'Udinese, sebbene anch'essa in zona retrocessione, ha 2 punti in più e una migliore differenza reti. La partita è in casa del Venezia, ma la loro forma attuale suggerisce che una vittoria sia improbabile.",
+      "created_at": "2026-11-02T07:10:32.496096+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:32.496096Z",
+      "hash": "a1f2a7dcd1b3213a645a2d3c8247638df26dbcee95d7035719907a5ecb6b1983"
+    },
+    {
+      "id": "5c6fc80a-f7f5-4566-a625-a4f7b7810933",
+      "question_id": "35c656ba-3d03-415d-aa65-844e795605ba",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:30.052+00:00",
+      "answer": "no",
+      "confidence": 58,
+      "rationale_it": "Entrambe le squadre sono in zona retrocessione con rendimenti pessimi. Venezia è ultimo con solo 3 punti e 1 vittoria in 10 partite, mentre Udinese ha 5 punti. Nonostante il fattore campo favorevole a Venezia, la loro forma è leggermente peggiore. In uno scontro diretto tra due squadre in difficoltà, prevedo un pareggio o vittoria Udinese. Fiducia bassa per l'incertezza tipica di questi match.",
+      "created_at": "2026-11-02T07:10:34.191482+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:34.191482Z",
+      "hash": "72e815ed67769209c4a2461848317ccb8c64618587a2f20da0d13f32bca15a4c"
+    },
+    {
+      "id": "bf28805f-bcec-4ba4-8898-0dcce8b780ac",
+      "question_id": "ebc5022b-250f-41fc-a3f3-5c6e9d711d24",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "Azure",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:32.637+00:00",
+      "answer": "no",
+      "confidence": 75,
+      "rationale_it": "Il tasso di cambio euro/dollaro ha mostrato una tendenza al ribasso negli ultimi giorni, con valori che si avvicinano a 1,1130. Sebbene ci sia stata una leggera ripresa il 30 ottobre, la tendenza generale suggerisce che il tasso potrebbe rimanere sotto 1,115 il 6 novembre. Tuttavia, le fluttuazioni valutarie sono imprevedibili, quindi la fiducia non è massima.",
+      "created_at": "2026-11-02T07:10:34.259141+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:34.259141Z",
+      "hash": "c508ad35fe15af75886c3d33e6ba2534a1ef466118d6e1c75455c38baaf090f7"
+    },
+    {
+      "id": "f3e94728-7b68-4ed7-8a60-08c51077c830",
+      "question_id": "35c656ba-3d03-415d-aa65-844e795605ba",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "StreamLake",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:31.293+00:00",
+      "answer": "no",
+      "confidence": 70,
+      "rationale_it": "Udinese ha una posizione leggermente migliore in classifica e un rendimento migliore rispetto a Venezia FC, che ha subito molte sconfitte. La partita è in casa di Venezia, ma la differenza di punti e gol suggerisce un esito favorevole a Udinese o un pareggio.",
+      "created_at": "2026-11-02T07:10:34.889496+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:34.889496Z",
+      "hash": "641a93912c9c3c6af3745cd9343706140cadc3678c12989bff8ebf054bdfd045"
+    },
+    {
+      "id": "a01c0c78-91d0-45d8-ba1c-67ccf895b79a",
+      "question_id": "ebc5022b-250f-41fc-a3f3-5c6e9d711d24",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google AI Studio",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:34.952+00:00",
+      "answer": "yes",
+      "confidence": 65,
+      "rationale_it": "Il tasso di cambio euro/dollaro ha mostrato una certa volatilità negli ultimi giorni, con un trend leggermente discendente ma con un recupero nell'ultimo dato disponibile (1,1172). Il valore soglia di 1,115 è stato superato di recente. Prevedo un mantenimento o un leggero rialzo.",
+      "created_at": "2026-11-02T07:10:36.069072+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:36.069072Z",
+      "hash": "c476de876da2148dd61431b912a579d8019fc4703f59e7e319a39e547946fbaa"
+    },
+    {
+      "id": "e78a791a-9cf2-4a56-bc4c-2052522e02af",
+      "question_id": "ebc5022b-250f-41fc-a3f3-5c6e9d711d24",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "StreamLake",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:34.388+00:00",
+      "answer": "no",
+      "confidence": 65,
+      "rationale_it": "Il tasso di cambio euro/dollaro negli ultimi giorni mostra una tendenza al ribasso, con valori vicini a 1,1130. Considerando la volatilità dei mercati, previsione di un valore inferiore a 1,115 per il 6 novembre 2026.",
+      "created_at": "2026-11-02T07:10:37.723356+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:37.723356Z",
+      "hash": "c204af08d8e7e20d2b448d27b46bfc96a6e1f1bef20a425d9d230bab421c3a03"
+    },
+    {
+      "id": "7327980b-80b4-4118-bba2-4d6b0431965e",
+      "question_id": "ebc5022b-250f-41fc-a3f3-5c6e9d711d24",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:34.312+00:00",
+      "answer": "no",
+      "confidence": 62,
+      "rationale_it": "Il tasso EUR/USD mostra tendenza al ribasso negli ultimi 10 giorni, passando da 1,1225 (19 ott) a 1,1172 (30 ott). La media recente è circa 1,118, sotto la soglia 1,115. Mancano solo 4 giorni alla verifica: servirebbero movimenti significativi per scendere sotto 1,115. La volatilità recente (range 1,113-1,123) rende possibile ma meno probabile il raggiungimento della soglia.",
+      "created_at": "2026-11-02T07:10:38.102315+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:38.102315Z",
+      "hash": "ded27183f8fae5f01a092c329c97ff40b1d6e7b787e685e6fdf97570ed1d89b7"
+    },
+    {
+      "id": "2915d079-be11-4cb4-859c-2185cd7a2bfc",
+      "question_id": "6e228171-d077-4778-8c77-4592d7f5009b",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "Azure",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:37.787+00:00",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Negli ultimi giorni, il PM10 medio giornaliero a Verona è stato spesso sopra i 20 µg/m³, con valori recenti che oscillano tra 12,9 e 34,6 µg/m³. La mediana degli ultimi 45 giorni è 18,3 µg/m³, ma considerando la tendenza recente, è probabile che il valore del 6 novembre sia almeno 20 µg/m³. Tuttavia, la variabilità rende la previsione non completamente certa.",
+      "created_at": "2026-11-02T07:10:41.926942+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:41.926942Z",
+      "hash": "5a0e11575f0db2ba76f79760df5fa277446eb8fe75f7fdef8ffd1d64514f768b"
+    },
+    {
+      "id": "e818e5bb-2e81-4188-aacc-a61291384bd9",
+      "question_id": "6e228171-d077-4778-8c77-4592d7f5009b",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:38.229+00:00",
+      "answer": "yes",
+      "confidence": 72,
+      "rationale_it": "I dati storici recenti mostrano che negli ultimi 7 giorni il PM10 medio è stato sopra 20 µg/m³ in 6 giorni su 7 (solo l'1 novembre sotto con 12,9). La mediana degli ultimi 45 giorni è 18,3 µg/m³, vicina alla soglia. Considerando la stagione autunnale e la tendenza recente con valori prevalentemente sopra 20, prevedo che il 6 novembre supererà la soglia dei 20 µg/m³.",
+      "created_at": "2026-11-02T07:10:42.45294+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:42.452940Z",
+      "hash": "e380b56518275415ef2e75962a6ebcc288671663729454501577712feb4c8b77"
+    },
+    {
+      "id": "9c3e618e-3356-496c-8559-941a3689a584",
+      "question_id": "6e228171-d077-4778-8c77-4592d7f5009b",
+      "model_id": "deepseek",
+      "model_display_name": "DeepSeek Chat",
+      "provider": "DeepSeek",
+      "openrouter_id_requested": "deepseek/deepseek-chat",
+      "model_served": "deepseek/deepseek-chat",
+      "provider_served": "StreamLake",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:41.997+00:00",
+      "answer": "yes",
+      "confidence": 70,
+      "rationale_it": "Negli ultimi giorni il PM10 a Verona è stato spesso sopra i 20 µg/m³, con una mediana degli ultimi 45 giorni a 18,3. Considerando la tendenza recente e l'assenza di eventi straordinari, è probabile che il 6 novembre superi la soglia.",
+      "created_at": "2026-11-02T07:10:45.962863+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:45.962863Z",
+      "hash": "49cf08a6d95e08d9b258f26c75dd7c0d193b6bbb7ac611e86bcd283a457a65da"
+    },
+    {
+      "id": "535b0044-adae-4b9a-a2d0-f9864a5613f7",
+      "question_id": "8b403115-0db1-4c2f-9642-429faa45b502",
+      "model_id": "gpt",
+      "model_display_name": "GPT-4o",
+      "provider": "OpenAI",
+      "openrouter_id_requested": "openai/gpt-4o",
+      "model_served": "openai/gpt-4o",
+      "provider_served": "OpenAI",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:46.027+00:00",
+      "answer": "no",
+      "confidence": 70,
+      "rationale_it": "Il prezzo di Bitcoin ha mostrato una tendenza al ribasso negli ultimi giorni, scendendo sotto i 69.000 euro il 31 ottobre e il 1 novembre. Sebbene ci sia una possibilità di risalita, la tendenza attuale non supporta un aumento significativo sopra i 69.000 euro entro il 6 novembre. Pertanto, la previsione è che il prezzo sarà inferiore a 69.000 euro.",
+      "created_at": "2026-11-02T07:10:47.937092+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:47.937092Z",
+      "hash": "c61f0928de3aee4bd68d91f20a3d8c430ac31a3f6b1b8630ee13428480caebdb"
+    },
+    {
+      "id": "3415b39a-6897-4659-b19e-9855b790f122",
+      "question_id": "8b403115-0db1-4c2f-9642-429faa45b502",
+      "model_id": "claude",
+      "model_display_name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "openrouter_id_requested": "anthropic/claude-sonnet-4.5",
+      "model_served": "anthropic/claude-sonnet-4.5",
+      "provider_served": "Amazon Bedrock",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:47.996+00:00",
+      "answer": "no",
+      "confidence": 62,
+      "rationale_it": "Il prezzo Bitcoin mostra trend discendente: da 72.477€ (23 ott) a 69.176€ (1 nov). Mancano 4 giorni alla verifica. Il prezzo attuale è vicino alla soglia 69.000€ ma la tendenza recente è negativa. Volatilità elevata rende incerto superare/mantenere 69.000€ alle 00:00 UTC del 6 novembre. Previsione: lieve calo sotto soglia.",
+      "created_at": "2026-11-02T07:10:52.446778+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:52.446778Z",
+      "hash": "9a122c606f010b3733e9b0f8aa4cffd355eb252c9cfb0dd7a3761bad1b16c75d"
+    },
+    {
+      "id": "904cb593-b5fb-4067-ab2a-0050d5496298",
+      "question_id": "d89e705f-bf02-46ab-9059-95119c3e5bd7",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:29.741+00:00",
+      "answer": "no",
+      "confidence": 60,
+      "rationale_it": "Negli ultimi 7 giorni non ci sono state precipitazioni a Milano. La climatologia indica una frequenza del 49% di giorni con pioggia, ma non è sufficiente per essere fiduciosi di una precipitazione di almeno 1 mm. La mia fiducia è moderata.",
+      "created_at": "2026-11-02T07:10:52.515473+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:52.515473Z",
+      "hash": "4f700d18bcd4d7a70228e8a48205fdd9b3e4b4f91720939c20b8a9618b6cc70a"
+    },
+    {
+      "id": "c4cfb131-2964-4a24-b13d-93eed9c0bcc6",
+      "question_id": "ebc5022b-250f-41fc-a3f3-5c6e9d711d24",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:36.136+00:00",
+      "answer": "yes",
+      "confidence": 75,
+      "rationale_it": "Il tasso di cambio è stato sopra 1,115 per la maggior parte dei giorni negli ultimi 30 giorni, con una tendenza leggermente discendente ma ancora al di sopra del livello di 1,115. La fiducia è moderata-alta, considerando la vicinanza del valore attuale al livello di 1,115.",
+      "created_at": "2026-11-02T07:10:53.395145+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:53.395145Z",
+      "hash": "6ee596af6c6e1c65782c72d16203ac0ee86005f1893070d6b586eb09a9b19d0a"
+    },
+    {
+      "id": "35022871-6383-4eda-988b-f28d7d06276d",
+      "question_id": "8b403115-0db1-4c2f-9642-429faa45b502",
+      "model_id": "gemini",
+      "model_display_name": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "openrouter_id_requested": "google/gemini-2.5-flash",
+      "model_served": "google/gemini-2.5-flash",
+      "provider_served": "Google AI Studio",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:52.618+00:00",
+      "answer": "yes",
+      "confidence": 65,
+      "rationale_it": "Il prezzo di Bitcoin ha mostrato una certa volatilità negli ultimi giorni, ma si è mantenuto prevalentemente sopra i 69.000 euro. Sebbene ci sia stato un calo il 31 ottobre, il prezzo è risalito il 1° novembre, suggerendo una potenziale stabilizzazione o ripresa sopra la soglia richiesta.",
+      "created_at": "2026-11-02T07:10:53.654299+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:53.654299Z",
+      "hash": "8132b77a456855ab7006f78bdf95cff3281719b4c99259d3ba9bc571aabe7c37"
+    },
+    {
+      "id": "d3e97c9b-da4b-434b-9e28-e7607ed4872b",
+      "question_id": "29b00600-bff1-4604-aa84-17bfa345530e",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:25.57+00:00",
+      "answer": "yes",
+      "confidence": 70,
+      "rationale_it": "La temperatura massima a Torino negli ultimi giorni è stata intorno ai 17-18 °C, e la climatologia per il 6 novembre indica una media di 13,8 °C con il 75° percentile a 15,5 °C. Questi dati suggeriscono una probabilità elevata che la temperatura massima raggiunga o superi i 14 °C.",
+      "created_at": "2026-11-02T07:10:54.485781+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:54.485781Z",
+      "hash": "c2d3e5482c882d99bc6cc0a5a1fabb315552090799f4827e33a8a838be7e64ab"
+    },
+    {
+      "id": "04188833-44c0-4a66-a7e1-da897e1c0b4d",
+      "question_id": "35c656ba-3d03-415d-aa65-844e795605ba",
+      "model_id": "qwen",
+      "model_display_name": "Qwen 2.5 72B",
+      "provider": "Alibaba",
+      "openrouter_id_requested": "qwen/qwen-2.5-72b-instruct",
+      "model_served": "qwen/qwen-2.5-72b-instruct",
+      "provider_served": "DeepInfra",
+      "prompt_version": "f1/c3",
+      "condition": "B",
+      "attempts": 1,
+      "vocab_flags": [],
+      "requested_at": "2026-11-02T07:10:32.044+00:00",
+      "answer": "no",
+      "confidence": 60,
+      "rationale_it": "Venezia FC è in una posizione molto critica in classifica con solo 3 punti e 1 vittoria in 10 partite. Anche se gioca in casa, l'Udinese, pur in una situazione difficile, ha un rendimento leggermente migliore. La differenza di gol e le prestazioni recenti suggeriscono che Venezia FC potrebbe avere difficoltà a vincere questa partita.",
+      "created_at": "2026-11-02T07:10:54.550507+00:00",
+      "created_at_for_hash": "2026-11-02T07:10:54.550507Z",
+      "hash": "e6aefd3e9393c7a950877f74f41a8b89b6f762c3ea4ea3ccb5167be08b762ea4"
+    }
+  ]
+}
